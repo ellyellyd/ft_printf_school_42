@@ -1,0 +1,5 @@
+write %o,x,X  and flags (hh, h, l, ll) - fix it
+check diu -fix it
+write csp ?
+write work flags f + (l,L)
+write work with # 0 - + ' '
