@@ -10,3 +10,4 @@ void	a10_in_8(int l);
 void	x_10_in_16(int l);
 char	*ft_itoa_base(int value, int base);
 char	*X_ft_itoa_base(int value, int base);
+char	*ft_itoa_unsigned_base(unsigned int value, int base, char c);

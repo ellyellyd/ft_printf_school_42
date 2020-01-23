@@ -1,8 +1,6 @@
 #include "libftprintf.h"
 #include <stdio.h>
 
-#define MAX_NUM 4294967295
-
 void	insert_format(const char *format, int i, va_list argptr);
 void	ft_nb_to_char(int l);
 
@@ -45,7 +43,13 @@ void	insert_format(const char *format, int i, va_list argptr)
 	else if (format[i] == 'x')
 	{
 		l = va_arg(argptr, int);
-		s = ft_itoa_base(l, 16);
+		if (l < 0)
+		{
+			s = ft_itoa_unsigned_base((unsigned int)l, 16, 'x');
+			l = 0;
+		}
+		else
+			s = ft_itoa_base(l, 16);
 		l = 0;
 		while (s[l] != '\0')
 			write(1, &s[l++], 1);
@@ -53,25 +57,38 @@ void	insert_format(const char *format, int i, va_list argptr)
 	else if (format[i] == 'X')
 	{
 		l = va_arg(argptr, int);
-		s = X_ft_itoa_base(l, 16);
+		if (l < 0)
+		{
+			s = ft_itoa_unsigned_base((unsigned int)l, 16, 'X');
+			l = 0;
+		}
+		else
+			s = X_ft_itoa_base(l, 16);
 		l = 0;
 		while (s[l] != '\0')
 			write(1, &s[l++], 1);
 	}
 	else if (format[i] == 'u')
 	{
-		//if (l < 0)
-		//	ft_putnbr(4294967296 + l);//it does not work
-		l = va_arg(argptr, int);
-		ft_putnbr(l);
+		if (l < 0)
+		{
+			s = ft_itoa_unsigned_base((unsigned int)l, 9, 'X');
+			l = 0;
+			while (s[l] != '\0')
+				write(1, &s[l++], 1);
+		}
+		else
+		{
+			l = va_arg(argptr, int);
+			ft_putnbr(l);
+		}
 	}
 	else if (format[i] == 'o')
 	{
-		l = va_arg(argptr, unsigned);
+		l = va_arg(argptr, int);
 		if (l < 0)
 		{
-			s = X_ft_itoa_base(l, 16);
-			//x10_in_16(MAX_NUM + 1 + l);//it does not work
+			s = ft_itoa_unsigned_base((unsigned int)l, 8, 'X');
 			l = 0;
 			while (s[l] != '\0')
 				write(1, &s[l++], 1);

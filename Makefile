@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/01/22 22:19:03 by fcatina          ###   ########.fr        #
+#    Updated: 2020/01/23 22:08:49 by fcatina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = main.c \
 	  ft_putnbr.c \
 	  ft_putchar.c \
 	  ft_itoa_base.c \
-	  X_ft_itoa_base.c
+	  X_ft_itoa_base.c\
+	  ft_itoa_unsigned_base.c
 
 .PHONY: all clean fclean re
 
