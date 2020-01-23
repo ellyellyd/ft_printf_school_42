@@ -5,14 +5,15 @@ int		ft_printf(const char *format, ...);
 
 int		main(void)
 {
-	int		i;
-	char	*c;
-	char	a;
+	unsigned int		i;
+	char				*c;
+	char				a;
 
-	a = 's';
-	c = "dgd";
-	i = -2;
-	printf("#Hello %u world!\n", i);
-	ft_printf("#Hello %u world!\n", i);
+	a = 'z';
+	c = "a";
+	i = -341;
+	printf("Hello %o world!\n", i);
+//	printf("%p\n%p\n", NULL, c);
+	ft_printf("Hello %o world!\n", i);
 	return (0);
 }

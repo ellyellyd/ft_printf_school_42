@@ -1,6 +1,9 @@
 #include "libftprintf.h"
+#include <stdio.h>
 
-void	insert_format(const char *format, int i, va_list str);
+#define MAX_NUM 4294967295
+
+void	insert_format(const char *format, int i, va_list argptr);
 void	ft_nb_to_char(int l);
 
 int		ft_printf(const char *format, ...)
@@ -18,7 +21,7 @@ int		ft_printf(const char *format, ...)
 			write(1, &format[i++], 1);
 		if (format[i] == '\n')
 			write(1, "\n", 1);
-		if (format[i++] == '%')
+		else if (format[i++] == '%')
 			insert_format(format, i, argptr);
 		i++;
 	}
@@ -30,29 +33,51 @@ int		ft_printf(const char *format, ...)
 
 void	insert_format(const char *format, int i, va_list argptr)
 {
-	int		l;
-	char	*s;
+	int				l;
+	char			*s;
 
 	l = 0;
-	if (format[i] == 'i' || format[i] == 'd' ||\
-			format[i] == 'x' || format[i] == 'X')
+	if (format[i] == 'i' || format[i] == 'd')
 	{
 		l = va_arg(argptr, int);
 		ft_putnbr(l);
 	}
-	else if (format[i] == 'u')
+	else if (format[i] == 'x')
 	{
 		l = va_arg(argptr, int);
-		if (l < 0)
-			ft_putnbr(4294967296 + l);//it does not work
-		//else
+		s = ft_itoa_base(l, 16);
+		l = 0;
+		while (s[l] != '\0')
+			write(1, &s[l++], 1);
+	}
+	else if (format[i] == 'X')
+	{
+		l = va_arg(argptr, int);
+		s = X_ft_itoa_base(l, 16);
+		l = 0;
+		while (s[l] != '\0')
+			write(1, &s[l++], 1);
+	}
+	else if (format[i] == 'u')
+	{
+		//if (l < 0)
+		//	ft_putnbr(4294967296 + l);//it does not work
+		l = va_arg(argptr, int);
+		ft_putnbr(l);
 	}
 	else if (format[i] == 'o')
 	{
-		l = va_arg(argptr, int);
+		l = va_arg(argptr, unsigned);
 		if (l < 0)
-			ft_putnbr(37777777777 + l + 1);//it does not work
-		//else
+		{
+			s = X_ft_itoa_base(l, 16);
+			//x10_in_16(MAX_NUM + 1 + l);//it does not work
+			l = 0;
+			while (s[l] != '\0')
+				write(1, &s[l++], 1);
+		}
+		else
+			a10_in_8(l);
 	}
 	else if (format[i] == 'c')
 	{
