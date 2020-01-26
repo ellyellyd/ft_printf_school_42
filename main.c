@@ -6,14 +6,15 @@ int		ft_printf(const char *format, ...);
 int		main(void)
 {
 	int		i;
+	int		l;
 	char	*c;
 	char	a;
 
-	a = 'z';
-	c = "a";
-	i = -1;
-	printf("Hello %u world!\n", i);
-//	printf("%p\n%p\n", NULL, c);
-	ft_printf("Hello %u world!\n", i);
+	a = '3';
+	c = "argfjdbgdf";
+	i = -8;
+	l = 8;
+	printf("Hello %060u world!\n", i);
+	ft_printf("Hello %u world!\n", l);
 	return (0);
 }
