@@ -13,8 +13,8 @@ int		main(void)
 	a = '3';
 	c = "argfjdbgdf";
 	i = -8;
-	l = 8;
-	printf("Hello %060u world!\n", i);
-	ft_printf("Hello %u world!\n", l);
+	l = 18;
+	printf("Hello %+100i world!\n", l);
+	ft_printf("Hello %+100i world!\n", l);
 	return (0);
 }
