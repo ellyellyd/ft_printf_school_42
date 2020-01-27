@@ -12,9 +12,9 @@ int		main(void)
 
 	a = '3';
 	c = "agdf";
-	i = 1;
+	i = -9;
 	l = 1;
-	printf("Hello %9s worlde\n", c);
-	ft_printf("Hello %9s world!\n", c);
+	printf("Hello %x world\n", i);
+	ft_printf("Hello %x world!\n", i);
 	return (0);
 }

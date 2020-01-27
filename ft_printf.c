@@ -18,9 +18,9 @@ int	size_l(int l)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 //	printf("%d\n", l); // check
-	while (l % 10 != 0)
+	while (l / 10 != 0)
 	{
 //		write(1, "HI\n", 3); // check
 		i++;
@@ -37,9 +37,9 @@ t_frm	is_it_smth_else(const char *format, int	i) // bew func
 
 	l = 0;
 	tmp.plus = 0;
-	tmp.nb = 0;
 	tmp.space = 0;
 	tmp.zero = 0;
+	tmp.width = 0;
 	c = format[i];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
 			c == 'u' || c == 'x' || c == 'X' || \
@@ -55,11 +55,8 @@ t_frm	is_it_smth_else(const char *format, int	i) // bew func
 		else if (c > '0' && c <= '9')
 		{
 			l = l + (c - 48);
-			i++;
-			if (format[i] >= '0' && format[i] <= '9')
-					l = l * 1;
+			tmp.width = l;
 		}
-		tmp.nb = l;
 //		printf("here: %d\n", tmp.nb);// check
 		i++;
 		c = format[i];
@@ -71,8 +68,8 @@ int		ft_printf(const char *format, ...)
 {
 	int		i;
 	int		res;
-	va_list	argptr;
-	t_frm	tmp; // for flags and etc
+	va_list		argptr;
+	t_frm		tmp; // for flags and etc
 
 	i = 0;
 	res = 0;
@@ -107,39 +104,57 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 {
 	int	l;
 	int	t;
+	int	ul;
 	char	*s;
+	char	c;
 
+	c = ' ';
+	ul = 0;
 	l = 0;
 	s = NULL;
+	if (tmp.zero == 1)
+		c = '0';
 	if (format[i] == 'i' || format[i] == 'd')
 	{
 		l = va_arg(argptr, int);
-//		printf("%i\n", tmp.nb);// check
-		if (tmp.plus == 1 && tmp.nb == 0 && l >= 0)
+	//	printf("%i\n", l);// check
+		if (tmp.plus == 1 && tmp.width == 0 && l >= 0)
 			write(1, "+", 1);
 //		printf("%i\n", tmp.space);//check
-		if (tmp.space == 1 && tmp.plus != 1 && tmp.nb < 1)
+		if (tmp.space == 1 && tmp.plus != 1 && tmp.width == 0 && l >= 0)
 			write(1, " ", 1);
-		if (tmp.nb > 0)
+		if ((tmp.width == 0 && l < 0) && tmp.zero == 1)
+			write(1, "-", 1);
+		if (l < 0)
+			ul = l * -1;
+		else
+			ul = l;
+		if (tmp.width >= 0)
 		{
-			t = size_l(l);
-		//	printf("%i %i %i\n", tmp.nb, t, tmp.space);// check
-			if (t >= tmp.nb)
-				tmp.nb = 0;
-			if (tmp.nb > t)
+			t = size_l(ul);
+	//		printf("%i %i %i\n", tmp.width, t, tmp.space);// check
+			if (t >= tmp.width)
+				tmp.width = 0;
+			if (tmp.width > t)
 			{
-				tmp.nb = tmp.nb - t;
-				if (tmp.plus == 1)
-					tmp.nb = tmp.nb - 1;
+				tmp.width = tmp.width - t;
+				if (tmp.plus == 1 || l < 0)
+					tmp.width = tmp.width - 1;
 			}
-		//	printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			while (tmp.nb > 0)
+	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
+			if (tmp.zero == 1 && l < 0)
+				write(1, "-", 1);
+			while (tmp.width > 0)
 			{
-				write(1, " ", 1);
-				tmp.nb--;
-			}
-			if (tmp.plus == 1 && l >= 0)
+				write(1, &c, 1);
+				tmp.width--;
+			}		
+			if (tmp.plus == 1 && l >= 0 && tmp.zero == 0)
 				write(1, "+", 1);
+			else if (tmp.zero == 0)
+				write(1, "-", 1);
+			if (l < 0)
+				l = l * -1;
 		}
 		ft_putnbr(l);
 	}
