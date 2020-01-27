@@ -169,19 +169,19 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		else
 			s = ft_itoa_base(l, 16);
 		l = 0;
-		if (tmp.nb > 0)
+		if (tmp.width > 0)
 		{
 			t = size_s(s);
-	//		printf("%i %i\n", t, tmp.nb);// check
-			if (t >= tmp.nb)
-				tmp.nb = 0;
-			if (tmp.nb > t)
-				tmp.nb = tmp.nb - t;
-	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			while (tmp.nb > 0)
+//			printf("%i %i\n", t, tmp.width);// check
+			if (t >= tmp.width)
+				tmp.width = 0;
+			if (tmp.width > t)
+				tmp.width = tmp.width - t;
+//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+			while (tmp.width > 0)
 			{
-				write(1, " ", 1);
-				tmp.nb--;
+				write(1, &c, 1);
+				tmp.width--;
 			}
 		}
 		while (s[l] != '\0')
@@ -198,19 +198,19 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		else
 			s = X_ft_itoa_base(l, 16);
 		l = 0;
-		if (tmp.nb > 0)
+		if (tmp.width > 0)
 		{
 			t = size_s(s);
-	//		printf("%i %i\n", t, tmp.nb);// check
-			if (t >= tmp.nb)
-				tmp.nb = 0;
-			if (tmp.nb > t)
-				tmp.nb = tmp.nb - t;
-	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			while (tmp.nb > 0)
+	//		printf("%i %i\n", t, tmp.width);// check
+			if (t >= tmp.width)
+				tmp.width = 0;
+			if (tmp.width > t)
+				tmp.width = tmp.width - t;
+	//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+			while (tmp.width > 0)
 			{
-				write(1, " ", 1);
-				tmp.nb--;
+				write(1, &c, 1);
+				tmp.width--;
 			}
 		}
 		while (s[l] != '\0')
@@ -223,19 +223,19 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		{
 			s = ft_itoa_unsigned_base((unsigned int)l, 10, 'X');
 			l = 0;
-			if (tmp.nb > 0)
+			if (tmp.width > 0)
 			{
 				t = size_s(s);
-	//			printf("%i %i\n", t, tmp.nb);// check
-				if (t >= tmp.nb)
-					tmp.nb = 0;
-				if (tmp.nb > t)
-					tmp.nb = tmp.nb - t;
-	//			printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-				while (tmp.nb > 0)
+	//			printf("%i %i\n", t, tmp.width);// check
+				if (t >= tmp.width)
+					tmp.width = 0;
+				if (tmp.width > t)
+					tmp.width = tmp.width - t;
+	//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				while (tmp.width > 0)
 				{
-					write(1, " ", 1);
-					tmp.nb--;
+					write(1, &c, 1);
+					tmp.width--;
 				}
 			}
 			while (s[l] != '\0')
@@ -243,23 +243,23 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		}
 		else
 		{
-			if (tmp.nb > 0)
+			if (tmp.width > 0)
 			{
 				t = size_l(l);
-		//		printf("%i %i %i\n", tmp.nb, t, tmp.space);// check
-				if (t >= tmp.nb)
-					tmp.nb = 0;
-				if (tmp.nb > t)
+		//		printf("%i %i %i\n", tmp.width, t, tmp.space);// check
+				if (t >= tmp.width)
+					tmp.width = 0;
+				if (tmp.width > t)
 				{
-					tmp.nb = tmp.nb - t;
+					tmp.width = tmp.width - t;
 					if (tmp.plus == 1)
-						tmp.nb = tmp.nb - 1;
+						tmp.width = tmp.width - 1;
 				}
-			//	printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-				while (tmp.nb > 0)
+			//	printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				while (tmp.width > 0)
 				{
-					write(1, " ", 1);
-					tmp.nb--;
+					write(1, &c, 1);
+					tmp.width--;
 				}
 			}
 			ft_putnbr(l);
@@ -273,39 +273,40 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		{
 			s = ft_itoa_unsigned_base((unsigned int)l, 8, 'X');
 			l = 0;
-			if (tmp.nb > 0)
+			if (tmp.width > 0)
 			{
 				t = size_s(s);
-	//			printf("%i %i\n", t, tmp.nb);// check
-				if (t >= tmp.nb)
-					tmp.nb = 0;
-				if (tmp.nb > t)
-					tmp.nb = tmp.nb - t;
-	//			printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-				while (tmp.nb > 0)
+//				printf("%i %i\n", t, tmp.width);// check
+				if (t >= tmp.width)
+					tmp.width = 0;
+				if (tmp.width > t)
+					tmp.width = tmp.width - t;
+//				printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				while (tmp.width > 0)
 				{
-					write(1, " ", 1);
-					tmp.nb--;
+					write(1, &c, 1);
+					tmp.width--;
 				}
 			}
 			while (s[l] != '\0')
 				write(1, &s[l++], 1);
 		}
-		else
+		if (l >= 0)
 		{
-			if (tmp.nb > 0)
+	//		printf("%d\n", l); // check
+			if (tmp.width >= 0)
 			{
 				t = size_l(l);
-		//		printf("%i %i %i\n", tmp.nb, t, tmp.space);// check
-				if (t >= tmp.nb)
-					tmp.nb = 0;
-				if (tmp.nb > t)
-					tmp.nb = tmp.nb - t;
-		//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-				while (tmp.nb > 0)
+	//			printf("%i %i %i\n", tmp.width, t, tmp.space);// check
+				if (t >= tmp.width)
+					tmp.width = 0;
+				if (tmp.width > t)
+					tmp.width = tmp.width - t;
+	//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				while (tmp.width > 0)
 				{
-					write(1, " ", 1);
-					tmp.nb--;
+					write(1, &c, 1);
+					tmp.width--;
 				}
 				a10_in_8(l);
 			}
@@ -314,30 +315,30 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	else if (format[i] == 'c')
 	{
 		l = va_arg(argptr, int);
-		tmp.nb = tmp.nb - 1;
-		while (tmp.nb > 0)
+		tmp.width = tmp.width - 1;
+		while (tmp.width > 0)
 		{
 			write(1, " ", 1);
-			tmp.nb--;
+			tmp.width--;
 		}
 		ft_nb_to_char(l);
 	}
 	else if (format[i] == 's')
 	{
 		s = va_arg(argptr, char*);
-		if (tmp.nb > 0)
+		if (tmp.width > 0)
 		{
 			t = size_s(s);
-	//		printf("%i %i\n", t, tmp.nb);// check
-			if (t >= tmp.nb)
-				tmp.nb = 0;
-			if (tmp.nb > t)
-				tmp.nb = tmp.nb - t;
-	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			while (tmp.nb > 0)
+	//		printf("%i %i\n", t, tmp.width);// check
+			if (t >= tmp.width)
+				tmp.width = 0;
+			if (tmp.width > t)
+				tmp.width = tmp.width - t;
+	//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+			while (tmp.width > 0)
 			{
 				write(1, " ", 1);
-				tmp.nb--;
+				tmp.width--;
 			}
 		}
 		ft_putstr(s);
