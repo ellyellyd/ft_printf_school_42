@@ -12,9 +12,9 @@ int		main(void)
 
 	a = '3';
 	c = "argfjdbgdf";
-	i = -18;
-	l = 18;
-	printf("Hello %x world!\n", i);
-	ft_printf("Hello %x world!\n", l);
+	i = 1;
+	l = 118;
+	printf("Hello %9u worlde\n", l);
+	ft_printf("Hello %9u world!\n", l);
 	return (0);
 }

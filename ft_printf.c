@@ -4,6 +4,15 @@
 void	insert_format(const char *format, int i, va_list argptr, t_frm tmp);
 void	ft_nb_to_char(int l);
 
+int	size_s(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	size_l(int l)
 {
@@ -101,6 +110,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	char	*s;
 
 	l = 0;
+	s = NULL;
 	if (format[i] == 'i' || format[i] == 'd')
 	{
 		l = va_arg(argptr, int);
@@ -112,7 +122,6 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 			write(1, " ", 1);
 		if (tmp.nb > 0)
 		{
-			//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
 			t = size_l(l);
 		//	printf("%i %i %i\n", tmp.nb, t, tmp.space);// check
 			if (t >= tmp.nb)
@@ -137,21 +146,6 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	else if (format[i] == 'x')
 	{
 		l = va_arg(argptr, int);
-		if (tmp.nb > 0)
-		{
-			t = size_l(l);
-		//	printf("%i %i\n", t, tmp.nb);// check
-			if (t >= tmp.nb)
-				tmp.nb = 0;
-			if (tmp.nb > t)
-				tmp.nb = tmp.nb - t;
-		//	printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			while (tmp.nb > 0)
-			{
-				write(1, " ", 1);
-				tmp.nb--;
-			}
-		}
 		if (l < 0)
 		{
 			s = ft_itoa_unsigned_base((unsigned int)l, 16, 'x');
@@ -160,31 +154,27 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		else
 			s = ft_itoa_base(l, 16);
 		l = 0;
-		while (s[l] != '\0')
-			write(1, &s[l++], 1);
-	}
-	else if (format[i] == 'X')
-	{
-		l = va_arg(argptr, int);
 		if (tmp.nb > 0)
 		{
-			t = size_l(l) - 1;
-//			printf("%i\n", t);// check
+			t = size_s(s);
+	//		printf("%i %i\n", t, tmp.nb);// check
 			if (t >= tmp.nb)
 				tmp.nb = 0;
 			if (tmp.nb > t)
-			{
 				tmp.nb = tmp.nb - t;
-				if (tmp.plus == 1)
-					tmp.nb = tmp.nb - 1;
-			}
-//			printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
+	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
 			while (tmp.nb > 0)
 			{
 				write(1, " ", 1);
 				tmp.nb--;
 			}
 		}
+		while (s[l] != '\0')
+			write(1, &s[l++], 1);
+	}
+	else if (format[i] == 'X')
+	{
+		l = va_arg(argptr, int);
 		if (l < 0)
 		{
 			s = ft_itoa_unsigned_base((unsigned int)l, 16, 'X');
@@ -193,36 +183,73 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		else
 			s = X_ft_itoa_base(l, 16);
 		l = 0;
-		while (s[l] != '\0')
-			write(1, &s[l++], 1);
-	}
-	else if (format[i] == 'u')
-	{
-		l = va_arg(argptr, int);
 		if (tmp.nb > 0)
 		{
-			t = size_l(l) - 1;
-//			printf("%i\n", t);// check
+			t = size_s(s);
+	//		printf("%i %i\n", t, tmp.nb);// check
 			if (t >= tmp.nb)
 				tmp.nb = 0;
 			if (tmp.nb > t)
 				tmp.nb = tmp.nb - t;
-//			printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
+	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
 			while (tmp.nb > 0)
 			{
 				write(1, " ", 1);
 				tmp.nb--;
 			}
 		}
+		while (s[l] != '\0')
+			write(1, &s[l++], 1);
+	}
+	else if (format[i] == 'u')
+	{
+		l = va_arg(argptr, int);
 		if (l < 0)
 		{
 			s = ft_itoa_unsigned_base((unsigned int)l, 10, 'X');
 			l = 0;
+			if (tmp.nb > 0)
+			{
+				//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
+				t = size_s(s);
+	//			printf("%i %i\n", t, tmp.nb);// check
+				if (t >= tmp.nb)
+					tmp.nb = 0;
+				if (tmp.nb > t)
+					tmp.nb = tmp.nb - t;
+	//			printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
+				while (tmp.nb > 0)
+				{
+					write(1, " ", 1);
+					tmp.nb--;
+				}
+			}
 			while (s[l] != '\0')
 				write(1, &s[l++], 1);
 		}
 		else
+		{
+			if (tmp.nb > 0)
+			{
+				t = size_l(l);
+		//		printf("%i %i %i\n", tmp.nb, t, tmp.space);// check
+				if (t >= tmp.nb)
+					tmp.nb = 0;
+				if (tmp.nb > t)
+				{
+					tmp.nb = tmp.nb - t;
+					if (tmp.plus == 1)
+						tmp.nb = tmp.nb - 1;
+				}
+			//	printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
+				while (tmp.nb > 0)
+				{
+					write(1, " ", 1);
+					tmp.nb--;
+				}
+			}
 			ft_putnbr(l);
+		}
 	}
 	else if (format[i] == 'o')
 	{
