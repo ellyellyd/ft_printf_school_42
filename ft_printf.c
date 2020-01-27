@@ -37,6 +37,7 @@ t_frm	is_it_smth_else(const char *format, int	i) // bew func
 
 	l = 0;
 	tmp.plus = 0;
+	tmp.minus = 0;
 	tmp.space = 0;
 	tmp.zero = 0;
 	tmp.width = 0;
@@ -52,6 +53,8 @@ t_frm	is_it_smth_else(const char *format, int	i) // bew func
 			tmp.space = 1;
 		if (c == '0')
 			tmp.zero = 1;
+		if (c == '-')
+			tmp.minus = 1;
 		else if (c > '0' && c <= '9')
 		{
 			l = l + (c - 48);
@@ -316,12 +319,23 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	{
 		l = va_arg(argptr, int);
 		tmp.width = tmp.width - 1;
-		while (tmp.width > 0)
+		if (tmp.minus == 0)
 		{
-			write(1, " ", 1);
-			tmp.width--;
+			while (tmp.width > 0)
+			{
+				write(1, " ", 1);
+				tmp.width--;
+			}
 		}
 		ft_nb_to_char(l);
+		if (tmp.minus == 1)
+		{
+			while (tmp.width > 0)
+			{
+				write(1, " ", 1);
+				tmp.width--;
+			}
+		}
 	}
 	else if (format[i] == 's')
 	{
@@ -334,14 +348,25 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				tmp.width = 0;
 			if (tmp.width > t)
 				tmp.width = tmp.width - t;
-	//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+	//		printf("%i %i %i\n", tmp.width, t, tmp.minus);// check
+			if (tmp.minus == 0)
+			{
+				while (tmp.width > 0)
+				{
+					write(1, " ", 1);
+					tmp.width--;
+				}
+			}
+		}
+		ft_putstr(s);
+		if (tmp.minus == 1)
+		{
 			while (tmp.width > 0)
 			{
 				write(1, " ", 1);
 				tmp.width--;
 			}
 		}
-		ft_putstr(s);
 	}	
 	else if (format[i] == '%')
 		ft_putchar('%');

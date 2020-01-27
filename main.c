@@ -14,7 +14,7 @@ int		main(void)
 	c = "agdf";
 	i = 25;
 	l = 1;
-	printf("Hello %9s worlde\n", c);
-	ft_printf("Hello %9s world!\n", c);
+	printf("Hello %-5c worlde\n", a);
+	ft_printf("Hello %-5c world!\n", a);
 	return (0);
 }
