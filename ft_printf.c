@@ -192,6 +192,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	}
 	else if (format[i] == 'X')
 	{
+		//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
 		l = va_arg(argptr, int);
 		if (l < 0)
 		{
@@ -221,7 +222,6 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	}
 	else if (format[i] == 'u')
 	{
-		//LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
 		l = va_arg(argptr, int);
 		if (l < 0)
 		{
@@ -236,14 +236,25 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				if (tmp.width > t)
 					tmp.width = tmp.width - t;
 	//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				if (tmp.minus == 0)
+				{
+					while (tmp.width > 0)
+					{
+						write(1, &c, 1);
+						tmp.width--;
+					}
+				}
+			}
+			while (s[l] != '\0')
+				write(1, &s[l++], 1);
+			if (tmp.minus == 1)
+			{
 				while (tmp.width > 0)
 				{
 					write(1, &c, 1);
 					tmp.width--;
 				}
 			}
-			while (s[l] != '\0')
-				write(1, &s[l++], 1);
 		}
 		else
 		{
@@ -260,13 +271,24 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 						tmp.width = tmp.width - 1;
 				}
 			//	printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+				if (tmp.minus == 0)
+				{
+					while (tmp.width > 0)
+					{
+						write(1, &c, 1);
+						tmp.width--;
+					}
+				}
+			}
+			ft_putnbr(l);
+			if (tmp.minus == 1)
+			{
 				while (tmp.width > 0)
 				{
 					write(1, &c, 1);
 					tmp.width--;
 				}
 			}
-			ft_putnbr(l);
 		}
 	}
 	else if (format[i] == 'o')
