@@ -11,10 +11,10 @@ int		main(void)
 	char	a;
 
 	a = '3';
-	c = "argfjdbgdf";
+	c = "agdf";
 	i = 1;
-	l = 118;
-	printf("Hello %9u worlde\n", l);
-	ft_printf("Hello %9u world!\n", l);
+	l = 1;
+	printf("Hello %9s worlde\n", c);
+	ft_printf("Hello %9s world!\n", c);
 	return (0);
 }
