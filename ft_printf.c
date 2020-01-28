@@ -424,6 +424,15 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 			}
 		}
 	}
+	else if (format[i] == 'p')
+	{
+		l = va_arg(argptr, int);
+		s = ft_itoa_unsigned_base((unsigned)l, 16, 'x');
+		write(1, "0x10", 4);
+		l = 0;
+		while (s[l] != '\0')
+			write(1, &s[l++], 1);
+	}
 	else if (format[i] == 'c')
 	{
 		l = va_arg(argptr, int);
