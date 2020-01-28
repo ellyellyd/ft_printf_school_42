@@ -110,7 +110,9 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	int	ul;
 	char	*s;
 	char	c;
+	int	flag;
 
+	flag = 0;
 	c = ' ';
 	ul = 0;
 	l = 0;
@@ -121,12 +123,23 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	{
 		l = va_arg(argptr, int);
 	//	printf("%i\n", l);// check
-		if (tmp.plus == 1 && tmp.width == 0 && l >= 0)
+		if (tmp.plus == 1 && tmp.minus == 1 && tmp.zero == 0 && l >= 0)
+		{
+			flag = 1;
+			write(1, "+", 1);
+		}
+		if ((tmp.plus == 1 || tmp.width != 0) && tmp.minus == 1 && tmp.zero == 0 && l < 0)
+		{
+			flag = 1;
+			write(1, "-", 1);
+		}
+		if (tmp.plus == 1 && (tmp.zero == 1 || tmp.minus == 1) && tmp.width != 0 && l >= 0 && flag == 0)
 			write(1, "+", 1);
 //		printf("%i\n", tmp.space);//check
-		if (tmp.space == 1 && tmp.plus != 1 && tmp.width == 0 && l >= 0)
+		t = size_l(ul);
+		if (tmp.space == 1 && tmp.plus != 1 && (tmp.width == 0 || t ==  tmp.width) && tmp.minus == 0 && l >= 0)
 			write(1, " ", 1);
-		if ((tmp.width == 0 && l < 0) && tmp.zero == 1)
+		if (tmp.width == 0 && (tmp.minus == 1 || tmp.zero == 1) && l < 0 && flag == 0)
 			write(1, "-", 1);
 		if (l < 0)
 			ul = l * -1;
@@ -145,21 +158,30 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 					tmp.width = tmp.width - 1;
 			}
 	//		printf("%i %i %i\n", tmp.nb, t, tmp.plus);// check
-			if (tmp.zero == 1 && l < 0)
+			if (tmp.zero == 1 && l < 0 && tmp.minus == 0)
 				write(1, "-", 1);
-			while (tmp.width > 0)
-			{
-				write(1, &c, 1);
-				tmp.width--;
+			if (tmp.minus == 0)
+			{	while (tmp.width > 0)
+				{
+					write(1, &c, 1);
+					tmp.width--;
+				}
 			}		
-			if (tmp.plus == 1 && l >= 0 && tmp.zero == 0)
+			if (tmp.plus == 1 && l >= 0 && tmp.zero == 0 && tmp.minus == 0)
 				write(1, "+", 1);
-			else if (tmp.zero == 0)
+			else if (tmp.zero == 0 && tmp.minus == 0 && l < 0)
 				write(1, "-", 1);
 			if (l < 0)
 				l = l * -1;
 		}
 		ft_putnbr(l);
+		if (tmp.minus == 1)
+		{	while (tmp.width > 0)
+			{
+				write(1, &c, 1);
+				tmp.width--;
+			}
+		}		
 	}
 	else if (format[i] == 'x')
 	{
