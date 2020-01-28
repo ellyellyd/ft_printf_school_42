@@ -11,10 +11,10 @@ int		main(void)
 	char	a;
 
 	a = '3';
-	c = "agdf";
-	i = -21;
+	c = "agdfee";
+	i = 0;
 	l = 1;
-	printf("Hello %i world!\n", i);
-	ft_printf("Hello %i world!\n", i);
+	printf("Hello %x world!\n", i);
+	ft_printf("Hello %x world!\n", i);
 	return (0);
 }
