@@ -205,7 +205,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				tmp.width = 0;
 			if (tmp.width > t)
 				tmp.width = tmp.width - t;
-			if (tmp.hash == 1)
+			if (tmp.hash == 1 && s[0] != '0')
 				tmp.width = tmp.width - 2;
 //			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
 			if (tmp.minus == 0)
@@ -217,7 +217,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				}
 			}
 		}
-		if (tmp.hash == 1)
+		if (tmp.hash == 1 && s[0] != '0')
 			write(1, "0x", 2);
 		while (s[l] != '\0')
 			write(1, &s[l++], 1);
@@ -250,7 +250,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				tmp.width = 0;
 			if (tmp.width > t)
 				tmp.width = tmp.width - t;
-			if (tmp.hash == 1)
+			if (tmp.hash == 1 && s[0] != '0')
 				tmp.width = tmp.width - 2;
 	//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
 			if (tmp.minus == 0)
@@ -262,7 +262,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				}
 			}
 		}
-		if (tmp.hash == 1)
+		if (tmp.hash == 1 && s[0] != '0')
 			write(1, "0X", 2);
 		while (s[l] != '\0')
 			write(1, &s[l++], 1);
@@ -362,7 +362,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				if (tmp.width > t)
 					tmp.width = tmp.width - t;
 //				printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
-				if (tmp.hash == 1)
+				if (tmp.hash == 1 && s[0] != '0')
 					tmp.width = tmp.width - 1;
 				if (tmp.minus == 0)
 				{
@@ -373,7 +373,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 					}
 				}
 			}
-			if (tmp.hash == 1)
+			if (tmp.hash == 1 && s[0] != '0')
 				write(1, "0", 1);
 			while (s[l] != '\0')
 				write(1, &s[l++], 1);
@@ -389,6 +389,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		}
 		if (l >= 0)
 		{
+			//printf("HI"); // check
 	//		printf("%d\n", l); // check
 			if (tmp.width >= 0)
 			{
@@ -399,7 +400,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 				if (tmp.width > t)
 					tmp.width = tmp.width - t;
 	//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
-				if (tmp.hash == 1)
+				if (tmp.hash == 1 && l != 0)
 					tmp.width = tmp.width - 1;
 				if (tmp.minus == 0)
 				{
@@ -409,7 +410,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 						tmp.width--;
 					}
 				}
-				if (tmp.hash == 1)
+				if (tmp.hash == 1 && l != 0)
 					write(1, "0", 1);
 				a10_in_8(l);
 				if (tmp.minus == 1)

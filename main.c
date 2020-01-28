@@ -14,7 +14,7 @@ int		main(void)
 	c = "agdfee";
 	i = 0;
 	l = 1;
-	printf("Hello %x world!\n", i);
-	ft_printf("Hello %x world!\n", i);
+	printf("Hello %-#9o worlde\n", i);
+	ft_printf("Hello %-#9o worlde!\n", i);
 	return (0);
 }
