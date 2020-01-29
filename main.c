@@ -15,8 +15,44 @@ int		main(void)
 	c = "1";
 	i = 0;
 	l = 1;
-	f= 343.1059884;
-	printf("Hello %p worlde!\n", c);
-	ft_printf("Hello %p worlde!\n", c);
+	f = 343.1059884;
+	printf("Hello %i worlde!\n", i);
+	ft_printf("Hello %i worlde!\n\n", i);
+
+	printf("Hello % i worlde!\n", i);
+	ft_printf("Hello % i worlde!\n\n", i);
+
+	printf("Hello %+i worlde!\n", i);
+	ft_printf("Hello %+i worlde!\n\n", i);
+
+	printf("Hello %2i worlde!\n", i);
+	ft_printf("Hello %2i worlde!\n\n", i);
+
+	printf("Hello % 2i worlde!\n", i);
+	ft_printf("Hello % 2i worlde!\n\n", i);
+
+	printf("Hello %02i worlde!\n", i);
+	ft_printf("Hello %02i worlde!\n\n", i);
+
+	printf("Hello %-i worlde!\n", i);
+	ft_printf("Hello %-i worlde!\n\n", i);
+
+	printf("Hello %-2i worlde!\n", i);
+	ft_printf("Hello %-2i worlde!\n\n", i);
+
+	printf("Hello %+-2i worlde!\n", i);
+	ft_printf("Hello %+-2i worlde!\n\n", i);
+
+	printf("Hello %+-i worlde!\n", i);
+	ft_printf("Hello %+-i worlde!\n\n", i);
+
+	printf("Hello %+2i worlde!\n", i);
+	ft_printf("Hello %+2i worlde!\n\n", i);
+
+	printf("Hello % 02i worlde!\n", i);
+	ft_printf("Hello % 02i worlde!\n\n", i);
+
+	printf("Hello % -2i worlde!\n", i);
+	ft_printf("Hello % -2i worlde!\n", i);
 	return (0);
 }

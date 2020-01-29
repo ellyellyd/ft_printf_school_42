@@ -142,6 +142,26 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		t = size_l(ul);
 		if (tmp.space == 1 && tmp.plus != 1 && (tmp.width == 0 || t ==  tmp.width) && tmp.minus == 0 && l >= 0)
 			write(1, " ", 1);
+		if (tmp.space == 1 && l == 0 && tmp.width != 0) //?
+		{
+			write(1, " ", 1); //?
+			tmp.width = tmp.width - 1; //?
+		}
+		if (tmp.space == 1 && tmp.minus == 0 && tmp.width != 0 && l > 0 && tmp.zero == 0)//??
+		{
+			write(1, " ", 1);
+			tmp.width = tmp.width - 1;
+		}
+		if (tmp.space == 1 && tmp.minus == 1 && tmp.width != 0 && l != 0 && l > 0) //?
+		{
+			write(1, " ", 1); //?
+			tmp.width = tmp.width - 1;
+		}
+		if (tmp.space == 1 && tmp.width != 0 && l > 0 && tmp.zero == 1) //?
+		{
+			write(1, " ", 1); //?
+			tmp.width = tmp.width - 1;
+		}
 		if (tmp.width == 0 && (tmp.minus == 1 || tmp.zero == 1) && l < 0 && flag == 0)
 			write(1, "-", 1);
 		if (l < 0)

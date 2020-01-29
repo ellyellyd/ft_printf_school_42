@@ -1,4 +1,2 @@
-write flags (hh, h, l, ll)
-write %p 
+write flags (hh, h, l, ll) 
 write work flags f (l,L)
-write work with # (- with d/i)
