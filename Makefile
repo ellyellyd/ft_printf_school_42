@@ -6,11 +6,11 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/01/23 22:08:49 by fcatina          ###   ########.fr        #
+#    Updated: 2020/02/03 20:34:50 by fcatina          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = libftprintf.a
 EXEC = program
 SRC = main.c \
@@ -21,7 +21,8 @@ SRC = main.c \
 	  ft_putchar.c \
 	  ft_itoa_base.c \
 	  X_ft_itoa_base.c\
-	  ft_itoa_unsigned_base.c
+	  ft_itoa_unsigned_base.c\
+		ft_test_itoa_unsigned_base.c
 
 .PHONY: all clean fclean re
 

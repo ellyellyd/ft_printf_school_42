@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_unsigned_base.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/02 23:22:44 by fcatina           #+#    #+#             */
+/*   Updated: 2020/02/02 23:23:57 by fcatina          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 char	*ft_itoa_unsigned_base(unsigned int value, int base, char c)
@@ -18,7 +30,7 @@ char	*ft_itoa_unsigned_base(unsigned int value, int base, char c)
 	while (tmp /= base)
 		size++;
 	size = size + 1;
-	str = (char*)malloc(sizeof (char) * (size + 1));
+	str = (char*)malloc(sizeof(char) * (size + 1));
 	str[size] = '\0';
 	while (size > 0)
 	{
@@ -26,5 +38,5 @@ char	*ft_itoa_unsigned_base(unsigned int value, int base, char c)
 		str[size] = tab[value % base];
 		value /= base;
 	}
-	return (str);	
+	return (str);
 }

@@ -11,6 +11,7 @@ void	x_10_in_16(int l);
 char	*ft_itoa_base(int value, int base);
 char	*X_ft_itoa_base(int value, int base);
 char	*ft_itoa_unsigned_base(unsigned int value, int base, char c);
+char	*ft_test_itoa_unsigned_base(unsigned long long value, int base, char c);//check
 
 typedef	struct		s_form
 {
@@ -28,5 +29,5 @@ typedef	struct		s_form
 
 	int		width; // 1 - 9
 	int		precision; // .#
-	int		length; // LL HH H L
+	int		size; // ll= 11 	l= 1   hh= 66 		h= 6     L= 10 			else == 0
 }	t_frm;

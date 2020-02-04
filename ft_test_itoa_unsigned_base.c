@@ -1,51 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   X_ft_itoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_itoa_unsigned_base.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/02 23:20:10 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/02 23:20:18 by fcatina          ###   ########.fr       */
+/*   Created: 2020/02/02 23:22:44 by fcatina           #+#    #+#             */
+/*   Updated: 2020/02/03 20:33:12 by fcatina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libftprintf.h>
+#include "libftprintf.h"
 
-int		ft_abc(int i)
+char	*ft_test_itoa_unsigned_base(unsigned long long value, int base, char c)
 {
-	if (i < 0)
-		i = -i;
-	return (i);
-}
+	unsigned long long	size;
+	unsigned long long	tmp;
+	char				*tab;
+	char				*str;
 
-char	*X_ft_itoa_base(int value, int base)
-{
-	int		size;
-	int		flag;
-	int		tmp;
-	char	*str;
-	char	*tab;
-
-	flag = 0;
-	size = 0;
 	tmp = value;
-	tab = "0123456789ABCDEF";
+	size = 0;
+	if (c == 'x')
+		tab = "0123456789abcdef";
+	else
+		tab = "0123456789ABCDEF";
 	if (base < 2 || base > 16)
 		return (0);
-	if (value < 0 && base == 10)
-		flag = 1;
 	while (tmp /= base)
 		size++;
-	size = size + 1 + flag;
-	str = (char*)malloc(sizeof(char) * size + 1);
+	size = size + 1;
+	str = (char*)malloc(sizeof(char) * (size + 1));
 	str[size] = '\0';
-	if (flag == 1)
-		str[0] = '-';
-	while (size > flag)
+	while (size > 0)
 	{
 		size--;
-		str[size] = tab[ft_abc(value % base)];
+		str[size] = tab[value % base];
 		value /= base;
 	}
 	return (str);
