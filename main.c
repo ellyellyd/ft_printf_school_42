@@ -23,15 +23,15 @@ int		main(void)
 
 	l3 = -89870;
 
-	l2 = 0;//
+	l2 = 0;
 
 	a = '3';
 	c = "1";
-	i = 0;
+	i = -45;//
 	l = 0;
 	f = 343.1059884;
 
-/*		%i / %d
+//		%i / %d
  
 	printf("Hello %i worlde!\n", i);
 	ft_printf("Hello %i worlde!\n\n", i);
@@ -71,8 +71,8 @@ int		main(void)
 
 	printf("Hello % -2i worlde!\n", i);
 	ft_printf("Hello % -2i worlde!\n", i);
-*/
-//		%o
+//
+/*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
 	ft_printf("%ho\n", (unsigned short int)l2);
@@ -83,7 +83,7 @@ int		main(void)
 	ft_printf("%ho\n", (short int)l2);
 	printf("%hho\n", (signed char)l2);
 	ft_printf("%hho\n", (signed char)l2);
-
+*/
 //	printf("%lo\n", l4);
 //	ft_printf("%lo\n", l4);
 //	printf("%llo\n", l5);

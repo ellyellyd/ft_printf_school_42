@@ -18,6 +18,7 @@ typedef	struct		s_form
 	char	signe;
 
 	char	format;
+	char	*string;
 
 	int		nb; // how many ' ' || 0
 
