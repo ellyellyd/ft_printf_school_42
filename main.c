@@ -10,9 +10,21 @@ int		main(void)
 	float	f;
 	char	*c;
 	char	a;
-	int 	l2;
 
-	l2 = -9898880;
+	unsigned int 	l2;
+
+	int		l3;
+	unsigned long int		l4;
+	unsigned long long int	l5;
+
+	l5 = 0;
+
+	l4 = 0;
+
+	l3 = -89870;
+
+	l2 = 0;//
+
 	a = '3';
 	c = "1";
 	i = 0;
@@ -60,8 +72,25 @@ int		main(void)
 	printf("Hello % -2i worlde!\n", i);
 	ft_printf("Hello % -2i worlde!\n", i);
 */
-/*		%o
+//		%o
+
+	printf("%ho\n", (unsigned short int)l2);
+	ft_printf("%ho\n", (unsigned short int)l2);
+	printf("%hho\n", (unsigned char)l2);
+	ft_printf("%hho\n", (unsigned char)l2);
  
+	printf("%ho\n", (short int)l2);
+	ft_printf("%ho\n", (short int)l2);
+	printf("%hho\n", (signed char)l2);
+	ft_printf("%hho\n", (signed char)l2);
+
+//	printf("%lo\n", l4);
+//	ft_printf("%lo\n", l4);
+//	printf("%llo\n", l5);
+//	ft_printf("%llo\n", l5);
+//
+ 
+/*
 	printf("%o\n", 0);
 	ft_printf("%o\n", 0);
 	printf("%o\n", 18);
@@ -124,8 +153,24 @@ int		main(void)
 	ft_printf("%#08o\n", -98);
 */
 
-/*		%u
+//		%u
 
+//	printf("%hu\n", (unsigned short int)l2);
+//	ft_printf("%hu\n", (unsigned short int)l2);
+//	printf("%hhu\n", (unsigned char)l2);
+//	ft_printf("%hhu\n", (unsigned char)l2);
+ 
+//	printf("%hu\n", (short int)l2);
+//	ft_printf("%hu\n", (short int)l2);
+//	printf("%hhu\n", (signed char)l2);
+//	ft_printf("%hhu\n", (signed char)l2);
+/*
+	printf("%lu\n", l4);
+	ft_printf("%lu\n", l4);
+	printf("%llu\n", l5);
+	ft_printf("%llu\n", l5);
+*/
+/*
 	printf("%u\n", 0);
 	ft_printf("%u\n", 0);
 	printf("%u\n", 18);
@@ -157,12 +202,25 @@ int		main(void)
 	ft_printf("%08u\n", -98);
 */
 
-//		%X
+/*		%X
+
+	printf("%lX\n", l4);
+	ft_printf("%lX\n", l4);
+	printf("%llX\n", l5);
+	ft_printf("%llX\n", l5);
+
+	printf("%hX\n", (unsigned short int)l3);
+	ft_printf("%hX\n", (unsigned short int)l3);
+	printf("%hhX\n", (unsigned char)l3);
+	ft_printf("%hhX\n", (unsigned char)l3);
  
+	printf("%hX\n", (short int)l2);
+	ft_printf("%hX\n", (short int)l2);
 	printf("%hhX\n", (signed char)l2);
 	ft_printf("%hhX\n", (signed char)l2);
-
-/*	printf("%X\n", 0);
+*/
+/*
+	printf("%X\n", 0);
 	ft_printf("%X\n", 0);
 	printf("%X\n", 18);
 	ft_printf("%X\n", 18);
@@ -224,8 +282,28 @@ int		main(void)
 	ft_printf("%#08X\n", -98);
 */
 
-/*		%x
+//		%x
 
+/*
+	printf("%lx\n", l4);
+	ft_printf("%lx\n", l4);
+*/
+/*	printf("%llx\n", l5);
+	ft_printf("%llx\n", l5);
+*/
+
+
+/*	printf("%hx\n", (unsigned short int)l2);
+	ft_printf("%hx\n", (unsigned short int)l2);
+	printf("%hhx\n", (unsigned char)l2);
+	ft_printf("%hhx\n", (unsigned char)l2);
+ 
+	printf("%hx\n", (short int)l2);
+	ft_printf("%hx\n", (short int)l2);
+	printf("%hhx\n", (signed char)l2);
+	ft_printf("%hhx\n", (signed char)l2);
+*/
+/*
 	printf("%x\n", 0);
 	ft_printf("%x\n", 0);
 	printf("%x\n", 18);

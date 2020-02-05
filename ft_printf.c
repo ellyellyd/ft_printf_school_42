@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/04 16:44:44 by fcatina          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:26:53 by fcatina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,19 +255,61 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	else if (format[i] == 'x')
 	{
 		l2 = va_arg(argptr, unsigned long long);
-		s = ft_test_itoa_unsigned_base(l2, 16, 'x');
+		if (tmp.size == 6)
+		{
+			s = ft_test_itoa_unsigned_base((short int)l2, 16, 'x');
+			while (s[l] == 'f')
+				l++;
+			if (l > 12)
+			{
+				l = 11;
+				while (l >= 0)
+					s[l--] = ' ';
+				l = 0;
+				while(s[12 + l] != '\0')
+				{
+				   s[l] = s[12 + l];
+				   l++;
+				}
+				s[l] = '\0';
+				l = 0;
+			}
+		}
+		else if (tmp.size == 66)
+		{
+			s = ft_test_itoa_unsigned_base((signed char)l2, 16, 'x');
+			while (s[l] == 'f')
+				l++;
+			if (l > 13)
+			{
+				l = 13;
+				while (l >= 0)
+					s[l--] = ' ';
+				l = 0;
+				while(s[14 + l] != '\0')
+				{
+				   s[l] = s[14 + l];
+				   l++;
+				}
+				s[l] = '\0';
+				l = 0;
+			}
+		}
+		else
+			s = ft_test_itoa_unsigned_base(l2, 16, 'x');
+		//printf("%s\n", s);//check
 		l2 = 0;
 		if (tmp.width > 0)
 		{
 			t = size_s(s);
-//			printf("%i %i\n", t, tmp.width);// check
+//		printf("%i %i\n", t, tmp.width);// check
 			if (t >= tmp.width)
 				tmp.width = 0;
 			if (tmp.width > t)
 				tmp.width = tmp.width - t;
 			if (tmp.hash == 1 && s[0] != '0')
 				tmp.width = tmp.width - 2;
-//			printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
+//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
 			if (tmp.minus == 0)
 			{
 				while (tmp.width > 0)
@@ -293,7 +335,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	else if (format[i] == 'X')
 	{
 		l2 = va_arg(argptr,unsigned long long);
-		if (tmp.size == 6 || tmp.size == 66)
+		if (tmp.size == 6)
 		{
 			s = ft_test_itoa_unsigned_base((short int)l2, 16, 'X');
 			while (s[l] == 'F')
@@ -314,7 +356,25 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 			}
 		}
 		else if (tmp.size == 66)
+		{
 			s = ft_test_itoa_unsigned_base((signed char)l2, 16, 'X');
+			while (s[l] == 'F')
+				l++;
+			if (l > 13)
+			{
+				l = 13;
+				while (l >= 0)
+					s[l--] = ' ';
+				l = 0;
+				while(s[14 + l] != '\0')
+				{
+				   s[l] = s[14 + l];
+				   l++;
+				}
+				s[l] = '\0';
+				l = 0;
+			}
+		}
 		else
 			s = ft_test_itoa_unsigned_base(l2, 16, 'X');
 		//printf("%s\n", s);//check
@@ -354,7 +414,12 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	}
 	else if (format[i] == 'u')
 	{
-		l2 = va_arg(argptr, unsigned long long);
+		if (tmp.size == 6)
+			l2 = (unsigned short)va_arg(argptr, unsigned long long);
+		if (tmp.size == 66)
+			l2 = (unsigned char)va_arg(argptr, unsigned long long);
+		else
+			l2 = va_arg(argptr, unsigned long long);
 		s = ft_test_itoa_unsigned_base(l2, 10, 'X');
 	//	printf("%s\n", s);//check
 		l2 = 0;
@@ -389,7 +454,13 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	}
 	else if (format[i] == 'o')
 	{
-		l2 = va_arg(argptr, unsigned long long);
+		if (tmp.size == 6)
+			l2 = (unsigned short)va_arg(argptr, unsigned long long);
+		else if (tmp.size == 66)
+			l2 = (unsigned char)va_arg(argptr, unsigned long long);
+		else
+			l2 = va_arg(argptr, unsigned long long);
+		//l2 = va_arg(argptr, unsigned long long);
 		s = ft_test_itoa_unsigned_base(l2, 8, 'X');
 		l2 = 0;
 		if (tmp.width > 0)
