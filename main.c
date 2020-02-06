@@ -13,15 +13,15 @@ int		main(void)
 
 	unsigned int 	l2;
 
-	int		l3;
-	long int		l4;
-	unsigned long long int	l5;
+	unsigned int		l3;
+	unsigned long int		l4;
+	long long int	l5;
 
-	l5 = 0;
+	l5 = 896;//
 
-	l4 = 0;
+	l4 = 694;
 
-	l3 = -177;//
+	l3 = 0;
 
 	l2 = 0;
 
@@ -33,8 +33,8 @@ int		main(void)
 
 //		%i / %d
 //
-	printf("Hello %hi worlde!\n", (short)l3);
-	ft_printf("Hello %hi worlde!\n\n", (short)l3);
+	printf("Hello %-+6i worlde!\n", i);
+	ft_printf("Hello %-+6i worlde!\n\n", i);
  
 /*	printf("Hello %i worlde!\n", i);
 	ft_printf("Hello %i worlde!\n\n", i);

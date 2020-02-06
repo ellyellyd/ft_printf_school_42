@@ -33,17 +33,17 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 $(OBJ): $(SRC)
-	gcc $(CFLAGS) -I. -c $(SRC)
-	gcc $(OBJ) -o ft_printf
+	@gcc $(CFLAGS) -I. -c $(SRC)
+	@gcc $(OBJ) -o ft_printf
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
