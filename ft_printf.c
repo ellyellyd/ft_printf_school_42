@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/05 23:32:34 by fcatina          ###   ########.fr       */
+/*   Updated: 2020/02/06 13:26:17 by fcatina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,14 +175,16 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	{
 		if (tmp.size == 1 || tmp.size == 11 || tmp.size == 6 || tmp.size == 66)
 		{
-		//	write(1, "hi\n", 3);//check
-			l3 = va_arg(argptr, long long int);
+	//		write(1, "hi\n", 3);//check
+			l3 = va_arg(argptr, long long int);// here l3 = 0
+		//	printf("%d\n", (short)l3);//check// why here l3 becomes = ' '??
 			if (tmp.size == 6)
 			{
+				//printf("i");//check// why here l3 becomes = ' '??
 				if ((short)l3 < 0)
 				{
 					tmp.signe = '-';
-					l2  *= -1;
+					l3  *= -1;
 				}
 				//???????????????????      tmp.string = ft_test_itoa_unsigned_base((short)l3, 10, 'X');
 				s = ft_test_itoa_unsigned_base((short)l3, 10, 'X');

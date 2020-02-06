@@ -14,26 +14,29 @@ int		main(void)
 	unsigned int 	l2;
 
 	int		l3;
-	unsigned long int		l4;
+	long int		l4;
 	unsigned long long int	l5;
 
 	l5 = 0;
 
 	l4 = 0;
 
-	l3 = -89870;
+	l3 = -177;//
 
 	l2 = 0;
 
 	a = '3';
 	c = "1";
-	i = -45;//
+	i = 45;
 	l = 0;
 	f = 343.1059884;
 
 //		%i / %d
+//
+	printf("Hello %hi worlde!\n", (short)l3);
+	ft_printf("Hello %hi worlde!\n\n", (short)l3);
  
-	printf("Hello %i worlde!\n", i);
+/*	printf("Hello %i worlde!\n", i);
 	ft_printf("Hello %i worlde!\n\n", i);
 
 	printf("Hello % i worlde!\n", i);
@@ -71,7 +74,7 @@ int		main(void)
 
 	printf("Hello % -2i worlde!\n", i);
 	ft_printf("Hello % -2i worlde!\n", i);
-//
+*/
 /*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
