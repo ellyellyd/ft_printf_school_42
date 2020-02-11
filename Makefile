@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/12 01:32:19 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/12 02:08:48 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC = \
 	handle_s.c \
 	handle_p.c \
 	handle_o.c \
+	handle_u.c \
+	handle_X.c \
 	fix_s.c
 
 .PHONY: all clean fclean re

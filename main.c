@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 01:38:17 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 02:13:53 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -95,7 +95,7 @@ int		main(void)
 	printf("Hello % -6i worlde!\n", i);
 	ft_printf("Hello % -6i worlde!\n", i);
 */
-//		%o
+/*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
 	ft_printf("%ho\n", (unsigned short int)l2);
@@ -106,14 +106,14 @@ int		main(void)
 	ft_printf("%ho\n", (short int)l2);
 	printf("%hho\n", (signed char)l2);
 	ft_printf("%hho\n", (signed char)l2);
-////
+*//*
 	printf("%lo\n", l4);
 	ft_printf("%lo\n", l4);
 	printf("%llo\n", l5);
 	ft_printf("%llo\n", l5);
-//
+  */
 
-//
+/*
 	printf("%o\n", 0);
 	ft_printf("%o\n", 0);
 	printf("%o\n", 18);
@@ -174,26 +174,26 @@ int		main(void)
 	ft_printf("%#08o\n", 18);
 	printf("%#08o\n", -98);
 	ft_printf("%#08o\n", -98);
+*/
+
+/*		%u
 //
+	printf("%hu\n", (unsigned short int)l2);
+	ft_printf("%hu\n", (unsigned short int)l2);
+	printf("%hhu\n", (unsigned char)l2);
+	ft_printf("%hhu\n", (unsigned char)l2);
 
-//		%u
-
-//	printf("%hu\n", (unsigned short int)l2);
-//	ft_printf("%hu\n", (unsigned short int)l2);
-//	printf("%hhu\n", (unsigned char)l2);
-//	ft_printf("%hhu\n", (unsigned char)l2);
-
-//	printf("%hu\n", (short int)l2);
-//	ft_printf("%hu\n", (short int)l2);
-//	printf("%hhu\n", (signed char)l2);
-//	ft_printf("%hhu\n", (signed char)l2);
-/*
+	printf("%hu\n", (short int)l2);
+	ft_printf("%hu\n", (short int)l2);
+	printf("%hhu\n", (signed char)l2);
+	ft_printf("%hhu\n", (signed char)l2);
+//
 	printf("%lu\n", l4);
 	ft_printf("%lu\n", l4);
 	printf("%llu\n", l5);
 	ft_printf("%llu\n", l5);
-*/
-/*
+//
+//
 	printf("%u\n", 0);
 	ft_printf("%u\n", 0);
 	printf("%u\n", 18);
@@ -225,7 +225,7 @@ int		main(void)
 	ft_printf("%08u\n", -98);
 */
 
-/*		%X
+//		%X
 
 	printf("%lX\n", l4);
 	ft_printf("%lX\n", l4);
@@ -241,8 +241,8 @@ int		main(void)
 	ft_printf("%hX\n", (short int)l2);
 	printf("%hhX\n", (signed char)l2);
 	ft_printf("%hhX\n", (signed char)l2);
-*/
-/*
+//
+//
 	printf("%X\n", 0);
 	ft_printf("%X\n", 0);
 	printf("%X\n", 18);
@@ -303,7 +303,7 @@ int		main(void)
 	ft_printf("%#08X\n", 18);
 	printf("%#08X\n", -98);
 	ft_printf("%#08X\n", -98);
-*/
+//
 
 //		%x
 

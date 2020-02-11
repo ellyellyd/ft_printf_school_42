@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 01:34:18 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 02:10:58 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -498,73 +498,9 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		handle_minus(&tmp, &c, 1);
 	}
 	else if (format[i] == 'X')
-	{
-		l2 = va_arg(argptr,unsigned long long);
-		if (tmp.size == 6)
-		{
-			s = ft_test_itoa_unsigned_base((short int)l2, 16, 'X');
-			fix_s(s, 'F', 12, 11);
-		}
-		else if (tmp.size == 66)
-		{
-			s = ft_test_itoa_unsigned_base((signed char)l2, 16, 'X');
-			fix_s(s, 'F', 13, 13);
-		}
-		else
-			s = ft_test_itoa_unsigned_base(l2, 16, 'X');
-		//printf("%s\n", s);//check
-		l2 = 0;
-		if (tmp.width > 0)
-		{
-			t = size_s(s);
-//		printf("%i %i\n", t, tmp.width);// check
-			tmp.width = ((t >= tmp.width) ? (0) : (tmp.width));
-			if (tmp.width > t)
-				tmp.width = tmp.width - t;
-			if (tmp.hash == 1 && s[0] != '0')
-				tmp.width = tmp.width - 2;
-//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
-			handle_minus(&tmp, &c, 0);
-		}
-		if (tmp.hash == 1 && s[0] != '0')
-			write(1, "0X", 2);
-		while (s[l] != '\0')
-			write(1, &s[l++], 1);
-		handle_minus(&tmp, &c, 1);
-	}
+		handle_X(&tmp, argptr, s, &c);
 	else if (format[i] == 'u')
-	{
-		if (tmp.size == 6)
-			l2 = (unsigned short)va_arg(argptr, unsigned long long);
-		if (tmp.size == 66)
-			l2 = (unsigned char)va_arg(argptr, unsigned long long);
-		else
-			l2 = va_arg(argptr, unsigned long long);
-		s = ft_test_itoa_unsigned_base(l2, 10, 'X');
-	//	printf("%s\n", s);//check
-		l2 = 0;
-		if (tmp.width > 0)
-		{
-			t = size_s(s);
-	//      printf("%i %i %i\n", tmp.width, t, tmp.space);// check
-			if (t >= tmp.width)
-				tmp.width = 0;
-			if (tmp.width > t)
-			{
-				tmp.width = tmp.width - t;
-				if (tmp.plus == 1)
-					tmp.width = tmp.width - 1;
-			}
-			//  printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
-			handle_minus(&tmp, &c, 0);
-			while(s[l2] != '\0')
-				write(1, &s[l2++], 1);
-
-		}
-		else
-			while(s[l2] != '\0')
-				write(1, &s[l2++], 1);
-	}
+		handle_u(&tmp, argptr, &c);
 	else if (format[i] == 'o')
 		handle_o(&tmp, argptr, &c);
 	else if (format[i] == 'p')
