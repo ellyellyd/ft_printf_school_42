@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 01:02:27 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 01:38:17 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -41,9 +41,10 @@ int		main(void)
 	l = 0;
 	f = 343.1059884;
 
-//		%s
+/*		%s
 	printf("%s\n", "hsdjf skfh Fis sfiFl   ");
 	ft_printf("%s\n", "hsdjf skfh Fis sfiFl   ");
+*/
 /*		%c
 	printf("%c\n", a);
 	ft_printf("%c\n", a);
@@ -94,7 +95,7 @@ int		main(void)
 	printf("Hello % -6i worlde!\n", i);
 	ft_printf("Hello % -6i worlde!\n", i);
 */
-/*		%o
+//		%o
 
 	printf("%ho\n", (unsigned short int)l2);
 	ft_printf("%ho\n", (unsigned short int)l2);
@@ -105,14 +106,14 @@ int		main(void)
 	ft_printf("%ho\n", (short int)l2);
 	printf("%hho\n", (signed char)l2);
 	ft_printf("%hho\n", (signed char)l2);
-*/
-//	printf("%lo\n", l4);
-//	ft_printf("%lo\n", l4);
-//	printf("%llo\n", l5);
-//	ft_printf("%llo\n", l5);
+////
+	printf("%lo\n", l4);
+	ft_printf("%lo\n", l4);
+	printf("%llo\n", l5);
+	ft_printf("%llo\n", l5);
 //
 
-/*
+//
 	printf("%o\n", 0);
 	ft_printf("%o\n", 0);
 	printf("%o\n", 18);
@@ -173,7 +174,7 @@ int		main(void)
 	ft_printf("%#08o\n", 18);
 	printf("%#08o\n", -98);
 	ft_printf("%#08o\n", -98);
-*/
+//
 
 //		%u
 

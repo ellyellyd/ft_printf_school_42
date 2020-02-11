@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 00:48:33 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 01:36:07 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ char	*X_ft_itoa_base(int value, int base);
 char	*ft_itoa_unsigned_base(unsigned int value, int base, char c);
 char	*ft_test_itoa_unsigned_base(unsigned long long value, int base, char c);//check
 void	handle_minus(t_frm *tmp, char *c, int cmp);
-void	fix_s(char *s, int *l, int cmp, int n);
+void	fix_s(char *s, char c, int cmp, int n);
 void	handle_c(t_frm *tmp, va_list argptr, int *l);
 void	handle_s(t_frm *tmp, va_list argptr);
+void	handle_p(va_list argptr);
+void	handle_o(t_frm *tmp, va_list argptr, char *c);
 
 #endif
