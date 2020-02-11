@@ -1,4 +1,14 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/11 22:14:29 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libftprintf.h"
 
 int		ft_printf(const char *format, ...);
@@ -35,8 +45,8 @@ int		main(void)
 //
 	printf("Hello %-+6i worlde!\n", i);
 	ft_printf("Hello %-+6i worlde!\n\n", i);
- 
-/*	printf("Hello %i worlde!\n", i);
+
+	printf("Hello %i worlde!\n", i);
 	ft_printf("Hello %i worlde!\n\n", i);
 
 	printf("Hello % i worlde!\n", i);
@@ -74,14 +84,14 @@ int		main(void)
 
 	printf("Hello % -2i worlde!\n", i);
 	ft_printf("Hello % -2i worlde!\n", i);
-*/
+//
 /*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
 	ft_printf("%ho\n", (unsigned short int)l2);
 	printf("%hho\n", (unsigned char)l2);
 	ft_printf("%hho\n", (unsigned char)l2);
- 
+
 	printf("%ho\n", (short int)l2);
 	ft_printf("%ho\n", (short int)l2);
 	printf("%hho\n", (signed char)l2);
@@ -92,7 +102,7 @@ int		main(void)
 //	printf("%llo\n", l5);
 //	ft_printf("%llo\n", l5);
 //
- 
+
 /*
 	printf("%o\n", 0);
 	ft_printf("%o\n", 0);
@@ -114,7 +124,7 @@ int		main(void)
 	ft_printf("%-8o\n", 18);
 	printf("%-8o\n", -98);
 	ft_printf("%-8o\n", -98);
-	
+
 	printf("%00o\n", 0);
 	ft_printf("%00o\n", 0);
 	printf("%06o\n", 0);
@@ -145,7 +155,7 @@ int		main(void)
 	ft_printf("%#-8o\n", 18);
 	printf("%#-8o\n", -98);
 	ft_printf("%#-8o\n", -98);
-	
+
 	printf("%00#o\n", 0);
 	ft_printf("%00#o\n", 0);
 	printf("%#06o\n", 0);
@@ -162,7 +172,7 @@ int		main(void)
 //	ft_printf("%hu\n", (unsigned short int)l2);
 //	printf("%hhu\n", (unsigned char)l2);
 //	ft_printf("%hhu\n", (unsigned char)l2);
- 
+
 //	printf("%hu\n", (short int)l2);
 //	ft_printf("%hu\n", (short int)l2);
 //	printf("%hhu\n", (signed char)l2);
@@ -194,7 +204,7 @@ int		main(void)
 	ft_printf("%-8u\n", 18);
 	printf("%-8u\n", -98);
 	ft_printf("%-8u\n", -98);
-	
+
 	printf("%00u\n", 0);
 	ft_printf("%00u\n", 0);
 	printf("%06u\n", 0);
@@ -216,7 +226,7 @@ int		main(void)
 	ft_printf("%hX\n", (unsigned short int)l3);
 	printf("%hhX\n", (unsigned char)l3);
 	ft_printf("%hhX\n", (unsigned char)l3);
- 
+
 	printf("%hX\n", (short int)l2);
 	ft_printf("%hX\n", (short int)l2);
 	printf("%hhX\n", (signed char)l2);
@@ -243,7 +253,7 @@ int		main(void)
 	ft_printf("%-8X\n", 18);
 	printf("%-8X\n", -98);
 	ft_printf("%-8X\n", -98);
-	
+
 	printf("%00X\n", 0);
 	ft_printf("%00X\n", 0);
 	printf("%06X\n", 0);
@@ -274,7 +284,7 @@ int		main(void)
 	ft_printf("%#-8X\n", 18);
 	printf("%#-8X\n", -98);
 	ft_printf("%#-8X\n", -98);
-	
+
 	printf("%00#X\n", 0);
 	ft_printf("%00#X\n", 0);
 	printf("%#06X\n", 0);
@@ -300,7 +310,7 @@ int		main(void)
 	ft_printf("%hx\n", (unsigned short int)l2);
 	printf("%hhx\n", (unsigned char)l2);
 	ft_printf("%hhx\n", (unsigned char)l2);
- 
+
 	printf("%hx\n", (short int)l2);
 	ft_printf("%hx\n", (short int)l2);
 	printf("%hhx\n", (signed char)l2);
@@ -327,7 +337,7 @@ int		main(void)
 	ft_printf("%-8x\n", 18);
 	printf("%-8x\n", -98);
 	ft_printf("%-8x\n", -98);
-	
+
 	printf("%00x\n", 0);
 	ft_printf("%00x\n", 0);
 	printf("%06x\n", 0);
@@ -336,7 +346,7 @@ int		main(void)
 	ft_printf("%08x\n", 18);
 	printf("%08x\n", -98);
 	ft_printf("%08x\n", -98);
-	
+
 
 
 	printf("%#x\n", 0);
@@ -359,7 +369,7 @@ int		main(void)
 	ft_printf("%#-8x\n", 18);
 	printf("%#-8x\n", -98);
 	ft_printf("%#-8x\n", -98);
-	
+
 	printf("%00#x\n", 0);
 	ft_printf("%00#x\n", 0);
 	printf("%#06x\n", 0);
@@ -377,7 +387,7 @@ int		main(void)
 */
 
 /*		%f
- 
+
 	printf("%f\n", f);
 	ft_printf("%f\n", f);
 */
