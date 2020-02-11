@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 02:10:58 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 02:25:34 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -462,43 +462,9 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		}
 	}
 	else if (format[i] == 'x')
-	{
-		l2 = va_arg(argptr, unsigned long long);
-		if (tmp.size == 6)
-		{
-			s = ft_test_itoa_unsigned_base((short int)l2, 16, 'x');
-			fix_s(s, 'f', 12, 11);
-		}
-		else if (tmp.size == 66)
-		{
-			s = ft_test_itoa_unsigned_base((signed char)l2, 16, 'x');
-			fix_s(s, 'f', 13, 13);
-		}
-		else
-			s = ft_test_itoa_unsigned_base(l2, 16, 'x');
-		//printf("%s\n", s);//check
-		l2 = 0;
-		if (tmp.width > 0)
-		{
-			t = size_s(s);
-//		printf("%i %i\n", t, tmp.width);// check
-			if (t >= tmp.width)
-				tmp.width = 0;
-			if (tmp.width > t)
-				tmp.width = tmp.width - t;
-			if (tmp.hash == 1 && s[0] != '0')
-				tmp.width = tmp.width - 2;
-//		printf("%i %i %i\n", tmp.width, t, tmp.plus);// check
-			handle_minus(&tmp, &c, 0);
-		}
-		if (tmp.hash == 1 && s[0] != '0')
-			write(1, "0x", 2);
-		while (s[l] != '\0')
-			write(1, &s[l++], 1);
-		handle_minus(&tmp, &c, 1);
-	}
+		handle_xX(&tmp, argptr, &c, 'x');
 	else if (format[i] == 'X')
-		handle_X(&tmp, argptr, s, &c);
+		handle_xX(&tmp, argptr, &c, 'X');
 	else if (format[i] == 'u')
 		handle_u(&tmp, argptr, &c);
 	else if (format[i] == 'o')

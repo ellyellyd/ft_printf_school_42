@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 02:13:53 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 02:26:41 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -225,7 +225,7 @@ int		main(void)
 	ft_printf("%08u\n", -98);
 */
 
-//		%X
+/*		%X
 
 	printf("%lX\n", l4);
 	ft_printf("%lX\n", l4);
@@ -303,20 +303,20 @@ int		main(void)
 	ft_printf("%#08X\n", 18);
 	printf("%#08X\n", -98);
 	ft_printf("%#08X\n", -98);
-//
+*/
 
 //		%x
 
-/*
+//
 	printf("%lx\n", l4);
 	ft_printf("%lx\n", l4);
-*/
-/*	printf("%llx\n", l5);
+//
+	printf("%llx\n", l5);
 	ft_printf("%llx\n", l5);
-*/
+//
 
-
-/*	printf("%hx\n", (unsigned short int)l2);
+//
+	printf("%hx\n", (unsigned short int)l2);
 	ft_printf("%hx\n", (unsigned short int)l2);
 	printf("%hhx\n", (unsigned char)l2);
 	ft_printf("%hhx\n", (unsigned char)l2);
@@ -325,8 +325,8 @@ int		main(void)
 	ft_printf("%hx\n", (short int)l2);
 	printf("%hhx\n", (signed char)l2);
 	ft_printf("%hhx\n", (signed char)l2);
-*/
-/*
+//
+//
 	printf("%x\n", 0);
 	ft_printf("%x\n", 0);
 	printf("%x\n", 18);
@@ -388,7 +388,7 @@ int		main(void)
 	ft_printf("%#08x\n", 18);
 	printf("%#08x\n", -98);
 	ft_printf("%#08x\n", -98);
-*/
+//
 
 /*		%p
 
