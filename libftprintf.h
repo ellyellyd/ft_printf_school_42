@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/11 22:04:08 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 00:48:33 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h> // remove later!
+
+# include "libft.h"
 
 typedef	struct		s_form
 {
@@ -48,5 +50,9 @@ char	*ft_itoa_base(int value, int base);
 char	*X_ft_itoa_base(int value, int base);
 char	*ft_itoa_unsigned_base(unsigned int value, int base, char c);
 char	*ft_test_itoa_unsigned_base(unsigned long long value, int base, char c);//check
+void	handle_minus(t_frm *tmp, char *c, int cmp);
+void	fix_s(char *s, int *l, int cmp, int n);
+void	handle_c(t_frm *tmp, va_list argptr, int *l);
+void	handle_s(t_frm *tmp, va_list argptr);
 
 #endif

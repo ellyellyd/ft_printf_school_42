@@ -6,44 +6,42 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/03 20:34:50 by fcatina          ###   ########.fr        #
+#    Updated: 2020/02/12 01:04:36 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -g
-NAME = libftprintf.a
-EXEC = program
-SRC = main.c \
-	  10_in_8.c \
-	  ft_putstr.c \
-	  ft_printf.c \
-	  ft_putnbr.c \
-	  ft_putchar.c \
-	  ft_itoa_base.c \
-	  X_ft_itoa_base.c\
-	  ft_itoa_unsigned_base.c\
-		ft_test_itoa_unsigned_base.c
+CFLAGS = -Wall -Wextra -Werror
+NAME = ft_printf
+SRC = \
+	main.c \
+	10_in_8.c \
+	ft_printf.c \
+	ft_itoa_base.c \
+	X_ft_itoa_base.c\
+	ft_itoa_unsigned_base.c \
+	ft_test_itoa_unsigned_base.c \
+	handle_minus.c \
+	handle_c.c \
+	handle_s.c \
+	fix_s.c
 
 .PHONY: all clean fclean re
 
 OBJ = $(SRC:.c=.o)
 
-.PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@ gcc $(OBJ) -L "libft/" -lft -o $(NAME)
 
 $(OBJ): $(SRC)
-	@gcc $(CFLAGS) -I. -c $(SRC)
-	@gcc $(OBJ) -o ft_printf
+	@ gcc $(CFLAGS) -I . -I "libft/includes/" -c $(SRC)
 
 clean:
-	@rm -f $(OBJ)
+	@ rm -f $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	@ rm -f $(NAME)
 
 re: fclean all

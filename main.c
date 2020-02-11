@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/11 22:14:29 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 01:02:27 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -29,7 +29,7 @@ int		main(void)
 
 	l5 = 896;//
 
-	l4 = 694;
+	l4 = 69487987897979797;
 
 	l3 = 0;
 
@@ -37,13 +37,22 @@ int		main(void)
 
 	a = '3';
 	c = "1";
-	i = 45;
+	i = 4;
 	l = 0;
 	f = 343.1059884;
 
+//		%s
+	printf("%s\n", "hsdjf skfh Fis sfiFl   ");
+	ft_printf("%s\n", "hsdjf skfh Fis sfiFl   ");
+/*		%c
+	printf("%c\n", a);
+	ft_printf("%c\n", a);
+*/
 //		%i / %d
-//
-	printf("Hello %-+6i worlde!\n", i);
+/*
+	printf("%hi\n", (short)l4);
+	ft_printf("%hi\n", (short)l4);
+//	printf("Hello %-+6i worlde!\n", i);
 	ft_printf("Hello %-+6i worlde!\n\n", i);
 
 	printf("Hello %i worlde!\n", i);
@@ -55,36 +64,36 @@ int		main(void)
 	printf("Hello %+i worlde!\n", i);
 	ft_printf("Hello %+i worlde!\n\n", i);
 
-	printf("Hello %2i worlde!\n", i);
-	ft_printf("Hello %2i worlde!\n\n", i);
+	printf("Hello %6i worlde!\n", i);
+	ft_printf("Hello %6i worlde!\n\n", i);
 
-	printf("Hello % 2i worlde!\n", i);
-	ft_printf("Hello % 2i worlde!\n\n", i);
+	printf("Hello % 6i worlde!\n", i);
+	ft_printf("Hello % 6i worlde!\n\n", i);
 
-	printf("Hello %02i worlde!\n", i);
-	ft_printf("Hello %02i worlde!\n\n", i);
+	printf("Hello %06i worlde!\n", i);
+	ft_printf("Hello %06i worlde!\n\n", i);
 
 	printf("Hello %-i worlde!\n", i);
 	ft_printf("Hello %-i worlde!\n\n", i);
 
-	printf("Hello %-2i worlde!\n", i);
-	ft_printf("Hello %-2i worlde!\n\n", i);
+	printf("Hello %-6i worlde!\n", i);
+	ft_printf("Hello %-6i worlde!\n\n", i);
 
-	printf("Hello %+-2i worlde!\n", i);
-	ft_printf("Hello %+-2i worlde!\n\n", i);
+	printf("Hello %+-6i worlde!\n", i);
+	ft_printf("Hello %+-6i worlde!\n\n", i);
 
 	printf("Hello %+-i worlde!\n", i);
 	ft_printf("Hello %+-i worlde!\n\n", i);
 
-	printf("Hello %+2i worlde!\n", i);
-	ft_printf("Hello %+2i worlde!\n\n", i);
+	printf("Hello %+6i worlde!\n", i);
+	ft_printf("Hello %+6i worlde!\n\n", i);
 
-	printf("Hello % 02i worlde!\n", i);
-	ft_printf("Hello % 02i worlde!\n\n", i);
+	printf("Hello % 06i worlde!\n", i);
+	ft_printf("Hello % 06i worlde!\n\n", i);
 
-	printf("Hello % -2i worlde!\n", i);
-	ft_printf("Hello % -2i worlde!\n", i);
-//
+	printf("Hello % -6i worlde!\n", i);
+	ft_printf("Hello % -6i worlde!\n", i);
+*/
 /*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
