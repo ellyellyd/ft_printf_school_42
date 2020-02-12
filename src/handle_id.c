@@ -1,14 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_id.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/12 22:17:07 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/12 22:17:58 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
+
+/*
+** CHECKS:
+**
+** printf("%d\n", l);
+** write(1, "HI\n", 3);
+*/
 
 int	size_l(int l)
 {
 	int			i;
 
 	i = 1;
-//	printf("%d\n", l);//  check
 	while (l / 10 != 0)
 	{
-//		write(1, "HI\n", 3);//  check
 		i++;
 		l /= 10;
 	}
@@ -22,19 +39,19 @@ void	check_flags_1(t_frm *tmp, int *flag, int t)
 		(*flag) = 1;
 		write(1, "+", 1);
 	}
-	if ((tmp->plus == 1 || tmp->width != 0) && tmp->minus == 1 && tmp->zero == 0 && tmp->signe == '-')
+	if ((tmp->plus == 1 || tmp->w != 0) && tmp->minus == 1 && tmp->zero == 0 && tmp->signe == '-')
 	{
 		(*flag) = 1;
 		write(1, "-", 1);
 	}
-	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->width != 0 && tmp->signe != '-' && (*flag) == 0)
+	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && tmp->signe != '-' && (*flag) == 0)
 		write(1, "+", 1);
-	if (tmp->space == 1 && tmp->plus == 0 && tmp->width == 0 && tmp->minus == 0 && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->plus == 0 && tmp->w == 0 && tmp->minus == 0 && tmp->signe != '-')
 	{
 		tmp->space = 0;
 		write(1, " ", 1);
 	}
-	if (tmp->space == 1 && tmp->plus == 0 && (tmp->width == 0 || t >=  tmp->width) && tmp->minus == 0 && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->plus == 0 && (tmp->w == 0 || t >=  tmp->w) && tmp->minus == 0 && tmp->signe != '-')
 	{
 		tmp->space = 0;
 		write(1, " ", 1);
@@ -48,38 +65,38 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 	t = 0;
 	t = ft_strlen(s) + 1;
 	check_flags_1(tmp, flag, t);
-	if (tmp->space == 1 && s[0] == '0' && tmp->width != 0 && tmp->signe != '-')
+	if (tmp->space == 1 && s[0] == '0' && tmp->w != 0 && tmp->signe != '-')
 	{
 		write(1, " ", 1);
-		tmp->width = tmp->width - 1;
+		tmp->w = tmp->w - 1;
 	}
-	//if (tmp->space == 1 && tmp->minus == 0 && tmp->width != 0 && l > 0 && tmp->zero != 0)
+	//if (tmp->space == 1 && tmp->minus == 0 && tmp->w != 0 && l > 0 && tmp->zero != 0)
 	//{
 	//	write(1, " ", 1);
-	//	tmp->width = tmp->width - 1;
+	//	tmp->w = tmp->w - 1;
 	//}
-	if (tmp->space == 1 && tmp->minus == 1 && tmp->width != 0 && s[0] != '0' && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->minus == 1 && tmp->w != 0 && s[0] != '0' && tmp->signe != '-')
 	{
 		write(1, " ", 1);
-		tmp->width = tmp->width - 1;
+		tmp->w = tmp->w - 1;
 	}
-	if (tmp->space == 1 && tmp->width != 0 && s[0] != '0' && tmp->signe != '-' && tmp->zero == 1)
+	if (tmp->space == 1 && tmp->w != 0 && s[0] != '0' && tmp->signe != '-' && tmp->zero == 1)
 	{
 		write(1, " ", 1);
-		tmp->width = tmp->width - 1;
+		tmp->w = tmp->w - 1;
 	}
-	if (tmp->width == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->signe != '-' && (*flag) == 0)
+	if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->signe != '-' && (*flag) == 0)
 		write(1, "-", 1);
-	if (tmp->width >= 0)
+	if (tmp->w >= 0)
 	{
-		//		printf("%i %i %i\n", tmp->width, t, tmp->space);// check
-		if (t >= tmp->width)
-			tmp->width = 0;
-		if (tmp->width > t)
+		//		printf("%i %i %i\n", tmp->w, t, tmp->space);// check
+		if (t >= tmp->w)
+			tmp->w = 0;
+		if (tmp->w > t)
 		{
-			tmp->width = tmp->width - t;
+			tmp->w = tmp->w - t;
 			if (tmp->plus == 1 || (s[0] != '0' && tmp->signe != '-'))
-				tmp->width = tmp->width - 1;
+				tmp->w = tmp->w - 1;
 		}
 		//		printf("%i %i %i\n", tmp->nb, t, tmp->plus);// check
 		if (tmp->zero == 1 && s[0] != '0' && tmp->signe != '-' && tmp->minus == 0)
@@ -169,63 +186,63 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			flag = 1;
 			write(1, "+", 1);
 		}
-		if ((tmp->plus == 1 || tmp->width != 0) && tmp->minus == 1 && tmp->zero == 0 && l < 0)
+		if ((tmp->plus == 1 || tmp->w != 0) && tmp->minus == 1 && tmp->zero == 0 && l < 0)
 		{
 			flag = 1;
 			write(1, "-", 1);
 		}
-		if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->width != 0 && l >= 0 && flag == 0)
+		if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && l >= 0 && flag == 0)
 			write(1, "+", 1);
 		//		printf("%i\n", tmp->space);//check
 		t = size_l(l);
 //			printf("%d\n", l);
-		if (tmp->space == 1 && tmp->plus == 0 && tmp->width == 0 && tmp->minus == 0 && l >= 0)
+		if (tmp->space == 1 && tmp->plus == 0 && tmp->w == 0 && tmp->minus == 0 && l >= 0)
 		{
 			tmp->space = 0;
 			write(1, " ", 1);
 		}
-		if (tmp->space == 1 && tmp->plus == 0 && (tmp->width == 0 || t >=  tmp->width) && tmp->minus == 0 && l >= 0)
+		if (tmp->space == 1 && tmp->plus == 0 && (tmp->w == 0 || t >=  tmp->w) && tmp->minus == 0 && l >= 0)
 		{
 			tmp->space = 0;
 			write(1, " ", 1);
 		}
-		if (tmp->space == 1 && l == 0 && tmp->width != 0)
+		if (tmp->space == 1 && l == 0 && tmp->w != 0)
 		{
 			write(1, " ", 1);
-			tmp->width = tmp->width - 1;
+			tmp->w = tmp->w - 1;
 		}
-		//if (tmp->space == 1 && tmp->minus == 0 && tmp->width != 0 && l > 0 && tmp->zero != 0)
+		//if (tmp->space == 1 && tmp->minus == 0 && tmp->w != 0 && l > 0 && tmp->zero != 0)
 		//{
 		//	write(1, " ", 1);
-		//	tmp->width = tmp->width - 1;
+		//	tmp->w = tmp->w - 1;
 		//}
-		if (tmp->space == 1 && tmp->minus == 1 && tmp->width != 0 && l != 0 && l > 0)
+		if (tmp->space == 1 && tmp->minus == 1 && tmp->w != 0 && l != 0 && l > 0)
 		{
 			write(1, " ", 1);
-			tmp->width = tmp->width - 1;
+			tmp->w = tmp->w - 1;
 		}
-		if (tmp->space == 1 && tmp->width != 0 && l > 0 && tmp->zero == 1)
+		if (tmp->space == 1 && tmp->w != 0 && l > 0 && tmp->zero == 1)
 		{
 			write(1, " ", 1);
-			tmp->width = tmp->width - 1;
+			tmp->w = tmp->w - 1;
 		}
-		if (tmp->width == 0 && (tmp->minus == 1 || tmp->zero == 1) && l < 0 && flag == 0)
+		if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && l < 0 && flag == 0)
 			write(1, "-", 1);
 		if (l < 0)
 			ul = l * -1;
 		else
 			ul = l;
-		if (tmp->width >= 0)
+		if (tmp->w >= 0)
 		{
 			t = size_l(ul);
-			//		printf("%i %i %i\n", tmp->width, t, tmp->space);// check
-			if (t >= tmp->width)
-				tmp->width = 0;
-			if (tmp->width > t)
+			//		printf("%i %i %i\n", tmp->w, t, tmp->space);// check
+			if (t >= tmp->w)
+				tmp->w = 0;
+			if (tmp->w > t)
 			{
-				tmp->width = tmp->width - t;
+				tmp->w = tmp->w - t;
 				if (tmp->plus == 1 || l < 0)
-					tmp->width = tmp->width - 1;
+					tmp->w = tmp->w - 1;
 			}
 			//		printf("%i %i %i\n", tmp->nb, t, tmp->plus);// check
 			if (tmp->zero == 1 && l < 0 && tmp->minus == 0)

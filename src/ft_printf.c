@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 21:49:56 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:09:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clean_struct(t_frm *tmp)
 	tmp->minus = 0;
 	tmp->space = 0;
 	tmp->zero = 0;
-	tmp->width = 0;
+	tmp->w = 0;
 	tmp->hash = 0;
 	tmp->format = 0;
 }
@@ -83,7 +83,7 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 	else if (c > '0' && c <= '9')
 	{
 		l = l + (c - 48);
-		tmp->width = l;
+		tmp->w = l;
 	}
 }
 

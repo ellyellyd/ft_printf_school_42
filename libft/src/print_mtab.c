@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 23:04:06 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/09 02:20:56 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:14:52 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 #define BG_CYN	"\x1B[46m"
 #define BG_WHT	"\x1B[47m"
 
-#include <stdio.h> // remove later!
-
 #include "libft.h"
 
 void	print_mtab(int **matrix, size_t rows, size_t cols)
@@ -56,25 +54,11 @@ void	print_mtab(int **matrix, size_t rows, size_t cols)
 				continue ;
 			}
 			if (ft_isprint(matrix[i][j]))
-			{
-				if (matrix[i][j] == 'o')
-					printf(RED "%c" RESET, (char)(matrix[i][j]));
-				if (matrix[i][j] == 'O')
-					printf(BLU "%c" RESET, (char)(matrix[i][j]));
-				else if (matrix[i][j] == 'X')
-					printf(MAG "%c" RESET, (char)(matrix[i][j]));
-				else if (matrix[i][j] == 'x')
-					printf(BG_MAG "%c" RESET, (char)(matrix[i][j]));
-				else if (matrix[i][j] == '.')
-					printf(CYN "%c" RESET, (char)(matrix[i][j]));
-			}
+				ft_putchar((char)(matrix[i][j]));
 			else if (matrix[i][j] % 10 == 0)
-				printf(YEL "%d" RESET, matrix[i][j] % 10);
-			else
-				printf(YEL "%d" RESET, matrix[i][j] % 10);
+				ft_putnbr(matrix[i][j] % 10);
 			ft_putchar(' ');
 			j++;
 		}
 	}
-	ft_putendl("print_mtab: finished\n");
 }

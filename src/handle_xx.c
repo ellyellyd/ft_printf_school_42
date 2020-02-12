@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:06:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:16:44 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	l2 = va_arg(argptr, unsigned long long);
 	if (tmp->size == 6)
 		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
-			  ((x == 'X') ? ('F') : ('f')), 12, 11);
+			((x == 'X') ? ('F') : ('f')), 12, 11);
 	else if (tmp->size == 66)
 		fix_s((s = ft_test_itoa_unsigned_base((signed char)l2, 16, x)), \
-			  ((x == 'X') ? ('F') : ('f')), 13, 13);
+			((x == 'X') ? ('F') : ('f')), 13, 13);
 	else
 		s = ft_test_itoa_unsigned_base(l2, 16, x);
 	t = ft_strlen(s);
-	if (tmp->width > 0)
+	if (tmp->w > 0)
 	{
-		tmp->width = ((t >= tmp->width) ? (0) : (tmp->width));
-		tmp->width = ((tmp->width > t) ? (tmp->width - t) : (tmp->width));
-		tmp->width = ((tmp->hash == 1 && s[0] != '0') ? (tmp->width - 2) : (tmp->width));
+		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
+		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
+		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
 		handle_minus(tmp, c, 0);
 	}
 	if (tmp->hash == 1 && s[0] != '0')

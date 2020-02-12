@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:37 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:03:46 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:09:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	handle_u(t_frm *tmp, va_list argptr, char *c)
 		l2 = va_arg(argptr, unsigned long long);
 	s = ft_test_itoa_unsigned_base(l2, 10, 'X');
 	t = ft_strlen(s);
-	if (tmp->width > 0)
+	if (tmp->w > 0)
 	{
-		tmp->width = ((t >= tmp->width) ? (0) : (tmp->width));
-		if (tmp->width > t)
+		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
+		if (tmp->w > t)
 		{
-			tmp->width = tmp->width - t;
-			tmp->width = ((tmp->plus == 1) ? (tmp->width - 1) : (tmp->width));
+			tmp->w = tmp->w - t;
+			tmp->w = ((tmp->plus == 1) ? (tmp->w - 1) : (tmp->w));
 		}
 		handle_minus(tmp, c, 0);
 		ft_putstr(s);

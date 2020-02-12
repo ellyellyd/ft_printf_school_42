@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 21:49:56 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:10:04 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 /*
 ** nb - how many spaces or zeroes, hash - #,
-** width - between 1 and 9, precision - .#,
+** w (width) - between 1 and 9, precision - .#,
 ** size: ll = 11, l = 1, hh = 66, h = 6, L = 10, else == 0.
 */
 
@@ -46,7 +46,7 @@ typedef	struct		s_form
 	int		zero;
 	int		hash;
 
-	int		width;
+	int		w;
 	int		precision;
 	int		size;
 }					t_frm;

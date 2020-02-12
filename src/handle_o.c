@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_o.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/12 22:16:02 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 void	handle_o(t_frm *tmp, va_list argptr, char *c)
@@ -15,12 +27,12 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		l2 = va_arg(argptr, unsigned long long);
 	s = ft_test_itoa_unsigned_base(l2, 8, 'X');
 	l2 = 0;
-	if (tmp->width > 0)
+	if (tmp->w > 0)
 	{
 		t = ft_strlen(s);
-		tmp->width = ((t >= tmp->width) ? (0) : (tmp->width));
-		tmp->width = ((tmp->width > t) ? (tmp->width - t) : (tmp->width));
-		tmp->width = ((tmp->hash == 1 && s[0] != '0') ? (tmp->width - 1) : (tmp->width));
+		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
+		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
+		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 1) : (tmp->w));
 		handle_minus(tmp, c, 0);
 	}
 	if (tmp->hash == 1 && s[0] != '0')
