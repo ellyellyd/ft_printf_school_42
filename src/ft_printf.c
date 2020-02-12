@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 22:34:05 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 23:09:17 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,6 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 	}
 }
 
-t_frm	is_it_smth_else(const char *format, int i)
-{
-	t_frm		tmp;
-	char		c;
-
-	clean_struct(&tmp);
-	c = format[i];
-	while (!(c == 'd' || c == 'i' || c == 'o' || \
-			c == 'u' || c == 'x' || c == 'X' || \
-			c == 'c' || c == 's' || c == 'p' || format[i] == '\0'))
-	{
-//	printf("here: %c\n", format[i]);// check
-		record_flag(c, &tmp);
-		record_size_and_width(c, &tmp, format, &i);
-//		printf("here: %d\n", tmp.width);// check
-		i++;
-		c = format[i];
-	}
-	return (tmp);
-}
 
 int		check_type(char c)
 {
@@ -116,39 +96,6 @@ int		check_type(char c)
 		c != 'c' && c != 's' && c != 'p')
 		return (1);
 	return (0);
-}
-
-int		ft_printf(const char *format, ...)
-{
-	int			i;
-	int			res;
-	va_list		argptr;
-	t_frm		tmp;
-
-	i = 0;
-	res = 0;
-	va_start(argptr, format);
-	while (format[i] != '\0')
-	{
-		while (format[i] != '%' && format[i] != '\n' && format[i])
-			write(1, &format[i++], 1);
-		if (format[i] == '\n')
-			write(1, "\n", 1);
-		else if (format[i++] == '%')
-		{
-//	printf("check: %c\n", format[i]);// check
-			tmp = is_it_smth_else(format, i); // new for ecrier flags and etc
-			while (check_type(format[i]) && format[i] != '\0')
-				i++;
-//	printf("%c\n", format[i]);//check
-			insert_format(format, i, argptr, tmp);
-		}
-		i++;
-	}
-	if (format[i] == '\0')
-		return (i);
-	va_end(argptr);
-	return (-1);
 }
 
 void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
@@ -160,8 +107,8 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	c = ((tmp.zero == 1) ? ('0') : (' '));
 /*	if (format[i] == 'f')// NEW_NEW_NEW!!! DO IT!!!
 	{
-		f = va_arg(argptr, double);
-		printf("%f\n", f); // check
+	f = va_arg(argptr, double);
+	printf("%f\n", f); // check
 	}
 */
 	if (format[i] == 'i' || format[i] == 'd')
@@ -182,4 +129,52 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 		handle_s(&tmp, argptr);
 	else if (format[i] == '%')
 		ft_putchar('%');
+}
+
+t_frm	is_it_smth_else(const char *format, int i)
+{
+	t_frm		tmp;
+	char		c;
+
+	clean_struct(&tmp);
+	c = format[i];
+	while (!(c == 'd' || c == 'i' || c == 'o' || \
+			 c == 'u' || c == 'x' || c == 'X' || \
+			 c == 'c' || c == 's' || c == 'p' || format[i] == '\0'))
+	{
+		record_flag(c, &tmp);
+		record_size_and_width(c, &tmp, format, &i);
+		i++;
+		c = format[i];
+	}
+	return (tmp);
+}
+
+int		ft_printf(const char *format, ...)
+{
+	int			i;
+	va_list		argptr;
+	t_frm		tmp;
+
+	i = 0;
+	va_start(argptr, format);
+	while (format[i] != '\0')
+	{
+		while (format[i] != '%' && format[i] != '\n' && format[i])
+			write(1, &format[i++], 1);
+		if (format[i] == '\n')
+			write(1, "\n", 1);
+		else if (format[i++] == '%')
+		{
+			tmp = is_it_smth_else(format, i); // new for ecrier flags and etc
+			while (check_type(format[i]) && format[i] != '\0')
+				i++;
+			insert_format(format, i, argptr, tmp);
+		}
+		i++;
+	}
+	if (format[i] == '\0')
+		return (i);
+	va_end(argptr);
+	return (-1);
 }
