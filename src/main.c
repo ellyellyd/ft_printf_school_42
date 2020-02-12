@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 05:44:14 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 23:26:45 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -55,53 +55,64 @@ int		main(void)
 	//printf("%5\n");
 	//printf("%5\n\n");
 
-	printf("%li\n", l4);
-	ft_printf("%li\n\n", l4);// it does not work with long int and negativ int
+	printf("TEST 1:\n");
 
-	printf("%hhi\n", (char)l4);
-	ft_printf("%hhi\n\n", (char)l4);
-//
-	printf("Hello %-+6i worlde!\n", i);
-	ft_printf("Hello %-+6i worlde!\n\n", i);
+	printf("or_printf: ");
+	printf("test");
+	printf("\n\n\n");
 
-	printf("Hello %i worlde!\n", i);
-	ft_printf("Hello %i worlde!\n\n", i);
+	printf("ft_printf: ");
+	ft_printf("test");
+	printf("\n\n\n");
 
-	printf("Hello % i worlde!\n", i);
-	ft_printf("Hello % i worlde!\n\n", i);
 
-	printf("Hello %+i worlde!\n", i);
-	ft_printf("Hello %+i worlde!\n\n", i);
+/* 	printf("%li\n", l4); */
+/* 	ft_printf("%li\n\n", l4);// it does not work with long int and negativ int */
 
-	printf("Hello %6i worlde!\n", i);
-	ft_printf("Hello %6i worlde!\n\n", i);
+/* 	printf("%hhi\n", (char)l4); */
+/* 	ft_printf("%hhi\n\n", (char)l4); */
+/* // */
+/* 	printf("Hello %-+6i worlde!\n", i); */
+/* 	ft_printf("Hello %-+6i worlde!\n\n", i); */
 
-	printf("Hello % 6i worlde!\n", i);
-	ft_printf("Hello % 6i worlde!\n\n", i);
+/* 	printf("Hello %i worlde!\n", i); */
+/* 	ft_printf("Hello %i worlde!\n\n", i); */
 
-	printf("Hello %06i worlde!\n", i);
-	ft_printf("Hello %06i worlde!\n\n", i);
+/* 	printf("Hello % i worlde!\n", i); */
+/* 	ft_printf("Hello % i worlde!\n\n", i); */
 
-	printf("Hello %-i worlde!\n", i);
-	ft_printf("Hello %-i worlde!\n\n", i);
+/* 	printf("Hello %+i worlde!\n", i); */
+/* 	ft_printf("Hello %+i worlde!\n\n", i); */
 
-	printf("Hello %-6i worlde!\n", i);
-	ft_printf("Hello %-6i worlde!\n\n", i);
+/* 	printf("Hello %6i worlde!\n", i); */
+/* 	ft_printf("Hello %6i worlde!\n\n", i); */
 
-	printf("Hello %+-6i worlde!\n", i);
-	ft_printf("Hello %+-6i worlde!\n\n", i);
+/* 	printf("Hello % 6i worlde!\n", i); */
+/* 	ft_printf("Hello % 6i worlde!\n\n", i); */
 
-	printf("Hello %+-i worlde!\n", i);
-	ft_printf("Hello %+-i worlde!\n\n", i);
+/* 	printf("Hello %06i worlde!\n", i); */
+/* 	ft_printf("Hello %06i worlde!\n\n", i); */
 
-	printf("Hello %+6i worlde!\n", i);
-	ft_printf("Hello %+6i worlde!\n\n", i);
+/* 	printf("Hello %-i worlde!\n", i); */
+/* 	ft_printf("Hello %-i worlde!\n\n", i); */
 
-	printf("Hello % 06i worlde!\n", i);
-	ft_printf("Hello % 06i worlde!\n\n", i);
+/* 	printf("Hello %-6i worlde!\n", i); */
+/* 	ft_printf("Hello %-6i worlde!\n\n", i); */
 
-	printf("Hello % -6i worlde!\n", i);
-	ft_printf("Hello % -6i worlde!\n", i);
+/* 	printf("Hello %+-6i worlde!\n", i); */
+/* 	ft_printf("Hello %+-6i worlde!\n\n", i); */
+
+/* 	printf("Hello %+-i worlde!\n", i); */
+/* 	ft_printf("Hello %+-i worlde!\n\n", i); */
+
+/* 	printf("Hello %+6i worlde!\n", i); */
+/* 	ft_printf("Hello %+6i worlde!\n\n", i); */
+
+/* 	printf("Hello % 06i worlde!\n", i); */
+/* 	ft_printf("Hello % 06i worlde!\n\n", i); */
+
+/* 	printf("Hello % -6i worlde!\n", i); */
+/* 	ft_printf("Hello % -6i worlde!\n", i); */
 //
 /*		%o
 
