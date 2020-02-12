@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 04:52:50 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 21:49:56 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,9 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	if (format[i] == 'i' || format[i] == 'd')
 		handle_id(&tmp, argptr, &c);
 	else if (format[i] == 'x')
-		handle_xX(&tmp, argptr, &c, 'x');
+		handle_xx(&tmp, argptr, &c, 'x');
 	else if (format[i] == 'X')
-		handle_xX(&tmp, argptr, &c, 'X');
+		handle_xx(&tmp, argptr, &c, 'X');
 	else if (format[i] == 'u')
 		handle_u(&tmp, argptr, &c);
 	else if (format[i] == 'o')

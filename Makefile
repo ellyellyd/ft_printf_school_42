@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/12 05:46:42 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/12 22:01:07 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-.PHONY: all clean fclean re libft exec
+.PHONY: all clean fclean re libft exec norm
 
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
@@ -26,7 +26,7 @@ SRC_RAW = \
 	10_in_8.c \
 	ft_printf.c \
 	ft_itoa_base.c \
-	X_ft_itoa_base.c\
+	x_ft_itoa_base.c\
 	ft_itoa_unsigned_base.c \
 	ft_test_itoa_unsigned_base.c \
 	handle_minus.c \
@@ -35,7 +35,7 @@ SRC_RAW = \
 	handle_p.c \
 	handle_o.c \
 	handle_u.c \
-	handle_X.c \
+	handle_xx.c \
 	handle_id.c \
 	fix_s.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_RAW))
@@ -52,7 +52,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_RAW:.c=.o))
 all: $(NAME)
 
 $(EXEC): $(NAME)
-	@ gcc $(CFLAGS) -o $(EXEC) $(MAIN) -I "includes/" -I "libft/includes/" -L . -lftprintf -L "libft/" -lft 
+	@ gcc $(CFLAGS) -o $(EXEC) $(MAIN) -I "includes/" -I "libft/includes/" -L . -lftprintf -L "libft/" -lft
 	@ echo "$(NAME): $(GREEN)$(EXEC) was created$(RESET)"
 
 $(NAME): libft $(OBJ_DIR) $(OBJ)
@@ -83,3 +83,7 @@ fclean: clean
 	@ echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 	@ make -C libft/ fclean
 re: fclean all
+
+norm: fclean
+	@ clear && clear && clear
+	@ /Users/slisandr/.scripts/colorised_norm.sh
