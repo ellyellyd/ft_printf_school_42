@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2020/02/09 00:47:06 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/12 04:20:05 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_RAW = \
 			ft_putstr.c \
 			ft_putendl.c \
 			ft_putnbr.c \
+			ft_putnbr_ll.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \

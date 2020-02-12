@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/09 00:48:07 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 04:20:50 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,6 @@ int				*ft_tabdup(int const *tab, size_t size);
 int				*ft_strdup_int(char const *s1);
 int				*ft_tabint(int const *ptr, size_t size, int c);
 int				**mtab_dup(int **m, unsigned int rows, unsigned int cols);
+void			ft_putnbr_ll(long long int n);
 
 #endif

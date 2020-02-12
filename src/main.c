@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 02:26:41 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 05:44:14 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -29,7 +29,7 @@ int		main(void)
 
 	l5 = 896;//
 
-	l4 = 69487987897979797;
+	l4 = -9779;
 
 	l3 = 0;
 
@@ -50,10 +50,18 @@ int		main(void)
 	ft_printf("%c\n", a);
 */
 //		%i / %d
-/*
-	printf("%hi\n", (short)l4);
-	ft_printf("%hi\n", (short)l4);
-//	printf("Hello %-+6i worlde!\n", i);
+//
+
+	//printf("%5\n");
+	//printf("%5\n\n");
+
+	printf("%li\n", l4);
+	ft_printf("%li\n\n", l4);// it does not work with long int and negativ int
+
+	printf("%hhi\n", (char)l4);
+	ft_printf("%hhi\n\n", (char)l4);
+//
+	printf("Hello %-+6i worlde!\n", i);
 	ft_printf("Hello %-+6i worlde!\n\n", i);
 
 	printf("Hello %i worlde!\n", i);
@@ -94,7 +102,7 @@ int		main(void)
 
 	printf("Hello % -6i worlde!\n", i);
 	ft_printf("Hello % -6i worlde!\n", i);
-*/
+//
 /*		%o
 
 	printf("%ho\n", (unsigned short int)l2);
@@ -305,7 +313,7 @@ int		main(void)
 	ft_printf("%#08X\n", -98);
 */
 
-//		%x
+/*		%x
 
 //
 	printf("%lx\n", l4);
@@ -388,7 +396,7 @@ int		main(void)
 	ft_printf("%#08x\n", 18);
 	printf("%#08x\n", -98);
 	ft_printf("%#08x\n", -98);
-//
+*/
 
 /*		%p
 
