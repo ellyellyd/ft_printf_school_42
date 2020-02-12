@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:31:12 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:58:01 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void				handle_minus(t_frm *tmp, char *c, int cmp);
 void				fix_s(char *s, char c, int cmp, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
-void				handle_p(va_list argptr);
+void				handle_p(t_frm *tmp, va_list argptr);
 void				handle_o(t_frm *tmp, va_list argptr, char *c);
 void				handle_u(t_frm *tmp, va_list argptr, char *c);
 void				handle_xx(t_frm *tmp, va_list argptr, char *c, char x);

@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 23:52:12 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:57:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	clean_struct(t_frm *tmp)
 	tmp->w = 0;
 	tmp->hash = 0;
 	tmp->format = 0;
-	tmp->ret = 0;
 }
 
 void	record_flag(char c, t_frm *tmp)
@@ -75,13 +74,13 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 	}
 }
 
-void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
+void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 {
 	int					l;
 	char				c;
 
 	l = 0;
-	c = ((tmp.zero == 1) ? ('0') : (' '));
+	c = ((tmp->zero == 1) ? ('0') : (' '));
 /*	if (format[i] == 'f')// NEW_NEW_NEW!!! DO IT!!!
 	{
 	f = va_arg(argptr, double);
@@ -89,21 +88,21 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm tmp)
 	}
 */
 	if (format[i] == 'i' || format[i] == 'd')
-		handle_id(&tmp, argptr, &c);
+		handle_id(tmp, argptr, &c);
 	else if (format[i] == 'x')
-		handle_xx(&tmp, argptr, &c, 'x');
+		handle_xx(tmp, argptr, &c, 'x');
 	else if (format[i] == 'X')
-		handle_xx(&tmp, argptr, &c, 'X');
+		handle_xx(tmp, argptr, &c, 'X');
 	else if (format[i] == 'u')
-		handle_u(&tmp, argptr, &c);
+		handle_u(tmp, argptr, &c);
 	else if (format[i] == 'o')
-		handle_o(&tmp, argptr, &c);
+		handle_o(tmp, argptr, &c);
 	else if (format[i] == 'p')
-		handle_p(argptr);
+		handle_p(tmp, argptr);
 	else if (format[i] == 'c')
-		handle_c(&tmp, argptr, &l);
+		handle_c(tmp, argptr, &l);
 	else if (format[i] == 's')
-		handle_s(&tmp, argptr);
+		handle_s(tmp, argptr);
 	else if (format[i] == '%')
 		ft_putchar('%');
 }
@@ -117,21 +116,21 @@ int		check_type(char c)
 	return (0);
 }
 
-t_frm	is_it_smth_else(const char *format, int *i)
+t_frm	is_it_smth_else(const char *format, int i)
 {
 	t_frm		tmp;
 	char		c;
 
 	clean_struct(&tmp);
-	c = format[*i];
+	c = format[i];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
 			 c == 'u' || c == 'x' || c == 'X' || \
-			 c == 'c' || c == 's' || c == 'p' || format[*i] == '\0'))
+			 c == 'c' || c == 's' || c == 'p' || format[i] == '\0'))
 	{
 		record_flag(c, &tmp);
-		record_size_and_width(c, &tmp, format, i);
-		(*i)++;
-		c = format[*i];
+		record_size_and_width(c, &tmp, format, &i);
+		(i)++;
+		c = format[i];
 	}
 	return (tmp);
 }
@@ -143,25 +142,28 @@ int		ft_printf(const char *format, ...)
 	t_frm		tmp;
 
 	i = 0;
+	tmp.ret = 0;
 	va_start(argptr, format);
 	while (format[i])
 	{
 		if (format[i] != '%')
 		{
 			ft_putchar(format[i++]);
+			tmp.ret += 1;
 			continue ;
 		}
-		if (format[i++] == '%')
+		else if (format[i + 1])
 		{
-			tmp = is_it_smth_else(format, &i); // new for ecrier flags and etc
+			i += 1;
+			tmp = is_it_smth_else(format, i); // new for ecrier flags and etc
 			while (check_type(format[i]) && format[i] != '\0')
 				i++;
-			insert_format(format, i, argptr, tmp);
+			insert_format(format, i, argptr, &tmp);
 		}
 		i++;
 	}
 	if (format[i] == '\0')
-		return (i);
+		return (tmp.ret);
 	va_end(argptr);
 	return (-1);
 }

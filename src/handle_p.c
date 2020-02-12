@@ -6,13 +6,13 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:46 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:15:49 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:57:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	handle_p(va_list argptr)
+void	handle_p(t_frm *tmp, va_list argptr)
 {
 	int		l;
 	char	*s;
@@ -22,4 +22,5 @@ void	handle_p(va_list argptr)
 	s = ft_itoa_unsigned_base(l, 16, 'x');
 	write(1, "0x10", 4);
 	ft_putstr(s);
+	tmp->ret += ft_strlen(s);
 }

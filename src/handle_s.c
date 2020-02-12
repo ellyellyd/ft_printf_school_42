@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:00 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:09:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:52:01 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	handle_s(t_frm *tmp, va_list argptr)
 		handle_minus(tmp, " ", 0);
 	}
 	ft_putstr(s);
+	tmp->ret += ft_strlen(s);
 	handle_minus(tmp, " ", 1);
 }

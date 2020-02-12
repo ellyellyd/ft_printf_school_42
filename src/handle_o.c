@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:16:02 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:53:57 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		handle_minus(tmp, c, 0);
 	}
 	if (tmp->hash == 1 && s[0] != '0')
+	{
 		write(1, "0", 1);
+		tmp->ret += 1;
+	}
 	ft_putstr(s);
+	tmp->ret += ft_strlen(s);
 	handle_minus(tmp, c, 1);
 }

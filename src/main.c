@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 23:26:45 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 00:38:51 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -65,6 +65,16 @@ int		main(void)
 	ft_printf("test");
 	printf("\n\n\n");
 
+
+	printf("TEST 14:\n");
+
+	printf("or_printf: ");
+	printf("%x", 0);
+	printf("\n\n\n");
+
+	printf("ft_printf: ");
+	ft_printf("%x", 0);
+	printf("\n\n\n");
 
 /* 	printf("%li\n", l4); */
 /* 	ft_printf("%li\n\n", l4);// it does not work with long int and negativ int */
