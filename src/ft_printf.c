@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/12 22:09:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:34:05 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	clean_struct(t_frm *tmp)
 {
 	tmp->size = 0;
 	tmp->plus = 0;
-	tmp->signe = '\0';
+	tmp->sgn = '\0';
 	tmp->string = NULL;
 	tmp->minus = 0;
 	tmp->space = 0;
@@ -37,6 +37,7 @@ void	clean_struct(t_frm *tmp)
 	tmp->w = 0;
 	tmp->hash = 0;
 	tmp->format = 0;
+	tmp->ret = 0;
 }
 
 void	record_flag(char c, t_frm *tmp)
@@ -87,7 +88,7 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 	}
 }
 
-t_frm	is_it_smth_else(const char *format, int i) // bew func
+t_frm	is_it_smth_else(const char *format, int i)
 {
 	t_frm		tmp;
 	char		c;

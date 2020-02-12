@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:10:04 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:31:12 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 typedef	struct		s_form
 {
-	char	signe;
+	char	sgn;
 
 	char	format;
 	char	*string;
@@ -49,6 +49,8 @@ typedef	struct		s_form
 	int		w;
 	int		precision;
 	int		size;
+
+	size_t	ret;
 }					t_frm;
 
 int					ft_printf(const char *format, ...);

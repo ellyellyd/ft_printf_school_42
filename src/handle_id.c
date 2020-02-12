@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:17:07 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 22:17:58 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/12 22:22:16 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,35 @@ int	size_l(int l)
 
 void	check_flags_1(t_frm *tmp, int *flag, int t)
 {
-	if (tmp->plus == 1 && tmp->minus == 1 && tmp->zero == 0 && tmp->signe == '\0')
+	if (tmp->plus == 1 && tmp->minus == 1 && tmp->zero == 0 && tmp->sgn == '\0')
 	{
 		(*flag) = 1;
 		write(1, "+", 1);
 	}
-	if ((tmp->plus == 1 || tmp->w != 0) && tmp->minus == 1 && tmp->zero == 0 && tmp->signe == '-')
+	if ((tmp->plus == 1 || tmp->w != 0) && tmp->minus == 1 && tmp->zero == 0 && tmp->sgn == '-')
 	{
 		(*flag) = 1;
 		write(1, "-", 1);
 	}
-	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && tmp->signe != '-' && (*flag) == 0)
+	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && tmp->sgn != '-' && (*flag) == 0)
 		write(1, "+", 1);
-	if (tmp->space == 1 && tmp->plus == 0 && tmp->w == 0 && tmp->minus == 0 && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->plus == 0 && tmp->w == 0 && tmp->minus == 0 && tmp->sgn != '-')
 	{
 		tmp->space = 0;
 		write(1, " ", 1);
 	}
-	if (tmp->space == 1 && tmp->plus == 0 && (tmp->w == 0 || t >=  tmp->w) && tmp->minus == 0 && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->plus == 0 && (tmp->w == 0 || t >=  tmp->w) && tmp->minus == 0 && tmp->sgn != '-')
 	{
 		tmp->space = 0;
 		write(1, " ", 1);
 	}
 }
+
+/*
+** CHECK:
+**
+**
+*/
 
 void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 {
@@ -65,7 +71,7 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 	t = 0;
 	t = ft_strlen(s) + 1;
 	check_flags_1(tmp, flag, t);
-	if (tmp->space == 1 && s[0] == '0' && tmp->w != 0 && tmp->signe != '-')
+	if (tmp->space == 1 && s[0] == '0' && tmp->w != 0 && tmp->sgn != '-')
 	{
 		write(1, " ", 1);
 		tmp->w = tmp->w - 1;
@@ -75,17 +81,17 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 	//	write(1, " ", 1);
 	//	tmp->w = tmp->w - 1;
 	//}
-	if (tmp->space == 1 && tmp->minus == 1 && tmp->w != 0 && s[0] != '0' && tmp->signe != '-')
+	if (tmp->space == 1 && tmp->minus == 1 && tmp->w != 0 && s[0] != '0' && tmp->sgn != '-')
 	{
 		write(1, " ", 1);
 		tmp->w = tmp->w - 1;
 	}
-	if (tmp->space == 1 && tmp->w != 0 && s[0] != '0' && tmp->signe != '-' && tmp->zero == 1)
+	if (tmp->space == 1 && tmp->w != 0 && s[0] != '0' && tmp->sgn != '-' && tmp->zero == 1)
 	{
 		write(1, " ", 1);
 		tmp->w = tmp->w - 1;
 	}
-	if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->signe != '-' && (*flag) == 0)
+	if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->sgn != '-' && (*flag) == 0)
 		write(1, "-", 1);
 	if (tmp->w >= 0)
 	{
@@ -95,16 +101,16 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 		if (tmp->w > t)
 		{
 			tmp->w = tmp->w - t;
-			if (tmp->plus == 1 || (s[0] != '0' && tmp->signe != '-'))
+			if (tmp->plus == 1 || (s[0] != '0' && tmp->sgn != '-'))
 				tmp->w = tmp->w - 1;
 		}
 		//		printf("%i %i %i\n", tmp->nb, t, tmp->plus);// check
-		if (tmp->zero == 1 && s[0] != '0' && tmp->signe != '-' && tmp->minus == 0)
+		if (tmp->zero == 1 && s[0] != '0' && tmp->sgn != '-' && tmp->minus == 0)
 			write(1, "-", 1);
 		handle_minus(tmp, c, 0);
-		if (tmp->plus == 1 && s[0] == '0' && tmp->signe != '-' && tmp->zero == 0 && tmp->minus == 0)
+		if (tmp->plus == 1 && s[0] == '0' && tmp->sgn != '-' && tmp->zero == 0 && tmp->minus == 0)
 			write(1, "+", 1);
-		else if (tmp->zero == 0 && tmp->minus == 0 && s[0] != '0' && tmp->signe == '-')
+		else if (tmp->zero == 0 && tmp->minus == 0 && s[0] != '0' && tmp->sgn == '-')
 			write(1, "-", 1);
 	}
 	ft_putstr(s);
@@ -138,7 +144,7 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			//printf("HI\n");//check// why here l3 becomes = ' '??
 			if ((char)l3 < 0)
 			{
-				tmp->signe = '-';
+				tmp->sgn = '-';
 				l3  *= -1;
 			}
 			//???????????????????      tmp->string = ft_test_itoa_unsigned_base((short)l3, 10, 'X');
@@ -150,7 +156,7 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			//printf("i");//check// why here l3 becomes = ' '??
 			if ((short)l3 < 0)
 			{
-				tmp->signe = '-';
+				tmp->sgn = '-';
 				l3  *= -1;
 			}
 			//???????????????????      tmp->string = ft_test_itoa_unsigned_base((short)l3, 10, 'X');
@@ -162,7 +168,7 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			{
 			if ((char)l3 < 0)
 			{
-			tmp->signe = '-';
+			tmp->sgn = '-';
 			l2  *= -1;
 			}
 			tmp->string = ft_test_itoa_unsigned_base((char)l3, 10, 'X');
@@ -171,7 +177,7 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			{
 			if ((long int)l3 < 0)
 			{
-			tmp->signe = '-';
+			tmp->sgn = '-';
 			l2  *= -1;
 			}
 			tmp->string = ft_test_itoa_unsigned_base((long int)l3, 10, 'X');
