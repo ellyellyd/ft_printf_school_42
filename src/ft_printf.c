@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 05:50:36 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@ int		ft_printf(const char *format, ...)
 	int			i;
 	va_list		argptr;
 	t_frm		tmp;
+	size_t		ret;
 
 	i = 0;
 	tmp.ret = 0;
+	ret = 0;
 	va_start(argptr, format);
 	while (format[i])
 	{
 		if (format[i] != '%')
 		{
 			ft_putchar(format[i++]);
-			tmp.ret += 1;
+			ret += 1;
 			continue ;
 		}
 		else if (format[i + 1])
@@ -79,11 +81,13 @@ int		ft_printf(const char *format, ...)
 			while (is_garbage(format[i]))
 				i++;
 			insert_format(format, i, argptr, &tmp);
+			ret += tmp.ret;
+			tmp.ret = 0;
 		}
 		i++;
 	}
 	if (format[i] == '\0')
-		return (tmp.ret);
+		return (ret);
 	va_end(argptr);
 	return (-1);
 }

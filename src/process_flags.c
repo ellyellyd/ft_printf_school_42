@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 02:46:20 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 05:37:37 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_frm	process_flags(const char *format, int i)
 	char		c;
 
 	reset_struct(&tmp);
+	tmp.ret = 0;
 	c = format[i];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
 			 c == 'u' || c == 'x' || c == 'X' || \
