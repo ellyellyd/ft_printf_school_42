@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 04:15:11 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 08:55:56 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -55,14 +55,14 @@ int		main(void)
 	//printf("%5\n");
 	//printf("%5\n\n");
 
-	printf("TEST 148:\n");
+	printf("TEST 147:\n");
 
 	printf("or_printf: \n");
-	printf("%d %d", 1, -2);
+	printf("%%\n");
 	printf("\n\n\n");
 
 	printf("ft_printf: \n");
-	ft_printf("%d %d", 1, -2);
+	ft_printf("%%\n");
 	printf("\n\n\n");
 
 

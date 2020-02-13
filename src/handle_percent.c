@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 02:40:02 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 02:54:33 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 09:13:23 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_percent(t_frm *tmp)
 {
-	handle_minus(tmp, " ", 1);
+	//handle_minus(tmp, " ", 1);
 	ft_putchar('%');
 	tmp->ret += 1;
 }

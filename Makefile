@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/13 08:55:26 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,5 +89,6 @@ fclean: clean
 re: fclean all
 
 norm: fclean
+	@ rm -f $(EXEC)
 	@ clear && clear && clear
 	@ /Users/slisandr/.scripts/colorised_norm.sh
