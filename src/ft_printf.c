@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/13 03:16:08 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 05:19:38 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 		handle_percent(tmp);
 }
 
-int		skip_garbage(char c)
+int		is_garbage(char c)
 {
 	if ((c != 'd' && c != 'i' && c != 'o' &&	\
 		 c != 'u' && c != 'x' && c != 'X' && \
@@ -76,7 +76,7 @@ int		ft_printf(const char *format, ...)
 		{
 			i += 1;
 			tmp = is_it_smth_else(format, i); // new for ecrier flags and etc
-			while (skip_garbage(format[i]))
+			while (is_garbage(format[i]))
 				i++;
 			insert_format(format, i, argptr, &tmp);
 		}
