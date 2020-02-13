@@ -6,73 +6,11 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/13 00:57:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 03:16:08 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-void	clean_struct(t_frm *tmp)
-{
-	tmp->size = 0;
-	tmp->plus = 0;
-	tmp->sgn = '\0';
-	tmp->string = NULL;
-	tmp->minus = 0;
-	tmp->space = 0;
-	tmp->zero = 0;
-	tmp->w = 0;
-	tmp->hash = 0;
-	tmp->format = 0;
-}
-
-void	record_flag(char c, t_frm *tmp)
-{
-	if (c == '+')
-		tmp->plus = 1;
-	if (c == ' ')
-		tmp->space = 1;
-	if (c == '0')
-		tmp->zero = 1;
-	if (c == '-')
-		tmp->minus = 1;
-	if (c == '#')
-		tmp->hash = 1;
-}
-
-void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
-{
-	int			l;
-
-	l = 0;
-	if (c == 'L')
-		tmp->size = 10;
-	if (c == 'h')
-	{
-		if (format[(*i) + 1] == 'h')
-		{
-			tmp->size = 66;
-			c = format[(*i)++];
-		}
-		else
-			tmp->size = 6;
-	}
-	if (c == 'l')
-	{
-		if (format[(*i) + 1] == 'l')
-		{
-			tmp->size = 11;
-			c = format[(*i)++];
-		}
-		else
-			tmp->size = 1;
-	}
-	else if (c > '0' && c <= '9')
-	{
-		l = l + (c - 48);
-		tmp->w = l;
-	}
-}
 
 void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 {
@@ -104,35 +42,17 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 	else if (format[i] == 's')
 		handle_s(tmp, argptr);
 	else if (format[i] == '%')
-		ft_putchar('%');
+		handle_percent(tmp);
 }
 
-int		check_type(char c)
+int		skip_garbage(char c)
 {
-	if (c != 'd' && c != 'i' && c != 'o' && \
-		c != 'u' && c != 'x' && c != 'X' && \
-		c != 'c' && c != 's' && c != 'p')
+	if ((c != 'd' && c != 'i' && c != 'o' &&	\
+		 c != 'u' && c != 'x' && c != 'X' && \
+		 c != 'c' && c != 's' && c != 'p') && \
+		c != '\0')
 		return (1);
 	return (0);
-}
-
-t_frm	is_it_smth_else(const char *format, int i)
-{
-	t_frm		tmp;
-	char		c;
-
-	clean_struct(&tmp);
-	c = format[i];
-	while (!(c == 'd' || c == 'i' || c == 'o' || \
-			 c == 'u' || c == 'x' || c == 'X' || \
-			 c == 'c' || c == 's' || c == 'p' || format[i] == '\0'))
-	{
-		record_flag(c, &tmp);
-		record_size_and_width(c, &tmp, format, &i);
-		(i)++;
-		c = format[i];
-	}
-	return (tmp);
 }
 
 int		ft_printf(const char *format, ...)
@@ -156,7 +76,7 @@ int		ft_printf(const char *format, ...)
 		{
 			i += 1;
 			tmp = is_it_smth_else(format, i); // new for ecrier flags and etc
-			while (check_type(format[i]) && format[i] != '\0')
+			while (skip_garbage(format[i]))
 				i++;
 			insert_format(format, i, argptr, &tmp);
 		}

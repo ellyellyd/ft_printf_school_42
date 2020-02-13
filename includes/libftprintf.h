@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:58:01 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 03:46:05 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char				*x_ft_itoa_base(int value, int base);
 char				*ft_itoa_unsigned_base(unsigned int value, \
 												int base, char c);
 void				handle_minus(t_frm *tmp, char *c, int cmp);
-void				fix_s(char *s, char c, int cmp, int n);
+void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
 void				handle_p(t_frm *tmp, va_list argptr);
@@ -72,6 +72,9 @@ void				handle_o(t_frm *tmp, va_list argptr, char *c);
 void				handle_u(t_frm *tmp, va_list argptr, char *c);
 void				handle_xx(t_frm *tmp, va_list argptr, char *c, char x);
 void				handle_id(t_frm *tmp, va_list argptr, char *c);
+void				putchar_and_count(char c, t_frm *tmp);
+t_frm				is_it_smth_else(const char *format, int i);
+void				handle_percent(t_frm *tmp);
 
 /*
 ** check

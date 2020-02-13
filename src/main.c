@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:38:51 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 04:15:11 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -55,26 +55,26 @@ int		main(void)
 	//printf("%5\n");
 	//printf("%5\n\n");
 
-	printf("TEST 1:\n");
+	printf("TEST 148:\n");
 
-	printf("or_printf: ");
-	printf("test");
+	printf("or_printf: \n");
+	printf("%d %d", 1, -2);
 	printf("\n\n\n");
 
-	printf("ft_printf: ");
-	ft_printf("test");
+	printf("ft_printf: \n");
+	ft_printf("%d %d", 1, -2);
 	printf("\n\n\n");
 
 
-	printf("TEST 14:\n");
+	/* printf("TEST 19:\n"); */
 
-	printf("or_printf: ");
-	printf("%x", 0);
-	printf("\n\n\n");
+	/* printf("or_printf: "); */
+	/* printf("%X", 4294967296); */
+	/* printf("\n\n\n"); */
 
-	printf("ft_printf: ");
-	ft_printf("%x", 0);
-	printf("\n\n\n");
+	/* printf("ft_printf: "); */
+	/* ft_printf("%X", 4294967296); */
+	/* printf("\n\n\n"); */
 
 /* 	printf("%li\n", l4); */
 /* 	ft_printf("%li\n\n", l4);// it does not work with long int and negativ int */

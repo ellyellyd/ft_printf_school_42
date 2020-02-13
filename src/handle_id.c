@@ -6,17 +6,11 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:17:07 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 01:21:36 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 04:34:51 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-void	putchar_and_count(char c, t_frm *tmp)
-{
-	write(1, &c, 1);
-	tmp->ret += 1;
-}
 
 /*
 ** CHECKS:
@@ -52,12 +46,7 @@ void	check_flags_1(t_frm *tmp, int *flag, int t)
 	}
 	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && tmp->sgn != '-' && (*flag) == 0)
 		putchar_and_count('+', tmp);
-	if (tmp->space == 1 && tmp->plus == 0 && tmp->w == 0 && tmp->minus == 0 && tmp->sgn != '-')
-	{
-		tmp->space = 0;
-		putchar_and_count(' ', tmp);
-	}
-	if (tmp->space == 1 && tmp->plus == 0 && (tmp->w == 0 || t >=  tmp->w) && tmp->minus == 0 && tmp->sgn != '-')
+	if (tmp->space == 1 && tmp->plus == 0 && tmp->minus == 0 && tmp->sgn != '-' && (tmp->w == 0 || t >=  tmp->w))
 	{
 		tmp->space = 0;
 		putchar_and_count(' ', tmp);

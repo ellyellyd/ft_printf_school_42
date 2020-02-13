@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:00 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:52:01 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 04:08:15 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,21 @@ void	handle_s(t_frm *tmp, va_list argptr)
 
 	t = 0;
 	s = va_arg(argptr, char*);
+	/* printf("handle_s: tmp->w = %d\n", tmp->w); */
 	if (tmp->w > 0)
 	{
 		t = ft_strlen(s) + 1;
 		if (t >= tmp->w)
 			tmp->w = 0;
-		if (tmp->w > t)
+		else
 			tmp->w = tmp->w - t;
 		handle_minus(tmp, " ", 0);
+		while (tmp->w >= 0)
+		{
+			ft_putchar(' ');
+			tmp->ret += 1;
+			(tmp->w)--;
+		}
 	}
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);

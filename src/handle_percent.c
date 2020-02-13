@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_minus.c                                     :+:      :+:    :+:   */
+/*   handle_percent.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 22:15:28 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 03:46:05 by slisandr         ###   ########.fr       */
+/*   Created: 2020/02/13 02:40:02 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/13 02:54:33 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	handle_minus(t_frm *tmp, char *c, int is_minus)
+void	handle_percent(t_frm *tmp)
 {
-	if (tmp->minus == is_minus)
-	{
-		while (tmp->w > 0)
-		{
-			write(1, c, 1);
-			tmp->ret += 1;
-			(tmp->w)--;
-		}
-	}
+	handle_minus(tmp, " ", 1);
+	ft_putchar('%');
+	tmp->ret += 1;
 }

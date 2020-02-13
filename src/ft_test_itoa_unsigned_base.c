@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:22:44 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/03 20:33:12 by fcatina          ###   ########.fr       */
+/*   Updated: 2020/02/13 01:45:58 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,29 @@ char	*ft_test_itoa_unsigned_base(unsigned long long value, int base, char c)
 	char				*tab;
 	char				*str;
 
-	tmp = value;
-	size = 0;
-	if (c == 'x')
-		tab = "0123456789abcdef";
-	else
-		tab = "0123456789ABCDEF";
-	if (base < 2 || base > 16)
-		return (0);
-	while (tmp /= base)
-		size++;
-	size = size + 1;
-	str = (char*)malloc(sizeof(char) * (size + 1));
-	str[size] = '\0';
-	while (size > 0)
-	{
-		size--;
-		str[size] = tab[value % base];
-		value /= base;
-	}
+	/* if (value == 4294967296) */
+	/* 	str = ft_strdup("100000000"); */
+	/* else */
+	/* { */
+		tmp = value;
+		size = 0;
+		if (c == 'x')
+			tab = "0123456789abcdef";
+		else
+			tab = "0123456789ABCDEF";
+		if (base < 2 || base > 16)
+			return (0);
+		while (tmp /= base)
+			size++;
+		size = size + 1;
+		str = (char*)malloc(sizeof(char) * (size + 1));
+		str[size] = '\0';
+		while (size > 0)
+		{
+			size--;
+			str[size] = tab[value % base];
+			value /= base;
+		}
+	/* } */
 	return (str);
 }

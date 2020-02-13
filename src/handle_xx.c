@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:42:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 04:20:07 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 		handle_minus(tmp, c, 0);
 	}
 	if (tmp->hash == 1 && s[0] != '0')
+	{
 		write(1, ((x == 'X') ? ("0X") : ("0x")), 2);
+		tmp->ret += 2;
+	}
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
 	handle_minus(tmp, c, 1);
