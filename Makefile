@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/13 05:14:16 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC_RAW = \
 	handle_id.c \
 	handle_percent.c \
 	putchar_and_count.c \
-	is_it_smth_else.c \
+	process_flags.c \
 	reset_struct.c \
 	fix_s.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_RAW))

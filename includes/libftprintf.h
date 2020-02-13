@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 05:14:40 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				handle_u(t_frm *tmp, va_list argptr, char *c);
 void				handle_xx(t_frm *tmp, va_list argptr, char *c, char x);
 void				handle_id(t_frm *tmp, va_list argptr, char *c);
 void				putchar_and_count(char c, t_frm *tmp);
-t_frm				is_it_smth_else(const char *format, int i);
+t_frm				process_flags(const char *format, int i);
 void				handle_percent(t_frm *tmp);
 void				reset_struct(t_frm *tmp);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_it_smth_else.c                                  :+:      :+:    :+:   */
+/*   process_flags.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 02:46:20 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 05:17:25 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 05:21:34 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 		tmp->w = tmp->w * 10 + (c - '0');
 }
 
-t_frm	is_it_smth_else(const char *format, int i)
+t_frm	process_flags(const char *format, int i)
 {
 	t_frm		tmp;
 	char		c;
