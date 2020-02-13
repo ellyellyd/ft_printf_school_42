@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:17:07 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 04:34:51 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/13 08:06:30 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	check_flags_1(t_frm *tmp, int *flag, int t)
 	if ((tmp->plus == 1 || tmp->w != 0) && tmp->minus == 1 && tmp->zero == 0 && tmp->sgn == '-')
 	{
 		(*flag) = 1;
-		putchar_and_count('-', tmp);
+		//putchar_and_count('-', tmp);
 	}
 	if (tmp->plus == 1 && (tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0 && tmp->sgn != '-' && (*flag) == 0)
 		putchar_and_count('+', tmp);
@@ -86,8 +86,8 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 		putchar_and_count(' ', tmp);
 		tmp->w = tmp->w - 1;
 	}
-	if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->sgn != '-' && (*flag) == 0)
-		putchar_and_count('-', tmp);
+	/* if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && s[0] != '0' && tmp->sgn != '-' && (*flag) == 0) */
+	/* 	putchar_and_count('-', tmp); */
 	if (tmp->w >= 0)
 	{
 		//		printf("%i %i %i\n", tmp->w, t, tmp->space);// check
@@ -100,17 +100,17 @@ void	handle_hh_and_h_in_di(t_frm *tmp, char *c, char *s, int *flag)
 				tmp->w = tmp->w - 1;
 		}
 		//		printf("%i %i %i\n", tmp->nb, t, tmp->plus);// check
-		if (tmp->zero == 1 && s[0] != '0' && tmp->sgn != '-' && tmp->minus == 0)
-			putchar_and_count('-', tmp);
+		/* if (tmp->zero == 1 && s[0] != '0' && tmp->sgn != '-' && tmp->minus == 0) */
+		/* 	putchar_and_count('-', tmp); */
 		handle_minus(tmp, c, 0);
 		if (tmp->plus == 1 && s[0] == '0' && tmp->sgn != '-' && tmp->zero == 0 && tmp->minus == 0)
 			putchar_and_count('+', tmp);
-		else if (tmp->zero == 0 && tmp->minus == 0 && s[0] != '0' && tmp->sgn == '-')
-			putchar_and_count('-', tmp);
+		/* else if (tmp->zero == 0 && tmp->minus == 0 && s[0] != '0' && tmp->sgn == '-') */
+		/* 	putchar_and_count('-', tmp); */
 	}
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
-	handle_minus(tmp, c, 1);
+	//handle_minus(tmp, c, 1);
 }
 
 void	handle_id(t_frm *tmp, va_list argptr, char *c)
@@ -228,8 +228,8 @@ void	handle_id(t_frm *tmp, va_list argptr, char *c)
 			putchar_and_count(' ', tmp);
 			tmp->w = tmp->w - 1;
 		}
-		if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && l < 0 && flag == 0)
-			putchar_and_count('-', tmp);
+		/* if (tmp->w == 0 && (tmp->minus == 1 || tmp->zero == 1) && l < 0 && flag == 0) */
+		/* 	putchar_and_count('-', tmp); */
 		if (l < 0)
 			ul = l * -1;
 		else
