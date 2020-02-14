@@ -26,16 +26,14 @@ void	handle_s(t_frm *tmp, va_list argptr)
 
 	t = 0;
 	s = va_arg(argptr, char*);
-	/* printf("handle_s: tmp->w = %d\n", tmp->w); */
 	if (tmp->w > 0)
 	{
-		t = ft_strlen(s) + 1;
+		t = ((tmp->minus) ? (ft_strlen(s)) : (ft_strlen(s) + 1));
 		if (t >= tmp->w)
 			tmp->w = 0;
 		else
 			tmp->w = tmp->w - t;
-		handle_minus(tmp, " ", 0);
-		while (tmp->w >= 0)
+		while (tmp->w >= 0 && tmp->minus == 0)
 		{
 			ft_putchar(' ');
 			tmp->ret += 1;

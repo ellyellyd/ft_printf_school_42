@@ -14,7 +14,38 @@
 
 void	handle_percent(t_frm *tmp)
 {
-	//handle_minus(tmp, " ", 1);
-	ft_putchar('%');
-	tmp->ret += 1;
+  int		i;
+
+  i = 0;
+  //handle_minus(tmp, " ", 1);
+  //printf("%d\n", tmp->minus);
+  if (tmp->w > 1)
+  {
+    i = tmp->w - 1;
+    if (tmp->minus == 0)
+    {
+      while (i > 0)
+      {
+        ft_putchar(' ');
+        tmp->ret += 1;
+        i--;
+      }
+    }
+    ft_putchar('%');
+    tmp->ret += 1;
+    if (tmp->minus == 1)
+    {
+      while (i > 0)
+      {
+        ft_putchar(' ');
+        tmp->ret += 1;
+        i--;
+      }
+    }
+  }
+  else
+  {
+    ft_putchar('%');
+    tmp->ret += 1;
+  }
 }

@@ -41,6 +41,25 @@ int		main(void)
 	l = 0;
 	f = 343.1059884;
 
+
+	printf("or_printf: \n");
+	printf("%x", -42);
+	printf("\n\n\n");
+
+	printf("ft_printf: \n");
+	ft_printf("%x", -42);
+	printf("\n\n\n");
+
+	printf("n = %d\n", ft_printf("%x", -42));
+
+	/* printf("TEST 19:\n"); */
+
+	/* printf("or_printf: "); */
+	/* printf("%X", 4294967296); */
+	/* printf("\n\n\n"); */
+
+  /* printf("%-5%"); */
+  /* ft_printf("%-5%"); */
 /*		%s
 	printf("%s\n", "hsdjf skfh Fis sfiFl   ");
 	ft_printf("%s\n", "hsdjf skfh Fis sfiFl   ");
@@ -54,23 +73,6 @@ int		main(void)
 
 	//printf("%5\n");
 	//printf("%5\n\n");
-
-	printf("TEST 147:\n");
-
-	printf("or_printf: \n");
-	printf("%%\n");
-	printf("\n\n\n");
-
-	printf("ft_printf: \n");
-	ft_printf("%%\n");
-	printf("\n\n\n");
-
-
-	/* printf("TEST 19:\n"); */
-
-	/* printf("or_printf: "); */
-	/* printf("%X", 4294967296); */
-	/* printf("\n\n\n"); */
 
 	/* printf("ft_printf: "); */
 	/* ft_printf("%X", 4294967296); */

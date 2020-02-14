@@ -12,13 +12,13 @@
 
 #include "libftprintf.h"
 
-void	record_flag(char c, t_frm *tmp)
+void	record_flag(char c, char c_prev, t_frm *tmp)
 {
 	if (c == '+')
 		tmp->plus = 1;
 	if (c == ' ')
 		tmp->space = 1;
-	if (c == '0')
+	if (c == '0' && !ft_isdigit(c_prev))
 		tmp->zero = 1;
 	if (c == '-')
 		tmp->minus = 1;
@@ -58,17 +58,20 @@ t_frm	process_flags(const char *format, int i)
 {
 	t_frm		tmp;
 	char		c;
+	char		c_prev;
 
 	reset_struct(&tmp);
 	tmp.ret = 0;
 	c = format[i];
+	c_prev = format[i - 1];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
 			 c == 'u' || c == 'x' || c == 'X' || \
-			 c == 'c' || c == 's' || c == 'p' || format[i] == '\0'))
+			 c == 'c' || c == 's' || c == 'p' || c == '%' || format[i] == '\0'))
 	{
-		record_flag(c, &tmp);
+		record_flag(c, c_prev, &tmp);
 		record_size_and_width(c, &tmp, format, &i);
 		(i)++;
+		c_prev = c;
 		c = format[i];
 	}
 	return (tmp);
