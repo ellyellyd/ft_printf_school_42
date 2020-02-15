@@ -31,6 +31,8 @@ void	handle_fwp(t_frm *tmp, char *s)
 	was_minus = 0;
 	if ((was_minus = (tmp->sgn == '-' && tmp->zero)))
 		putchar_and_count('-', tmp);
+	else if (tmp->plus && tmp->sgn != '-')
+		putchar_and_count('+', tmp);
 	if (tmp->w >= 0)
 	{
 		if (t >= tmp->w)
@@ -41,7 +43,8 @@ void	handle_fwp(t_frm *tmp, char *s)
 	}
 	if (tmp->sgn == '-' && !was_minus)
 		putchar_and_count('-', tmp);
-	check_flags_1_new(tmp, t, s);
+	if (!(tmp->plus))
+		check_flags_1_new(tmp, t, s);
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
 	if (tmp->minus && tmp->w > 0)
