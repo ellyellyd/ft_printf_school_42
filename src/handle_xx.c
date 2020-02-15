@@ -55,7 +55,7 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 			tmp->w -= 1;
 		}
 	}
-	else if (tmp->zero == 1 && tmp->w > 0)
+	else if (tmp->zero == 1 && tmp->w > 0 && tmp->minus != 1)
 	{
 		while (tmp->w > 0)
 		{
