@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/15 22:18:40 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/16 01:49:09 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,13 @@ int		ft_printf(const char *format, ...)
 		else if (format[i + 1])
 		{
 			i += 1;
-			tmp = process_flags(format, i); // new for ecrier flags and etc
+			tmp = process_flags(format, i);
 			while (is_garbage(format[i]))
 				i++;
 			insert_format(format, i, argptr, &tmp);
 			ret += tmp.ret;
-			tmp.ret = 0;
+			/* tmp.ret = 0; */
+			reset_struct(&tmp);
 		}
 		i++;
 	}

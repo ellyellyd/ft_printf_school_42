@@ -69,6 +69,7 @@ void	handle_id_new(t_frm *tmp, va_list argptr)
 {
 	int long long	l;
 
-	l = va_arg(argptr, long long int);
+	l = ((tmp->size == 0) ? (va_arg(argptr, int)) : (va_arg(argptr, long long int)));
+	/* printf("   l = %lld   ", l); */
 	handle_size_id(tmp, &l);
 }
