@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/13 09:21:02 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/15 22:18:40 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 	}
 */
 	if (format[i] == 'i' || format[i] == 'd')
-		handle_id(tmp, argptr, &c);
+		handle_id_new(tmp, argptr);
 	else if (format[i] == 'x')
 		handle_xx(tmp, argptr, &c, 'x');
 	else if (format[i] == 'X')

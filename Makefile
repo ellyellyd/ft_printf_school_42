@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/15 20:24:55 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/15 23:08:20 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_RAW = \
 	handle_u.c \
 	handle_xx.c \
 	handle_id.c \
+	handle_id_new.c \
 	handle_percent.c \
 	putchar_and_count.c \
 	process_flags.c \
@@ -96,3 +97,7 @@ norm: fclean
 memcheck: exec
 	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(EXEC)
 	@ vim valgrind-out.txt
+
+test: exec
+	@ clear && clear && clear
+	@ ./$(EXEC)
