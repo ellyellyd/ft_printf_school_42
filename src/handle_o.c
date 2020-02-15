@@ -33,7 +33,7 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
 		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
 		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 1) : (tmp->w));
-		handle_minus(tmp, c, 0);
+		/* handle_minus(tmp, c, 0); */
 	}
 	if (tmp->hash == 1 && s[0] != '0')
 	{
@@ -42,5 +42,5 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 	}
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
-	handle_minus(tmp, c, 1);
+	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1);
 }

@@ -12,6 +12,15 @@
 
 #include "libftprintf.h"
 
+void	handle_hash_xx(t_frm *tmp, char *s, char x)
+{
+	if (tmp->hash == 1 && s[0] != '0')
+	{
+		write(1, ((x == 'X') ? ("0X") : ("0x")), 2);
+		tmp->ret += 2;
+	}
+}
+
 void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 {
 	unsigned long long		l2;
@@ -27,20 +36,37 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 			((x == 'X') ? ('F') : ('f')), 13, 13);
 	else
 		s = ft_test_itoa_unsigned_base(l2, 16, x);
+	if (tmp->zero != 0)
+		handle_hash_xx(tmp, s, x);
 	t = ft_strlen(s);
 	if (tmp->w > 0)
 	{
 		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
 		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
 		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
-		handle_minus(tmp, c, 0);
+		/* handle_minus(tmp, c, 0); */
 	}
-	if (tmp->hash == 1 && s[0] != '0')
-	{
-		write(1, ((x == 'X') ? ("0X") : ("0x")), 2);
-		tmp->ret += 2;
-	}
-	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
-	handle_minus(tmp, c, 1);
+	if (tmp->zero == 0 && tmp->minus == 0)
+	{
+		while (tmp->w > 0)
+		{
+			putchar_and_count(' ', tmp);
+			tmp->w -= 1;
+		}
+	}
+	else if (tmp->zero == 1 && tmp->w > 0)
+	{
+		while (tmp->w > 0)
+		{
+			putchar_and_count('0', tmp);
+			tmp->w -= 1;
+		}
+	}
+	if (tmp->zero == 0)
+		handle_hash_xx(tmp, s, x);
+	ft_putstr(s);
+	/* if (tmp->minus == 0) */
+		handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1);
+	/* printf("   handle_xx: tmp->zero = %d   ", tmp->zero); */
 }

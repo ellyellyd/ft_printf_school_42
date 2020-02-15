@@ -26,6 +26,8 @@ void	handle_s(t_frm *tmp, va_list argptr)
 
 	t = 0;
 	s = va_arg(argptr, char*);
+	if (s == NULL)
+		s = ft_strdup("(null)");
 	if (tmp->w > 0)
 	{
 		t = ((tmp->minus) ? (ft_strlen(s)) : (ft_strlen(s) + 1));
