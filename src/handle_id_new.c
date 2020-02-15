@@ -45,7 +45,7 @@ void	handle_fwp(t_frm *tmp, char *s)
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
 	if (tmp->minus && tmp->w > 0)
-		handle_minus(tmp, ((tmp->zero == 1) ? ("0") : (" ")), 1);
+		handle_minus(tmp, " ", 1);
 }
 
 void	handle_size_id(t_frm *tmp, long long int *l)
