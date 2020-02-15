@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/13 08:55:26 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/15 20:24:55 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-.PHONY: all clean fclean re libft exec norm
+.PHONY: all clean fclean re libft exec norm memcheck
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = libftprintf.a
 EXEC = ft_printf
 
@@ -92,3 +92,7 @@ norm: fclean
 	@ rm -f $(EXEC)
 	@ clear && clear && clear
 	@ /Users/slisandr/.scripts/colorised_norm.sh
+
+memcheck: exec
+	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(EXEC)
+	@ vim valgrind-out.txt

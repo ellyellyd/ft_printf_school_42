@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 08:16:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/15 20:28:45 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	if (tmp->zero == 0)
 		handle_hash_xx(tmp, s, x);
 	ft_putstr(s);
+	ft_strdel(&s);
 	/* if (tmp->minus == 0) */
 		handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1);
 	/* printf("   handle_xx: tmp->zero = %d   ", tmp->zero); */

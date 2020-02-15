@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:53:57 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/15 20:49:13 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 	if (tmp->w > 0)
 	{
 		t = ft_strlen(s);
+		/* t = ((tmp->minus) ? (ft_strlen(s)) : (ft_strlen(s) + 1)); */
 		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
 		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
 		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 1) : (tmp->w));
 		/* handle_minus(tmp, c, 0); */
+		/* printf("   handle_o: tmp->w = %d, t = %d   ", tmp->w, t); */
 	}
+	if (tmp->hash == 1 && tmp->w > 0 && tmp->minus == 0 && tmp->zero == 0 && tmp->plus == 0)
+		handle_minus(tmp, " ", 0);
 	if (tmp->hash == 1 && s[0] != '0')
 	{
 		write(1, "0", 1);
