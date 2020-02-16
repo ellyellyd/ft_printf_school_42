@@ -19,7 +19,7 @@ void	handle_minus(t_frm *tmp, char *c, int is_minus)
 	if (tmp->minus == is_minus)
 	{
 		i = 0;
-		while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (-1)))
+		while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (0)))
 		{
 			write(1, c, 1);
 			tmp->ret += 1;

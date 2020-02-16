@@ -7,7 +7,7 @@ void	check_flags_1_new(t_frm *tmp, int t, char *s)
 			(((tmp->zero == 1 || tmp->minus == 1) && tmp->w != 0) == 0) || \
 			(s[0] == '0' && tmp->zero == 0 && tmp->minus == 0)))
 		putchar_and_count('+', tmp);
-	if (tmp->space == 1 && tmp->plus == 0 && tmp->sgn != '-' && (tmp->w == 0 || t >=  tmp->w))
+	if (tmp->space == 1 && tmp->plus == 0 && tmp->sgn != '-' && (tmp->w == 0 || t >= tmp->w))
 	{
 		tmp->space = 0;
 		putchar_and_count(' ', tmp);
@@ -39,6 +39,7 @@ void	handle_fwp(t_frm *tmp, char *s)
 			tmp->w = 0;
 		else
 			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? (tmp->w - t - 1) : (tmp->w - t));
+		tmp->w = ((tmp->precision && tmp->w && tmp->precision < tmp->w) ? (tmp->w) : (tmp->w - 1));
 		handle_minus(tmp, ((tmp->zero == 1) ? ("0") : (" ")), 0);
 	}
 	if (tmp->sgn == '-' && !was_minus)
