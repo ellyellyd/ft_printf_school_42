@@ -45,6 +45,7 @@ void	handle_fwp(t_frm *tmp, char *s)
 		putchar_and_count('-', tmp);
 	if (!(tmp->plus))
 		check_flags_1_new(tmp, t, s);
+	handle_precision(tmp, t);
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
 	if (tmp->minus && tmp->w > 0)

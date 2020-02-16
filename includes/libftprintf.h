@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/15 22:13:01 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/16 04:29:35 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void				putchar_and_count(char c, t_frm *tmp);
 t_frm				process_flags(const char *format, int i);
 void				handle_percent(t_frm *tmp);
 void				reset_struct(t_frm *tmp);
+void				handle_precision(t_frm *tmp, int len);
 
 /*
 ** check

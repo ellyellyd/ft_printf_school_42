@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/15 23:08:20 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/16 04:29:01 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_RAW = \
 	handle_id.c \
 	handle_id_new.c \
 	handle_percent.c \
+	handle_precision.c \
 	putchar_and_count.c \
 	process_flags.c \
 	reset_struct.c \
