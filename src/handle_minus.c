@@ -14,13 +14,16 @@
 
 void	handle_minus(t_frm *tmp, char *c, int is_minus)
 {
+	int		i;
+
 	if (tmp->minus == is_minus)
 	{
-		while (tmp->w > 0 && tmp->w > tmp->precision)
+		i = 0;
+		while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (-1)))
 		{
 			write(1, c, 1);
 			tmp->ret += 1;
-			(tmp->w)--;
+			i += 1;
 		}
 	}
 }
