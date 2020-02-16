@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 02:46:20 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 05:37:37 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/16 04:16:40 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,14 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 			tmp->size = 1;
 	}
 	else if (c >= '0' && c <= '9')
-		tmp->w = tmp->w * 10 + (c - '0');
+	{
+		if (tmp->precision >= 0)
+			tmp->precision = tmp->precision * 10 + (c - '0');
+		else
+			tmp->w = tmp->w * 10 + (c - '0');
+	}
+	else if (c == '.')
+		tmp->precision = 0;
 }
 
 t_frm	process_flags(const char *format, int i)

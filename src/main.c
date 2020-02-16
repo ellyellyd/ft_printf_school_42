@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/16 00:51:05 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/16 04:09:30 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -2327,6 +2327,8 @@ int		main(void)
 	printf("ft_printf: ");
 	ft_printf("%06ld\n", (long int)(0 * a));
 	printf("===========\n\n");
+
+
 
 
 
