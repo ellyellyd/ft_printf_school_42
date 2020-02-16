@@ -28,6 +28,10 @@ void	handle_fwp(t_frm *tmp, char *s)
 	int		was_minus;
 
 	t = ft_strlen(s);
+	if (tmp->precision >= t)
+		tmp->precision = tmp->precision - t;
+	else
+		tmp->precision = 0;
 	was_minus = 0;
 	if ((was_minus = (tmp->sgn == '-' && tmp->zero)))
 		putchar_and_count('-', tmp);
@@ -35,18 +39,21 @@ void	handle_fwp(t_frm *tmp, char *s)
 		putchar_and_count('+', tmp);
 	if (tmp->w >= 0)
 	{
-		if (t >= tmp->w)
+		if (tmp->w <= tmp->precision + t)
 			tmp->w = 0;
 		else
+		{
+			tmp->w = tmp->w - tmp->precision;
 			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? (tmp->w - t - 1) : (tmp->w - t));
-		tmp->w = ((tmp->precision && tmp->w && tmp->precision < tmp->w) ? (tmp->w) : (tmp->w - 1));
+		}
 		handle_minus(tmp, ((tmp->zero == 1) ? ("0") : (" ")), 0);
+		/* printf("***w = %d, pr = %d***", tmp->w, tmp->precision); */
 	}
 	if (tmp->sgn == '-' && !was_minus)
 		putchar_and_count('-', tmp);
 	if (!(tmp->plus))
 		check_flags_1_new(tmp, t, s);
-	handle_precision(tmp, t);
+	handle_precision(tmp);
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
 	if (tmp->minus && tmp->w > 0)
