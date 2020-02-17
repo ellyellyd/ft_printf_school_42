@@ -12,18 +12,22 @@
 
 #include "libftprintf.h"
 
-void	handle_minus(t_frm *tmp, char *c, int is_minus)
+void	handle_minus(t_frm *tmp, char *c, int is_minus, char *s)
 {
 	int		i;
 
-	if (tmp->minus == is_minus)
+	if (tmp->size == 6 || tmp->plus == 1 || \
+		((s[0] != '0') || (s[0] == '0' && tmp->w > 0 && tmp->precision > 0)))
 	{
-		i = 0;
-		while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (0)))
+		if (tmp->minus == is_minus)
 		{
-			write(1, c, 1);
-			tmp->ret += 1;
-			i += 1;
+			i = 0;
+			while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (0)))
+			{
+				write(1, c, 1);
+				tmp->ret += 1;
+				i += 1;
+			}
 		}
 	}
 }

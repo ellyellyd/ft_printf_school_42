@@ -17,8 +17,6 @@ void	handle_percent(t_frm *tmp)
   int		i;
 
   i = 0;
-  //handle_minus(tmp, " ", 1);
-  //printf("%d\n", tmp->minus);
   if (tmp->w > 1)
   {
     i = tmp->w - 1;

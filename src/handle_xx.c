@@ -44,7 +44,6 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
 		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
 		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
-		/* handle_minus(tmp, c, 0); */
 	}
 	tmp->ret += ft_strlen(s);
 	if (tmp->zero == 0 && tmp->minus == 0)
@@ -68,6 +67,6 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	ft_putstr(s);
 	ft_strdel(&s);
 	/* if (tmp->minus == 0) */
-		handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1);
+	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
 	/* printf("   handle_xx: tmp->zero = %d   ", tmp->zero); */
 }

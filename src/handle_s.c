@@ -44,5 +44,5 @@ void	handle_s(t_frm *tmp, va_list argptr)
 	}
 	ft_putstr(s);
 	tmp->ret += ft_strlen(s);
-	handle_minus(tmp, " ", 1);
+	handle_minus(tmp, " ", 1, "1");
 }

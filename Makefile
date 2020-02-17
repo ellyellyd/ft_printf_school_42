@@ -36,7 +36,6 @@ SRC_RAW = \
 	handle_o.c \
 	handle_u.c \
 	handle_xx.c \
-	handle_id.c \
 	handle_id_new.c \
 	handle_percent.c \
 	handle_precision.c \

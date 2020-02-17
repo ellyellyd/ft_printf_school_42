@@ -34,7 +34,7 @@ void	handle_u(t_frm *tmp, va_list argptr, char *c)
 			tmp->w = tmp->w - t;
 			tmp->w = ((tmp->plus == 1) ? (tmp->w - 1) : (tmp->w));
 		}
-		handle_minus(tmp, c, 0);
+		handle_minus(tmp, c, 0, "1");
 		ft_putstr(s);
 	}
 	else
