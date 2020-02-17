@@ -79,7 +79,7 @@ void				putchar_and_count(char c, t_frm *tmp);
 t_frm				process_flags(const char *format, int i);
 void				handle_percent(t_frm *tmp);
 void				reset_struct(t_frm *tmp);
-void				handle_precision(t_frm *tmp);
+void				handle_precision(t_frm *tmp, char *s);
 
 /*
 ** check

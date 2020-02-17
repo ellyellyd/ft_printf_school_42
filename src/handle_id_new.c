@@ -63,9 +63,13 @@ void	handle_fwp(t_frm *tmp, char *s)
 		putchar_and_count('-', tmp);
 	if (/* !(tmp->plus) &&  */!was_minus_or_plus)
 		check_flags_1_new(tmp, t, s);
-	handle_precision(tmp);
-	ft_putstr(s);
-	tmp->ret += ft_strlen(s);
+	handle_precision(tmp, s);
+	if (tmp->size == 6 || tmp->plus == 1 || \
+		((s[0] != '0') || (s[0] == '0' && tmp->w > 0 && tmp->precision > 0)))
+	{
+		ft_putstr(s);
+		tmp->ret += t;
+	}
 	if (tmp->minus && tmp->w > 0)
 		handle_minus(tmp, " ", 1);
 }
