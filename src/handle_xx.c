@@ -27,7 +27,7 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	int						t;
 	char					*s;
 
-	l2 = va_arg(argptr, unsigned long long);
+	l2 = ((tmp->size == 0) ? (va_arg(argptr, int)) : (va_arg(argptr, unsigned long long)));
 	if (tmp->size == 6)
 		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
 			((x == 'X') ? ('F') : ('f')), 12, 11);
