@@ -25,17 +25,17 @@ void	check_flags_1_new(t_frm *tmp, int t, char *s)
 void	handle_fwp(t_frm *tmp, char *s)
 {
 	int		t;
-	int		was_minus;
+	int		was_minus_or_plus;
 
 	t = ft_strlen(s);
 	if (tmp->precision >= t)
-		tmp->precision = tmp->precision - t;
+		tmp->precision -= t;
 	else
 		tmp->precision = 0;
-	was_minus = 0;
-	if ((was_minus = (tmp->sgn == '-' && tmp->zero)))
+	was_minus_or_plus = 0;
+	if ((was_minus_or_plus = (tmp->sgn == '-' && tmp->zero)))
 		putchar_and_count('-', tmp);
-	else if (tmp->plus && tmp->sgn != '-')
+	else if ((was_minus_or_plus = (tmp->plus && tmp->sgn != '-' && (tmp->precision <= 0 || tmp->minus))))
 		putchar_and_count('+', tmp);
 	if (tmp->w >= 0)
 	{
@@ -43,15 +43,15 @@ void	handle_fwp(t_frm *tmp, char *s)
 			tmp->w = 0;
 		else
 		{
-			tmp->w = tmp->w - tmp->precision;
+			tmp->w -= tmp->precision;
 			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? (tmp->w - t - 1) : (tmp->w - t));
 		}
 		handle_minus(tmp, ((tmp->zero == 1) ? ("0") : (" ")), 0);
 		/* printf("***w = %d, pr = %d***", tmp->w, tmp->precision); */
 	}
-	if (tmp->sgn == '-' && !was_minus)
+	if (tmp->sgn == '-' && !was_minus_or_plus)
 		putchar_and_count('-', tmp);
-	if (!(tmp->plus))
+	if (/* !(tmp->plus) &&  */!was_minus_or_plus)
 		check_flags_1_new(tmp, t, s);
 	handle_precision(tmp);
 	ft_putstr(s);
