@@ -25,6 +25,7 @@ void	check_flags_1_new(t_frm *tmp, int t, char *s)
 void	handle_fwp(t_frm *tmp, char *s)
 {
 	int		t;
+	int		i;
 	int		was_minus_or_plus;
 
 	t = ft_strlen(s);
@@ -45,9 +46,18 @@ void	handle_fwp(t_frm *tmp, char *s)
 		{
 			tmp->w -= tmp->precision;
 			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? (tmp->w - t - 1) : (tmp->w - t));
-		}
-		handle_minus(tmp, ((tmp->zero == 1) ? ("0") : (" ")), 0);
-		/* printf("***w = %d, pr = %d***", tmp->w, tmp->precision); */
+			i = 0;
+			if (tmp->precision > 0 && tmp->zero && !(tmp->plus) && !(tmp->minus))
+			{
+				/* printf("***w = %d, pr = %d***", tmp->w, tmp->precision); */
+				while (i < tmp->w)
+				{
+					putchar_and_count(' ', tmp);
+					i += 1;
+				}
+			}
+		} 
+		handle_minus(tmp, ((tmp->zero) ? ("0") : (" ")), 0);
 	}
 	if (tmp->sgn == '-' && !was_minus_or_plus)
 		putchar_and_count('-', tmp);
