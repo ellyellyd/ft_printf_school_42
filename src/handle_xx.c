@@ -81,6 +81,5 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
 		putchar_and_count(' ', tmp);
 	ft_strdel(&s);
-	/* printf("***tmp->precision = %d, tmp->w = %d\n***", tmp->precision, tmp->w); */
 	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
 }
