@@ -74,8 +74,8 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		ft_putstr(s);
 		tmp->ret += t;
 	}
-	else if (w > 0)
-		putchar_and_count(' ', tmp);
+	else if (w > 0 || tmp->hash)
+		putchar_and_count(((tmp->hash) ? ('0') : (' ')), tmp);
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
 		putchar_and_count(' ', tmp);
 	if (w > t + tmp->precision + ((tmp->plus || tmp->hash) ? (1) : (0)))
