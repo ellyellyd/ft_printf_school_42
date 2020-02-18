@@ -22,8 +22,10 @@ void	handle_u(t_frm *tmp, va_list argptr, char *c)
 		l2 = (unsigned short)va_arg(argptr, unsigned long long);
 	if (tmp->size == 66)
 		l2 = (unsigned char)va_arg(argptr, unsigned long long);
-	else
+	else if (tmp->size == 11 || tmp->size == 1)
 		l2 = va_arg(argptr, unsigned long long);
+	else
+		l2 = (unsigned int)va_arg(argptr, unsigned long long);
 	s = ft_test_itoa_unsigned_base(l2, 10, 'X');
 	t = ft_strlen(s);
 	if (tmp->w > 0)
