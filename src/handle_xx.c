@@ -25,8 +25,10 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 {
 	unsigned long long		l2;
 	int						t;
+	int						w;
 	char					*s;
 
+	w = tmp->w;
 	l2 = ((tmp->size == 0) ? (va_arg(argptr, unsigned int)) : (va_arg(argptr, unsigned long long)));
 	if (tmp->size == 6)
 		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
@@ -63,8 +65,6 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	}
 	if (tmp->zero == 0)
 		handle_hash_xx(tmp, s, x);
-	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
-		handle_minus(tmp, " ", 0, "1");
 	if (\
 		(tmp->w > 0 || tmp->precision != 0 || s[0] != '0') && \
 		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) || \
@@ -76,8 +76,11 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 		ft_putstr(s);
 		tmp->ret += t;
 	}
+	else if (w > 0)
+		putchar_and_count(' ', tmp);
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
 		putchar_and_count(' ', tmp);
 	ft_strdel(&s);
+	/* printf("***tmp->precision = %d, tmp->w = %d\n***", tmp->precision, tmp->w); */
 	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
 }

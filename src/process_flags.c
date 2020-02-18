@@ -18,7 +18,7 @@ void	record_flag(char c, char c_prev, t_frm *tmp)
 		tmp->plus = 1;
 	if (c == ' ')
 		tmp->space = 1;
-	if (c == '0' && !ft_isdigit(c_prev))
+	if (c == '0' && !ft_isdigit(c_prev) && tmp->precision < 0)
 		tmp->zero = 1;
 	if (c == '-')
 		tmp->minus = 1;
@@ -58,7 +58,9 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 			tmp->w = tmp->w * 10 + (c - '0');
 	}
 	else if (c == '.')
+	{
 		tmp->precision = 0;
+	}
 }
 
 t_frm	process_flags(const char *format, int i)
