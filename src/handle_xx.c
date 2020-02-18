@@ -66,11 +66,12 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
 		handle_minus(tmp, " ", 0, "1");
 	if (\
-		(tmp->w > 0 || tmp->precision != 0) && \
-		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) ||		\
-		 (s[0] == '0' && !((tmp->w > 0) && tmp->precision <= 0)) ||	\
+		(tmp->w > 0 || tmp->precision != 0 || s[0] != '0') && \
+		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) || \
+		 (s[0] == '0' && (tmp->w <= 0 || tmp->precision > 0)) ||	\
 		 (s[0] != '0' && tmp->precision < 0) || \
-		 (s[0] != '0' && !(tmp->hash) && tmp->precision > 0)))
+		 (s[0] != '0' && !(tmp->hash) && tmp->precision > 0))\
+		)
 	{
 		ft_putstr(s);
 		tmp->ret += t;
