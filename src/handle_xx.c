@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/15 20:28:45 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/18 23:20:54 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,55 @@
 void	handle_hash_xx(t_frm *tmp, char *s, char x)
 {
 	if (tmp->hash == 1 && s[0] != '0')
+		putstr_and_count((x == 'X') ? ("0X") : ("0x"), tmp);
+}
+
+char	*get_s_xx(t_frm *tmp, unsigned long long l2, char x)
+{
+	char					*s;
+
+	s = NULL;
+	if (tmp->size == 6)
+		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
+			((x == 'X') ? ('F') : ('f')), 12, 11);
+	else if (tmp->size == 66)
+		fix_s((s = ft_test_itoa_unsigned_base((signed char)l2, 16, x)), \
+			((x == 'X') ? ('F') : ('f')), 13, 13);
+	else
+		s = ft_test_itoa_unsigned_base(l2, 16, x);
+	return (s);
+}
+
+void	mod_width_xx(t_frm *tmp, int t, char *s)
+{
+	if (tmp->w > 0)
 	{
-		write(1, ((x == 'X') ? ("0X") : ("0x")), 2);
-		tmp->ret += 2;
+		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
+		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
+		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
+	}
+}
+
+void	handle_zero_xx(t_frm *tmp)
+{
+	if (tmp->minus == 0)
+	{
+		if (tmp->zero == 0)
+		{
+			while (tmp->w > 0)
+			{
+				putchar_and_count(' ', tmp);
+				tmp->w -= 1;
+			}
+		}
+		else if (tmp->w > 0)
+		{
+			while (tmp->w > 0)
+			{
+				putchar_and_count('0', tmp);
+				tmp->w -= 1;
+			}
+		}
 	}
 }
 
@@ -29,57 +75,17 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	char					*s;
 
 	w = tmp->w;
-	l2 = ((tmp->size == 0) ? (va_arg(argptr, unsigned int)) : (va_arg(argptr, unsigned long long)));
-	if (tmp->size == 6)
-		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
-			((x == 'X') ? ('F') : ('f')), 12, 11);
-	else if (tmp->size == 66)
-		fix_s((s = ft_test_itoa_unsigned_base((signed char)l2, 16, x)), \
-			((x == 'X') ? ('F') : ('f')), 13, 13);
-	else
-		s = ft_test_itoa_unsigned_base(l2, 16, x);
+	l2 = ((tmp->size == 0) ? \
+		(va_arg(argptr, unsigned int)) : (va_arg(argptr, unsigned long long)));
+	s = get_s_xx(tmp, l2, x);
 	if (tmp->zero != 0)
 		handle_hash_xx(tmp, s, x);
 	t = ft_strlen(s);
-	if (tmp->w > 0)
-	{
-		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
-		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
-		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
-	}
-	if (tmp->zero == 0 && tmp->minus == 0)
-	{
-		while (tmp->w > 0)
-		{
-			putchar_and_count(' ', tmp);
-			tmp->w -= 1;
-		}
-	}
-	else if (tmp->zero == 1 && tmp->w > 0 && tmp->minus != 1)
-	{
-		while (tmp->w > 0)
-		{
-			putchar_and_count('0', tmp);
-			tmp->w -= 1;
-		}
-	}
+	mod_width_xx(tmp, t, s);
+	handle_zero_xx(tmp);
 	if (tmp->zero == 0)
 		handle_hash_xx(tmp, s, x);
-	if (\
-		(tmp->w > 0 || tmp->precision != 0 || s[0] != '0') && \
-		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) || \
-		 (s[0] == '0' && (tmp->w <= 0 || tmp->precision > 0)) ||	\
-		 (s[0] != '0' && tmp->precision < 0) || \
-		 (s[0] != '0' && !(tmp->hash) && tmp->precision > 0))\
-		)
-	{
-		ft_putstr(s);
-		tmp->ret += t;
-	}
-	else if (w > 0)
-		putchar_and_count(' ', tmp);
-	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
-		putchar_and_count(' ', tmp);
+	print_string(tmp, s, w, t);
 	ft_strdel(&s);
 	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
 }

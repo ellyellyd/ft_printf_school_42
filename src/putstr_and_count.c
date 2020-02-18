@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_minus.c                                     :+:      :+:    :+:   */
+/*   putstr_and_count.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 22:15:28 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/18 22:41:27 by slisandr         ###   ########.fr       */
+/*   Created: 2020/02/18 21:22:22 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/18 21:23:35 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	handle_minus(t_frm *tmp, char *c, int is_minus, char *s)
+void	putstr_and_count(char *str, t_frm *tmp)
 {
-	int		i;
-
-	if (tmp->minus == is_minus && \
-		(tmp->plus || \
-		 s[0] != '0' || \
-		 (s[0] == '0' && tmp->w > 0 && tmp->precision > 0)))
-	{
-		i = 0;
-		while (i < tmp->w && tmp->w - i > ((*c == '0') ? (tmp->precision) : (0)))
-		{
-			putchar_and_count(*c, tmp);
-			i += 1;
-		}
-	}
+	ft_putstr(str);
+	tmp->ret += ft_strlen(str);
 }

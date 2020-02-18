@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/16 04:09:30 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:47:43 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -15,44 +15,34 @@ int		ft_printf(const char *format, ...);
 
 int		main(void)
 {
-	int		i;
-	int		l;
-	float	f;
-	char	*c;
-	/* char	a; */
-
-	unsigned int 	l2;
-
+	int					i;
+	int					l;
+	float				f;
+	char				*c;
+	unsigned int 		l2;
 	unsigned int		l3;
-	unsigned long int		l4;
-	long long int	l5;
+	unsigned long int	l4;
+	long long int		l5;
 
-	l5 = 896;//
-
+	l5 = 896;
 	l4 = -9779;
-
 	l3 = 0;
-
 	l2 = 0;
-
-	/* a = '3'; */
 	c = "1";
 	i = 4;
 	l = 0;
 	f = 343.1059884;
 
 
-	int		a;
 
 	setbuf(stdout, NULL);
-	a = 42;
 
 
 	printf("===========\n");
 	printf("or_printf: ");
-	printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	printf("%-3x\n", 0);
 	printf("ft_printf: ");
-	ft_printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	ft_printf("%-3x\n", 0);
 	printf("===========\n");
 
 	/*

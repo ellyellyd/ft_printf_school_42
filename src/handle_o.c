@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/15 20:54:21 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:27:24 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 	{
 		while (i++ < tmp->precision - t)
 			putchar_and_count('0', tmp);
-		ft_putstr(s);
-		tmp->ret += t;
+		putstr_and_count(s, tmp);
 	}
 	else if (w > 0 || tmp->hash)
 		putchar_and_count(((tmp->hash) ? ('0') : (' ')), tmp);

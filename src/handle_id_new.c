@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_id_new.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 21:28:15 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/18 21:48:50 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 void	check_flags_1_new(t_frm *tmp, int t, char *s)
@@ -13,9 +25,9 @@ void	check_flags_1_new(t_frm *tmp, int t, char *s)
 		putchar_and_count(' ', tmp);
 	}
 	if ((tmp->space == 1 && tmp->sgn != '-') &&	\
-		 ((s[0] == '0' && tmp->w != 0) || \
-		  (tmp->minus == 1 && tmp->w != 0 && s[0] != '0') || \
-		  (tmp->w != 0 && s[0] != '0' && tmp->zero == 1)))
+		((s[0] == '0' && tmp->w != 0) || \
+		 (tmp->minus == 1 && tmp->w != 0 && s[0] != '0') || \
+		 (tmp->w != 0 && s[0] != '0' && tmp->zero == 1)))
 	{
 		putchar_and_count(' ', tmp);
 		tmp->w = tmp->w - 1;
@@ -49,14 +61,13 @@ void	handle_fwp(t_frm *tmp, char *s)
 			i = 0;
 			if (tmp->precision > 0 && tmp->zero && !(tmp->plus) && !(tmp->minus))
 			{
-				/* printf("***w = %d, pr = %d***", tmp->w, tmp->precision); */
 				while (i < tmp->w)
 				{
 					putchar_and_count(' ', tmp);
 					i += 1;
 				}
 			}
-		} 
+		}
 		handle_minus(tmp, ((tmp->zero) ? ("0") : (" ")), 0, s);
 	}
 	if (tmp->sgn == '-' && !was_minus_or_plus)
