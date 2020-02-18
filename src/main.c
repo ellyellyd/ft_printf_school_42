@@ -47,6 +47,15 @@ int		main(void)
 	setbuf(stdout, NULL);
 	a = 42;
 
+
+	printf("===========\n");
+	printf("or_printf: ");
+	printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	printf("ft_printf: ");
+	ft_printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	printf("===========\n");
+
+	/*
 	printf("===========\n");
 	printf("or_printf: ");
 	printf("%2hhd\n", (char)a);
@@ -2327,6 +2336,7 @@ int		main(void)
 	printf("ft_printf: ");
 	ft_printf("%06ld\n", (long int)(0 * a));
 	printf("===========\n\n");
+	*/
 
 
 

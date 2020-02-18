@@ -45,7 +45,6 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
 		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
 	}
-	tmp->ret += ft_strlen(s);
 	if (tmp->zero == 0 && tmp->minus == 0)
 	{
 		while (tmp->w > 0)
@@ -64,9 +63,20 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	}
 	if (tmp->zero == 0)
 		handle_hash_xx(tmp, s, x);
-	ft_putstr(s);
+	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
+		handle_minus(tmp, " ", 0, "1");
+	if (\
+		(tmp->w > 0 || tmp->precision != 0) && \
+		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) ||		\
+		 (s[0] == '0' && !((tmp->w > 0) && tmp->precision <= 0)) ||	\
+		 (s[0] != '0' && tmp->precision < 0) || \
+		 (s[0] != '0' && !(tmp->hash) && tmp->precision > 0)))
+	{
+		ft_putstr(s);
+		tmp->ret += t;
+	}
+	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
+		putchar_and_count(' ', tmp);
 	ft_strdel(&s);
-	/* if (tmp->minus == 0) */
 	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
-	/* printf("   handle_xx: tmp->zero = %d   ", tmp->zero); */
 }
