@@ -18,6 +18,7 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 	unsigned long long	l2;
 	int					w;
 	int					t;
+	int					i;
 
 	w = tmp->w;
 	t = 0;
@@ -59,6 +60,7 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		write(1, "0", 1);
 		tmp->ret += 1;
 	}
+	i = 0;
 	if (\
 		(tmp->w > 0 || tmp->precision != 0 || s[0] != '0') && \
 		((s[0] == '0' && tmp->w > 0 && tmp->precision > 0) || \
@@ -67,7 +69,8 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 		 (s[0] != '0' && !(tmp->hash) && tmp->precision > 0))\
 		)
 	{
-		/* handle_precision(tmp, s); */
+		while (i++ < tmp->precision - t)
+			putchar_and_count('0', tmp);
 		ft_putstr(s);
 		tmp->ret += t;
 	}
@@ -76,5 +79,6 @@ void	handle_o(t_frm *tmp, va_list argptr, char *c)
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
 		putchar_and_count(' ', tmp);
 	ft_strdel(&s);
-	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
+	if (tmp->precision < 0)
+		handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
 }
