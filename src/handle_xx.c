@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/18 23:20:54 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 05:39:00 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	handle_hash_xx(t_frm *tmp, char *s, char x)
 
 char	*get_s_xx(t_frm *tmp, unsigned long long l2, char x)
 {
-	char					*s;
+	char	*s;
 
 	s = NULL;
 	if (tmp->size == 6)
@@ -34,35 +34,42 @@ char	*get_s_xx(t_frm *tmp, unsigned long long l2, char x)
 	return (s);
 }
 
-void	mod_width_xx(t_frm *tmp, int t, char *s)
+void	mod_width_xx(t_frm *tmp, char *s)
 {
 	if (tmp->w > 0)
 	{
-		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
-		tmp->w = ((tmp->w > t) ? (tmp->w - t) : (tmp->w));
-		tmp->w = ((tmp->hash == 1 && s[0] != '0') ? (tmp->w - 2) : (tmp->w));
+		if (tmp->hash == 1 && s[0] != '0')
+			tmp->w -= 2;
 	}
 }
 
-void	handle_zero_xx(t_frm *tmp)
+void	handle_zero_xx(t_frm *tmp, int t)
 {
+	int		i;
+
+	i = 0;
 	if (tmp->minus == 0)
 	{
-		if (tmp->zero == 0)
+		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
 		{
-			while (tmp->w > 0)
-			{
-				putchar_and_count(' ', tmp);
-				tmp->w -= 1;
-			}
+			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
+							   ('0') : (' ')), tmp);
+			i += 1;
 		}
-		else if (tmp->w > 0)
+	}
+}
+
+void	handle_minus_xx(t_frm *tmp, int t)
+{
+	int		i;
+
+	i = 0;
+	if (tmp->minus)
+	{
+		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
 		{
-			while (tmp->w > 0)
-			{
-				putchar_and_count('0', tmp);
-				tmp->w -= 1;
-			}
+			putchar_and_count(' ', tmp);
+			i += 1;
 		}
 	}
 }
@@ -78,14 +85,30 @@ void	handle_xx(t_frm *tmp, va_list argptr, char *c, char x)
 	l2 = ((tmp->size == 0) ? \
 		(va_arg(argptr, unsigned int)) : (va_arg(argptr, unsigned long long)));
 	s = get_s_xx(tmp, l2, x);
-	if (tmp->zero != 0)
-		handle_hash_xx(tmp, s, x);
 	t = ft_strlen(s);
-	mod_width_xx(tmp, t, s);
-	handle_zero_xx(tmp);
-	if (tmp->zero == 0)
+	if (tmp->hash && tmp->zero)
+	{
+		mod_width_xx(tmp, s);
+		if (t <= MIN_OF_TWO(tmp->precision - 2, w - tmp->precision))
+		{
+			handle_zero_xx(tmp, t);
+			handle_hash_xx(tmp, s, x);
+		}
+		else
+		{
+			handle_hash_xx(tmp, s, x);
+			handle_zero_xx(tmp, t);
+		}
+	}
+	else
+	{
+		if (tmp->hash)
+			mod_width_xx(tmp, s);
+		handle_zero_xx(tmp, t);
 		handle_hash_xx(tmp, s, x);
+	}
 	print_string(tmp, s, w, t);
+	handle_minus_xx(tmp, t);
 	ft_strdel(&s);
-	handle_minus(tmp, ((tmp->minus) ? (" ") : (c)), 1, "1");
+	*c = 0;
 }
