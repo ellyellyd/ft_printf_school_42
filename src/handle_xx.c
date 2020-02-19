@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 07:17:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 07:30:42 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,23 @@ void	handle_hash_xx(t_frm *tmp, char *s, char x)
 		putstr_and_count((x == 'X') ? ("0X") : ("0x"), tmp);
 }
 
-char	*get_s_xx(t_frm *tmp, unsigned long long l2, char x)
+char	*get_s_xx(t_frm *tmp, char x, va_list argptr)
 {
-	char	*s;
+	char				*s;
+	unsigned long long	value;
 
 	s = NULL;
+	value = ((tmp->size == 0) ? \
+			 (va_arg(argptr, unsigned int)) : \
+			 (va_arg(argptr, unsigned long long)));
 	if (tmp->size == 6)
-		fix_s((s = ft_test_itoa_unsigned_base((short int)l2, 16, x)), \
+		fix_s((s = ft_test_itoa_unsigned_base((short int)value, 16, x)), \
 			((x == 'X') ? ('F') : ('f')), 12, 11);
 	else if (tmp->size == 66)
-		fix_s((s = ft_test_itoa_unsigned_base((signed char)l2, 16, x)), \
+		fix_s((s = ft_test_itoa_unsigned_base((signed char)value, 16, x)), \
 			((x == 'X') ? ('F') : ('f')), 13, 13);
 	else
-		s = ft_test_itoa_unsigned_base(l2, 16, x);
+		s = ft_test_itoa_unsigned_base(value, 16, x);
 	return (s);
 }
 
@@ -102,14 +106,10 @@ void	handle_hash_and_zero_xx(t_frm *tmp, int t, char *s, char x)
 
 void	handle_xx(t_frm *tmp, va_list argptr, char x)
 {
-	unsigned long long		value;
 	int						t;
 	char					*s;
 
-	value = ((tmp->size == 0) ? \
-		  (va_arg(argptr, unsigned int)) : \
-		  (va_arg(argptr, unsigned long long)));
-	s = get_s_xx(tmp, value, x);
+	s = get_s_xx(tmp, x, argptr);
 	t = ft_strlen(s);
 	handle_hash_and_zero_xx(tmp, t, s, x);
 	print_string(tmp, s, t);
