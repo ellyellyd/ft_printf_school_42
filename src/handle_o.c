@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 07:54:04 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 08:21:34 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	mod_width_o(t_frm *tmp, char *s)
 	}
 }
 
+// A - space, X - '0'
+
 void	handle_zero_o(t_frm *tmp, int t)
 {
 	int		i;
@@ -52,9 +54,9 @@ void	handle_zero_o(t_frm *tmp, int t)
 	}
 }
 
-void	handle_hash_o(t_frm *tmp, char *s)
+void	handle_hash_o(t_frm *tmp, char *s, int t)
 {
-	if (tmp->hash == 1 && s[0] != '0')
+	if (tmp->hash == 1 && s[0] != '0' && t + 1 > tmp->precision)
 		putchar_and_count('0', tmp);
 }
 
@@ -66,12 +68,12 @@ void	handle_hash_and_zero_o(t_frm *tmp, int t, char *s)
 		{
 			mod_width_o(tmp, s);
 			handle_zero_o(tmp, t);
-			handle_hash_o(tmp, s);
+			handle_hash_o(tmp, s, t);
 		}
 		else
 		{
 			mod_width_o(tmp, s);
-			handle_hash_o(tmp, s);
+			handle_hash_o(tmp, s, t);
 			handle_zero_o(tmp, t);
 		}
 	}
@@ -80,7 +82,7 @@ void	handle_hash_and_zero_o(t_frm *tmp, int t, char *s)
 		if (tmp->hash)
 			mod_width_o(tmp, s);
 		handle_zero_o(tmp, t);
-		handle_hash_o(tmp, s);
+		handle_hash_o(tmp, s, t);
 	}
 }
 
