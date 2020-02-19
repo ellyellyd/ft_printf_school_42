@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 07:11:17 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 07:17:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,8 @@ void	handle_minus_xx(t_frm *tmp, int t)
 	}
 }
 
-void	handle_xx(t_frm *tmp, va_list argptr, char x)
+void	handle_hash_and_zero_xx(t_frm *tmp, int t, char *s, char x)
 {
-	unsigned long long		l2;
-	int						t;
-	char					*s;
-
-	l2 = ((tmp->size == 0) ? \
-		(va_arg(argptr, unsigned int)) : (va_arg(argptr, unsigned long long)));
-	s = get_s_xx(tmp, l2, x);
-	t = ft_strlen(s);
 	if (tmp->hash && tmp->zero)
 	{
 		if (t + 2 < tmp->w - 1 && tmp->precision > 0)
@@ -106,6 +98,20 @@ void	handle_xx(t_frm *tmp, va_list argptr, char x)
 		handle_zero_xx(tmp, t);
 		handle_hash_xx(tmp, s, x);
 	}
+}
+
+void	handle_xx(t_frm *tmp, va_list argptr, char x)
+{
+	unsigned long long		value;
+	int						t;
+	char					*s;
+
+	value = ((tmp->size == 0) ? \
+		  (va_arg(argptr, unsigned int)) : \
+		  (va_arg(argptr, unsigned long long)));
+	s = get_s_xx(tmp, value, x);
+	t = ft_strlen(s);
+	handle_hash_and_zero_xx(tmp, t, s, x);
 	print_string(tmp, s, t);
 	handle_minus_xx(tmp, t);
 	ft_strdel(&s);
