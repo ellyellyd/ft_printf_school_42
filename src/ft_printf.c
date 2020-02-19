@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/19 07:05:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 07:43:13 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 	else if (format[i] == 'u')
 		handle_u(tmp, argptr, &c);
 	else if (format[i] == 'o')
-		handle_o(tmp, argptr, &c);
+		handle_o(tmp, argptr);
 	else if (format[i] == 'p')
 		handle_p(tmp, argptr);
 	else if (format[i] == 'c')

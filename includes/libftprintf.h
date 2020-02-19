@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 06:50:33 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/19 07:43:21 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,17 @@
 typedef	struct		s_form
 {
 	char	sgn;
-
 	char	format;
 	char	*string;
-
-	int		nb;
-
+	/* int		nb; */
 	int		minus;
 	int		plus;
 	int		space;
 	int		zero;
 	int		hash;
-
 	int		w;
 	int		precision;
 	int		size;
-
 	size_t	ret;
 }					t_frm;
 
@@ -68,7 +63,7 @@ void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
 void				handle_p(t_frm *tmp, va_list argptr);
-void				handle_o(t_frm *tmp, va_list argptr, char *c);
+void				handle_o(t_frm *tmp, va_list argptr);
 void				handle_u(t_frm *tmp, va_list argptr, char *c);
 void				handle_xx(t_frm *tmp, va_list argptr, char x);
 void				handle_id_new(t_frm *tmp, va_list argptr);
