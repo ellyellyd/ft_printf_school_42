@@ -12,6 +12,16 @@
 
 #include "libftprintf.h"
 
+char	*get_s_s(va_list argptr)
+{
+	char	*s;
+
+	s = va_arg(argptr, char *);
+	if (s == NULL)
+		s = ft_strdup("(null)");
+	return (s);
+}
+
 void	handle_s(t_frm *tmp, va_list argptr)
 {
 	char	*s;
@@ -20,9 +30,7 @@ void	handle_s(t_frm *tmp, va_list argptr)
 
 	s_tmp = NULL;
 	t = 0;
-	s = va_arg(argptr, char*);
-	if (s == NULL)
-		s = ft_strdup("(null)");
+	s = get_s_s(argptr);
 	if (s != NULL && tmp->w >= tmp->precision && s[0] == '\0' && tmp->precision > 0 && tmp->w > 0)
 		handle_minus(tmp, " ", 1, "1");
 	if (tmp->precision > 0)
