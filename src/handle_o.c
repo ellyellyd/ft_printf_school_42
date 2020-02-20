@@ -27,11 +27,11 @@ char	*get_s_o(t_frm *tmp, va_list argptr)
 	return (s);
 }
 
-void	mod_width_o(t_frm *tmp, char *s)
+void	mod_width_o(t_frm *tmp, char *s, int t)
 {
 	if (tmp->w > 0)
 	{
-		if (tmp->hash == 1 && s[0] != '0')
+		if (tmp->hash == 1 && s[0] != '0' && !(t + 1 <= tmp->precision))
 			tmp->w -= 1;
 	}
 }
@@ -66,21 +66,20 @@ void	handle_hash_and_zero_o(t_frm *tmp, int t, char *s)
 	{
 		if (t + 1 < tmp->w - 1 && tmp->precision > 0)
 		{
-			mod_width_o(tmp, s);
+			mod_width_o(tmp, s, t);
 			handle_zero_o(tmp, t);
 			handle_hash_o(tmp, s, t);
 		}
 		else
 		{
-			mod_width_o(tmp, s);
+			mod_width_o(tmp, s, t);
 			handle_hash_o(tmp, s, t);
 			handle_zero_o(tmp, t);
 		}
 	}
 	else
 	{
-		if (tmp->hash)
-			mod_width_o(tmp, s);
+		mod_width_o(tmp, s, t);
 		handle_zero_o(tmp, t);
 		handle_hash_o(tmp, s, t);
 	}
