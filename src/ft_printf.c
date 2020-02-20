@@ -17,9 +17,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 	int					l;
 
 	l = 0;
-	if (format[i] == 'i' || format[i] == 'd')
-		handle_id(tmp, argptr);
-	else if (format[i] == 'x')
+	if (format[i] == 'x')
 		handle_xx(tmp, argptr, 'x', format[i]);
 	else if (format[i] == 'X')
 		handle_xx(tmp, argptr, 'X', format[i]);
@@ -27,6 +25,8 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 		handle_o(tmp, argptr, format[i]);
 	else if (format[i] == 'u')
 		handle_u(tmp, argptr, format[i]);
+	else if (format[i] == 'i' || format[i] == 'd')
+		handle_id(tmp, argptr);
 	else if (format[i] == 'p')
 		handle_p(tmp, argptr);
 	else if (format[i] == 'c')
@@ -55,7 +55,8 @@ int		ft_printf(const char *format, ...)
 	size_t		ret;
 
 	i = 0;
-	tmp.ret = 0;
+	reset_struct(&tmp);
+	/* tmp.ret = 0; */
 	ret = 0;
 	va_start(argptr, format);
 	while (format[i])
@@ -74,7 +75,6 @@ int		ft_printf(const char *format, ...)
 				i++;
 			insert_format(format, i, argptr, &tmp);
 			ret += tmp.ret;
-			/* tmp.ret = 0; */
 			reset_struct(&tmp);
 		}
 		i++;

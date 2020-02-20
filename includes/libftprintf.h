@@ -36,7 +36,6 @@ typedef	struct		s_form
 	char	sgn;
 	char	format;
 	char	*string;
-	/* int		nb; */
 	int		minus;
 	int		plus;
 	int		space;
@@ -45,6 +44,7 @@ typedef	struct		s_form
 	int		w;
 	int		precision;
 	int		size;
+	int		sgn_is_printed;
 	size_t	ret;
 }					t_frm;
 

@@ -14,6 +14,7 @@
 
 void	reset_struct(t_frm *tmp)
 {
+	tmp->sgn_is_printed = 0;
 	tmp->size = 0;
 	tmp->plus = 0;
 	tmp->sgn = '\0';
