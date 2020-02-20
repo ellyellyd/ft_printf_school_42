@@ -65,7 +65,7 @@ void				handle_s(t_frm *tmp, va_list argptr);
 void				handle_p(t_frm *tmp, va_list argptr);
 void				handle_xx(t_frm *tmp, va_list argptr, char x, char c);
 void				handle_o(t_frm *tmp, va_list argptr, char c);
-void				handle_u(t_frm *tmp, va_list argptr, char *c);
+void				handle_u(t_frm *tmp, va_list argptr, char c);
 void				handle_id_new(t_frm *tmp, va_list argptr);
 void				putchar_and_count(char c, t_frm *tmp);
 void				putstr_and_count(char *str, t_frm *tmp);

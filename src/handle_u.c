@@ -12,49 +12,64 @@
 
 #include "libftprintf.h"
 
-void	handle_u(t_frm *tmp, va_list argptr, char *c)
+char	*get_s_u(t_frm *tmp, va_list argptr)
 {
-	unsigned long long		l2;
-	char					*s;
-	int						t;
-	int						i;
-	int					w;
+	char	*s;
+	unsigned long long	value;
 
-	w = tmp->w;
 	if (tmp->size == 6)
-		l2 = (unsigned short)va_arg(argptr, unsigned long long);
+		value = (unsigned short)va_arg(argptr, unsigned long long);
 	if (tmp->size == 66)
-		l2 = (unsigned char)va_arg(argptr, unsigned long long);
+		value = (unsigned char)va_arg(argptr, unsigned long long);
 	else if (tmp->size == 11 || tmp->size == 1)
-		l2 = va_arg(argptr, unsigned long long);
+		value = va_arg(argptr, unsigned long long);
 	else
-		l2 = (unsigned int)va_arg(argptr, unsigned long long);
-	s = ft_test_itoa_unsigned_base(l2, 10, 'X');
-	t = ft_strlen(s);
+		value = (unsigned int)va_arg(argptr, unsigned long long);
+	s = ft_test_itoa_unsigned_base(value, 10, 'X');
+	return (s);
+}
+
+void	handle_zero_u(t_frm *tmp, int t)
+{
+	int		i;
+
 	i = 0;
-	if (tmp->w > 0)
+	if (tmp->minus == 0)
 	{
-		tmp->w = ((t >= tmp->w) ? (0) : (tmp->w));
-		if (tmp->w > t)
+		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
 		{
-			tmp->w = tmp->w - t;
-			tmp->w = ((tmp->plus == 1) ? (tmp->w - 1) : (tmp->w));
+			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
+							   ('0') : (' ')), tmp);
+			i += 1;
 		}
-		handle_minus(tmp, c, 0, "1");
-		/* printf("***tmp->precision = %d***", tmp->precision); */
-		ft_putstr(s);
 	}
-	else
-	{
-		while (i++ < tmp->precision - t)
-			putchar_and_count('0', tmp);
-		ft_putstr(s);
-	}
-	tmp->ret += ft_strlen(s);
+}
+
+void	handle_minus_u(t_frm *tmp, int t)
+{
+	int		i;
+
+	i = 0;
 	if (tmp->minus)
 	{
-		i = 0;
-		while (i++ < w - t)
+		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		{
 			putchar_and_count(' ', tmp);
+			i += 1;
+		}
 	}
+}
+
+void	handle_u(t_frm *tmp, va_list argptr, char c)
+{
+	char	*s;
+	int		t;
+
+	s = get_s_u(tmp, argptr);
+	t = ft_strlen(s);
+
+	handle_zero_u(tmp, t);
+	print_string(tmp, s, t, c);
+	handle_minus_u(tmp, t);
+	ft_strdel(&s);
 }
