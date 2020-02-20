@@ -63,17 +63,18 @@ void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
 void				handle_p(t_frm *tmp, va_list argptr);
-void				handle_o(t_frm *tmp, va_list argptr);
+void				handle_xx(t_frm *tmp, va_list argptr, char x, char c);
+void				handle_o(t_frm *tmp, va_list argptr, char c);
 void				handle_u(t_frm *tmp, va_list argptr, char *c);
-void				handle_xx(t_frm *tmp, va_list argptr, char x);
 void				handle_id_new(t_frm *tmp, va_list argptr);
 void				putchar_and_count(char c, t_frm *tmp);
 void				putstr_and_count(char *str, t_frm *tmp);
-void				print_string(t_frm *tmp, char *s, int t);
 t_frm				process_flags(const char *format, int i);
 void				handle_percent(t_frm *tmp);
 void				reset_struct(t_frm *tmp);
 void				handle_precision(t_frm *tmp, char *s);
+
+void				print_string(t_frm *tmp, char *s, int t, char c);
 
 /*
 ** check
