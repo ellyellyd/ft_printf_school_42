@@ -102,7 +102,7 @@ void	handle_minus_o(t_frm *tmp, int t)
 	}
 }
 
-void	handle_o(t_frm *tmp, va_list argptr)
+void	handle_o(t_frm *tmp, va_list argptr, char c)
 {
 	char	*s;
 	int		t;
@@ -110,7 +110,7 @@ void	handle_o(t_frm *tmp, va_list argptr)
 	s = get_s_o(tmp, argptr);
 	t = ft_strlen(s);
 	handle_hash_and_zero_o(tmp, t, s);
-	print_string(tmp, s, t);
+	print_string(tmp, s, t, c);
 	handle_minus_o(tmp, t);
 	ft_strdel(&s);
 }

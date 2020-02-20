@@ -104,7 +104,7 @@ void	handle_hash_and_zero_xx(t_frm *tmp, int t, char *s, char x)
 	}
 }
 
-void	handle_xx(t_frm *tmp, va_list argptr, char x)
+void	handle_xx(t_frm *tmp, va_list argptr, char x, char c)
 {
 	int						t;
 	char					*s;
@@ -112,7 +112,7 @@ void	handle_xx(t_frm *tmp, va_list argptr, char x)
 	s = get_s_xx(tmp, x, argptr);
 	t = ft_strlen(s);
 	handle_hash_and_zero_xx(tmp, t, s, x);
-	print_string(tmp, s, t);
+	print_string(tmp, s, t, c);
 	handle_minus_xx(tmp, t);
 	ft_strdel(&s);
 }
