@@ -18,7 +18,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 
 	l = 0;
 	if (format[i] == 'i' || format[i] == 'd')
-		handle_id_new(tmp, argptr);
+		handle_id(tmp, argptr);
 	else if (format[i] == 'x')
 		handle_xx(tmp, argptr, 'x', format[i]);
 	else if (format[i] == 'X')

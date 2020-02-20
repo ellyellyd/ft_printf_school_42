@@ -32,13 +32,9 @@ void	mod_width_o(t_frm *tmp, char *s, int t)
 	if (tmp->w > 0)
 	{
 		if (tmp->hash == 1 && s[0] != '0' && !(t + 1 <= tmp->precision))
-			tmp->w -= 1
-
-			;
+			tmp->w -= 1;
 	}
 }
-
-// A - space, X - '0'
 
 void	handle_zero_o(t_frm *tmp, int t)
 {
