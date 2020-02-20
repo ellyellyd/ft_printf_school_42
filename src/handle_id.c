@@ -12,20 +12,23 @@
 
 #include "libftprintf.h"
 
-char	*get_s_id(t_frm *tmp, long long int *l)
+char	*get_s_id(t_frm *tmp, va_list argptr)
 {
-	char	*s;
+	char			*s;
+	int long long	l;
 
+	l = ((tmp->size == 0) ? \
+		 (va_arg(argptr, int)) : (va_arg(argptr, long long int)));
 	if (tmp->size == 6 || tmp->size == 66)
-		(*l) = ((tmp->size == 66) ? ((char)(*l)) : ((short)(*l)));
+		l = ((tmp->size == 66) ? ((char)l) : ((short)l));
 	else if (tmp->size == 1 || tmp->size == 11 || tmp->size == 0)
-		(*l) = ((tmp->size == 11) ? ((long long int)(*l)) : ((long int)(*l)));
-	if ((*l) < 0)
+		l = ((tmp->size == 11) ? ((long long int)l) : ((long int)l));
+	if (l < 0)
 	{
 		tmp->sgn = '-';
-		(*l) *= -1;
+		l *= -1;
 	}
-	s = ft_test_itoa_unsigned_base((*l), 10, 'X');
+	s = ft_test_itoa_unsigned_base(l, 10, 'X');
 	return (s);
 }
 
@@ -65,7 +68,8 @@ void	handle_fwp(t_frm *tmp, char *s)
 	was_minus_or_plus = 0;
 	if ((was_minus_or_plus = (tmp->sgn == '-' && tmp->zero)))
 		putchar_and_count('-', tmp);
-	else if ((was_minus_or_plus = (tmp->plus && tmp->sgn != '-' && (tmp->precision <= 0 || tmp->minus))))
+	else if ((was_minus_or_plus = (tmp->plus && tmp->sgn != '-' && \
+								   (tmp->precision <= 0 || tmp->minus))))
 		putchar_and_count('+', tmp);
 	if (tmp->w >= 0)
 	{
@@ -74,7 +78,8 @@ void	handle_fwp(t_frm *tmp, char *s)
 		else
 		{
 			tmp->w -= tmp->precision;
-			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? (tmp->w - t - 1) : (tmp->w - t));
+			tmp->w = ((tmp->sgn == '-' || tmp->plus == 1 || tmp->space != 0) ? \
+					  (tmp->w - t - 1) : (tmp->w - t));
 			i = 0;
 			if (tmp->precision > 0 && tmp->zero && !(tmp->plus) && !(tmp->minus))
 			{
@@ -89,7 +94,7 @@ void	handle_fwp(t_frm *tmp, char *s)
 	}
 	if (tmp->sgn == '-' && !was_minus_or_plus)
 		putchar_and_count('-', tmp);
-	if (/* !(tmp->plus) &&  */!was_minus_or_plus)
+	if (!was_minus_or_plus)
 		check_flags_1_new(tmp, t, s);
 	handle_precision(tmp, s);
 	if ((s[0] == '0') && (tmp->precision <= 0) && (tmp->w > 0))
@@ -108,10 +113,8 @@ void	handle_fwp(t_frm *tmp, char *s)
 
 void	handle_id(t_frm *tmp, va_list argptr)
 {
-	int long long	l;
 	char			*s;
 
-	l = ((tmp->size == 0) ? (va_arg(argptr, int)) : (va_arg(argptr, long long int)));
-	s = get_s_id(tmp, &l);
+	s = get_s_id(tmp, argptr);
 	handle_fwp(tmp, s);
 }
