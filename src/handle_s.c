@@ -22,50 +22,87 @@ char	*get_s_s(va_list argptr)
 	return (s);
 }
 
+void	handle_zero_s(t_frm *tmp, int t)
+{
+	int		i;
+
+	i = 0;
+	if (tmp->minus == 0)
+	{
+		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		{
+			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
+							   ('0') : (' ')), tmp);
+			i += 1;
+		}
+	}
+}
+
+void	print_string_s(t_frm *tmp, char *s, int t)
+{
+	int		i;
+	int		j;
+	int		n;
+
+	i = 0;
+	j = 0;
+	if (s[0] != '0' || tmp->precision >= 0)
+	{
+		if (tmp->w != 0)
+		{
+			if (!(tmp->minus))
+			{
+				j = ((t < tmp->precision || tmp->precision < 0) ? (tmp->w - t) : (tmp->w - tmp->precision));
+				while (j-- > 0)
+					putchar_and_count(' ', tmp);
+			}
+			n = ((tmp->precision > 0) ? (tmp->precision) : (t));
+			while (i < n && s[i])
+				putchar_and_count(s[i++], tmp);
+		}
+		else if (tmp->w == 0)
+		{
+			if (tmp->precision > 0)
+			{
+				while (i < tmp->precision && s[i])
+					putchar_and_count(s[i++], tmp);
+			}
+			else if (tmp->precision < 0)
+				putstr_and_count(s, tmp);
+		}
+	}
+	else if (tmp->w != 0 && tmp->precision >= 0)
+		putchar_and_count(' ', tmp);
+}
+
+void	handle_minus_s(t_frm *tmp, int t)
+{
+	int		i;
+
+	i = 0;
+	if (tmp->minus)
+	{
+		if (tmp->w > 0)
+		{
+			while (i < tmp->w - MAX_OF_TWO(0, t))
+			{
+				putchar_and_count(' ', tmp);
+				i += 1;
+			}
+		}
+	}
+}
+
 void	handle_s(t_frm *tmp, va_list argptr)
 {
 	char	*s;
-	char	*s_tmp;
 	int		t;
 
-	s_tmp = NULL;
-	t = 0;
 	s = get_s_s(argptr);
-	if (s != NULL && tmp->w >= tmp->precision && s[0] == '\0' && tmp->precision > 0 && tmp->w > 0)
-		handle_minus(tmp, " ", 1, "1");
-	if (tmp->precision > 0)
-	{
-		if (tmp->w <= tmp->precision)
-			s[tmp->precision] = '\0';
-		else if (tmp->minus)
-		{
-			ft_memset((void *)s + tmp->precision, ' ', tmp->w - tmp->precision);
-			s[tmp->w] = '\0';
-		}
-		else
-		{
-			s_tmp = ft_strdup(s);
-			ft_memset((void *)s, ' ', tmp->w);
-			s[tmp->w] = '\0';
-			ft_strncpy(s + (tmp->w - tmp->precision) - 1, s_tmp, tmp->precision);
-			s[tmp->w - 1] = '\0';
-		}
-	}
-	if (tmp->w > 0)
-	{
-		t = ((tmp->minus) ? (ft_strlen(s)) : (ft_strlen(s) + 1));
-		if (t >= tmp->w)
-			tmp->w = 0;
-		else
-			tmp->w = tmp->w - t;
-		while (tmp->w >= 0 && tmp->minus == 0)
-		{
-			putchar_and_count(' ', tmp);
-			(tmp->w)--;
-		}
-	}
-	ft_putstr(s);
-	tmp->ret += ft_strlen(s);
-	if (tmp->precision <= 0)
-		handle_minus(tmp, " ", 1, "1");
+	t = ft_strlen(s);
+	/* handle_zero_s(tmp, t); */
+	if (tmp->precision != 0)
+		print_string_s(tmp, s, t);
+	handle_minus_s(tmp, t);
+	/* ft_strdel(&s); */
 }

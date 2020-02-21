@@ -15,34 +15,33 @@ int		ft_printf(const char *format, ...);
 
 int		main(void)
 {
-	int					i;
-	int					l;
-	float				f;
-	char				*c;
-	unsigned int 		l2;
-	unsigned int		l3;
-	unsigned long int	l4;
-	long long int		l5;
+	/* int					i; */
+	/* int					l; */
+	/* float				f; */
+	/* char				*c; */
+	/* unsigned int 		l2; */
+	/* unsigned int		l3; */
+	/* unsigned long int	l4; */
+	/* long long int		l5; */
 
-	l5 = 896;
-	l4 = -9779;
-	l3 = 0;
-	l2 = 0;
-	c = "1";
-	i = 4;
-	l = 0;
-	f = 343.1059884;
+	/* l5 = 896; */
+	/* l4 = -9779; */
+	/* l3 = 0; */
+	/* l2 = 0; */
+	/* c = "1"; */
+	/* i = 4; */
+	/* l = 0; */
+	/* f = 343.1059884; */
 
 
 
 	setbuf(stdout, NULL);
 
-
 	printf("===========\n");
 	printf("or_printf: ");
-	printf("%-3x\n", 0);
+	printf("%s\n", "ololo");
 	printf("ft_printf: ");
-	ft_printf("%-3x\n", 0);
+	ft_printf("%s\n", "ololo");
 	printf("===========\n");
 
 	/*

@@ -67,7 +67,6 @@ void	handle_u(t_frm *tmp, va_list argptr, char c)
 
 	s = get_s_u(tmp, argptr);
 	t = ft_strlen(s);
-
 	handle_zero_u(tmp, t);
 	print_string(tmp, s, t, c);
 	handle_minus_u(tmp, t);

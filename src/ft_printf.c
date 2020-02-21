@@ -56,7 +56,6 @@ int		ft_printf(const char *format, ...)
 
 	i = 0;
 	reset_struct(&tmp);
-	/* tmp.ret = 0; */
 	ret = 0;
 	va_start(argptr, format);
 	while (format[i])
