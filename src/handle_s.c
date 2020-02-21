@@ -52,7 +52,8 @@ void	print_string_s(t_frm *tmp, char *s, int t)
 		{
 			if (!(tmp->minus))
 			{
-				j = ((t < tmp->precision || tmp->precision < 0) ? (tmp->w - t) : (tmp->w - tmp->precision));
+				j = ((t < tmp->precision || tmp->precision < 0) ? \
+					 (tmp->w - t) : (tmp->w - tmp->precision));
 				while (j-- > 0)
 					putchar_and_count(' ', tmp);
 			}
@@ -78,19 +79,24 @@ void	print_string_s(t_frm *tmp, char *s, int t)
 void	handle_minus_s(t_frm *tmp, int t)
 {
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	if (tmp->minus)
 	{
 		if (tmp->w > 0)
 		{
-			while (i < tmp->w - MAX_OF_TWO(0, t))
+			j = ((t < tmp->precision || tmp->precision < 0) ? \
+				 (tmp->w - t) : (tmp->w - tmp->precision));
+			while (i < j)
 			{
 				putchar_and_count(' ', tmp);
 				i += 1;
 			}
 		}
 	}
+	t += i;
 }
 
 void	handle_s(t_frm *tmp, va_list argptr)
