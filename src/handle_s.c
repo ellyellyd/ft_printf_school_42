@@ -22,22 +22,6 @@ char	*get_s_s(va_list argptr)
 	return (s);
 }
 
-void	handle_zero_s(t_frm *tmp, int t)
-{
-	int		i;
-
-	i = 0;
-	if (tmp->minus == 0)
-	{
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
-		{
-			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
-							   ('0') : (' ')), tmp);
-			i += 1;
-		}
-	}
-}
-
 void	print_string_s(t_frm *tmp, char *s, int t)
 {
 	int		i;
@@ -89,14 +73,10 @@ void	handle_minus_s(t_frm *tmp, int t)
 		{
 			j = ((t < tmp->precision || tmp->precision < 0) ? \
 				 (tmp->w - t) : (tmp->w - tmp->precision));
-			while (i < j)
-			{
+			while (i++ < j)
 				putchar_and_count(' ', tmp);
-				i += 1;
-			}
 		}
 	}
-	t += i;
 }
 
 void	handle_s(t_frm *tmp, va_list argptr)
@@ -106,7 +86,6 @@ void	handle_s(t_frm *tmp, va_list argptr)
 
 	s = get_s_s(argptr);
 	t = ft_strlen(s);
-	/* handle_zero_s(tmp, t); */
 	if (tmp->precision != 0)
 		print_string_s(tmp, s, t);
 	handle_minus_s(tmp, t);
