@@ -33,6 +33,8 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 		handle_c(tmp, argptr, &l);
 	else if (format[i] == 's')
 		handle_s(tmp, argptr);
+	else if (format[i] == 'f')
+		handle_s(tmp, argptr);
 	else if (format[i] == '%')
 		handle_percent(tmp);
 }
