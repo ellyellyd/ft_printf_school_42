@@ -12,13 +12,18 @@
 
 #include "libftprintf.h"
 
-char	*get_s_s(va_list argptr)
+char	*get_s_s(t_frm *tmp, va_list argptr)
 {
 	char	*s;
 
 	s = va_arg(argptr, char *);
 	if (s == NULL)
-		s = ft_strdup("(null)");
+	{
+		if (tmp->precision > 0 && tmp->precision < 6)
+			s = ft_strdup("");
+		else
+			s = ft_strdup("(null)");
+	}
 	return (s);
 }
 
@@ -30,34 +35,42 @@ void	print_string_s(t_frm *tmp, char *s, int t)
 
 	i = 0;
 	j = 0;
-	if (s[0] != '0' || tmp->precision >= 0)
+	if (tmp->precision != 0)
 	{
-		if (tmp->w != 0)
+		if (s[0] != '0' || tmp->precision >= 0)
 		{
-			if (!(tmp->minus))
+			if (tmp->w != 0)
 			{
-				j = ((t < tmp->precision || tmp->precision < 0) ? \
-					 (tmp->w - t) : (tmp->w - tmp->precision));
-				while (j-- > 0)
-					putchar_and_count(' ', tmp);
-			}
-			n = ((tmp->precision > 0) ? (tmp->precision) : (t));
-			while (i < n && s[i])
-				putchar_and_count(s[i++], tmp);
-		}
-		else if (tmp->w == 0)
-		{
-			if (tmp->precision > 0)
-			{
-				while (i < tmp->precision && s[i])
+				if (!(tmp->minus))
+				{
+					j = ((t < tmp->precision || tmp->precision < 0) ? \
+						 (tmp->w - t) : (tmp->w - tmp->precision));
+					while (j-- > 0)
+						putchar_and_count(' ', tmp);
+				}
+				n = ((tmp->precision > 0) ? (tmp->precision) : (t));
+				while (i < n && s[i])
 					putchar_and_count(s[i++], tmp);
 			}
-			else if (tmp->precision < 0)
-				putstr_and_count(s, tmp);
+			else if (tmp->w == 0)
+			{
+				if (tmp->precision > 0)
+				{
+					while (i < tmp->precision && s[i])
+						putchar_and_count(s[i++], tmp);
+				}
+				else if (tmp->precision < 0)
+					putstr_and_count(s, tmp);
+			}
 		}
+		else if (tmp->w != 0 && tmp->precision >= 0)
+			putchar_and_count(' ', tmp);
 	}
-	else if (tmp->w != 0 && tmp->precision >= 0)
-		putchar_and_count(' ', tmp);
+	else if (!(tmp->minus) && tmp->w > 0)
+	{
+		while (i++ < tmp->w)
+			putchar_and_count(' ', tmp);
+	}
 }
 
 void	handle_minus_s(t_frm *tmp, int t)
@@ -84,10 +97,9 @@ void	handle_s(t_frm *tmp, va_list argptr)
 	char	*s;
 	int		t;
 
-	s = get_s_s(argptr);
+	s = get_s_s(tmp, argptr);
 	t = ft_strlen(s);
-	if (tmp->precision != 0)
-		print_string_s(tmp, s, t);
+	print_string_s(tmp, s, t);
 	handle_minus_s(tmp, t);
-	/* ft_strdel(&s); */
 }
+ 
