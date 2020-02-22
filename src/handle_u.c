@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:37 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:51:35 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 07:30:23 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 char	*get_s_u(t_frm *tmp, va_list argptr)
 {
-	char	*s;
+	char				*s;
 	unsigned long long	value;
 
 	if (tmp->size == 6)
 		value = (unsigned short)va_arg(argptr, unsigned long long);
-	if (tmp->size == 66)
+	else if (tmp->size == 66)
 		value = (unsigned char)va_arg(argptr, unsigned long long);
 	else if (tmp->size == 11 || tmp->size == 1)
 		value = va_arg(argptr, unsigned long long);

@@ -6,10 +6,13 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 06:07:46 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 07:22:27 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libftprintf.h"
+
+#include <limits.h>
 
 int		ft_printf(const char *format, ...);
 
@@ -37,36 +40,13 @@ int		main(void)
 
 	setbuf(stdout, NULL);
 
-	int				i;
-	unsigned long	l;
-	char			*str;
 
+	printf("%llu\n", (unsigned long long)((unsigned short)0));
 	printf("===========\n");
 	printf("or_printf: ");
-	printf("%p\n", &i);
+	printf("%hu, %hu\n", (unsigned short)0, (unsigned short)USHRT_MAX);
 	printf("ft_printf: ");
-	ft_printf("%p\n", &i);
-	printf("===========\n");
-
-	printf("===========\n");
-	printf("or_printf: ");
-	printf("%p\n", &l);
-	printf("ft_printf: ");
-	ft_printf("%p\n", &l);
-	printf("===========\n");
-
-	printf("===========\n");
-	printf("or_printf: ");
-	printf("%p\n", &str);
-	printf("ft_printf: ");
-	ft_printf("%p\n", &str);
-	printf("===========\n");
-
-	printf("===========\n");
-	printf("or_printf: ");
-	printf("%p\n", &ft_strlen);
-	printf("ft_printf: ");
-	ft_printf("%p\n", &ft_strlen);
+	ft_printf("%hu, %hu\n", (unsigned short)0, (unsigned short)USHRT_MAX);
 	printf("===========\n");
 
 	/*
