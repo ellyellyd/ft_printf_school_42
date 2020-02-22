@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 07:34:00 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 09:42:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,24 @@ int		main(void)
 	setbuf(stdout, NULL);
 
 
-	printf("%llu\n", (unsigned long long)((unsigned short)0));
 	printf("===========\n");
-	printf("or_printf: ");
-	printf("{%-15p}\n", (void *)0);
-	printf("ft_printf: ");
-	ft_printf("{%-15p}\n", (void *)0);
+	printf("or_printf: \n");
+	printf("===========\n");
+	printf("%.0p, %.p\n", (void *)0, (void *)0);
+	printf("%.5p\n", (void *)0);
+	printf("%9.2p\n", 1234);
+	printf("%9.2p\n", 1234567);
+	printf("%2.9p\n", 1234);
+	printf("%2.9p\n", 1234567);
+	printf("===========\n");
+	printf("ft_printf: \n");
+	printf("===========\n");
+	ft_printf("%.0p, %.p\n", (void *)0, (void *)0);
+	ft_printf("%.5p\n", (void *)0);
+	ft_printf("%9.2p\n", 1234);
+	ft_printf("%9.2p\n", 1234567);
+	ft_printf("%2.9p\n", 1234);
+	ft_printf("%2.9p\n", 1234567);
 	printf("===========\n");
 
 	/*

@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:46 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 07:37:13 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 09:42:57 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,26 @@ char	*get_s_p(va_list argptr)
 		s = ft_strdup("");
 	return (s);
 }
+
+/* void	handle_precision_p(t_frm *tmp, char *s, int t) */
+/* { */
+/* 	int		i; */
+
+/* 	i = 0; */
+/* 	if (tmp->precision >= 0) */
+/* 	{ */
+/* 		if ((ft_strequ(s, "") || ft_strequ(s, "0")) && tmp->w > 3) */
+/* 		{ */
+/* 			while (i++ < tmp->precision - t - 3) */
+/* 				putchar_and_count('0', tmp); */
+/* 		} */
+/* 		else if (tmp->w > STR_LEN + ((t == 8) ? (6) : (4))) */
+/* 		{ */
+/* 			while (i++ < tmp->w - (STR_LEN + ((t == 8) ? (6) : (4)))) */
+/* 				putchar_and_count(' ', tmp); */
+/* 		} */
+/* 	} */
+/* } */
 
 void	print_string_p(t_frm *tmp, char *s, int t)
 {
@@ -49,6 +69,7 @@ void	print_string_p(t_frm *tmp, char *s, int t)
 		putstr_and_count("0x7fff", tmp);
 	else
 		putstr_and_count("0x10", tmp);
+	/* handle_precision_p(tmp, s, t); */
 	putstr_and_count(s, tmp);
 }
 
