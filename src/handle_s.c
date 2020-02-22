@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:00 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 03:02:37 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:04:16 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@ char	*get_s_s(/* t_frm *tmp,  */va_list argptr)
 
 	s = va_arg(argptr, char *);
 	if (s == NULL)
-	{
-		/* if (tmp->precision > 0 && tmp->precision < 6) */
-		/* 	s = ft_strdup(""); */
-		/* else */
-			s = ft_strdup("(null)");
-	}
+		s = ft_strdup("(null)");
 	return (s);
 }
 
@@ -97,7 +92,7 @@ void	handle_s(t_frm *tmp, va_list argptr)
 	char	*s;
 	int		t;
 
-	s = get_s_s(/* tmp,  */argptr);
+	s = get_s_s(argptr);
 	t = ft_strlen(s);
 	print_string_s(tmp, s, t);
 	handle_minus_s(tmp, t);

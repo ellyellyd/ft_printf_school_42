@@ -6,21 +6,67 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:46 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/13 00:57:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 04:49:22 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+#define STR_LEN 7
+
+char	*get_s_p(va_list argptr)
+{
+	char				*s;
+	unsigned long long	value;
+
+	value = va_arg(argptr, unsigned long long);
+	s = ft_itoa_unsigned_base(value, 16, 'x');
+	if (ft_strequ(s, "") || ft_strequ(s, "0"))
+		s = ft_strdup("");
+	return (s);
+}
+
+void	print_string_p(t_frm *tmp, char *s)
+{
+	int		i;
+	int		n;
+
+	/* printf("***s = %s***", s); */
+	n = ((ft_strequ(s, "") || ft_strequ(s, "0")) ? (tmp->w - 3) : (tmp->w - (STR_LEN + 4)));
+	if (!(tmp->minus))
+	{
+		i = 0;
+		while (i++ < n)
+			putchar_and_count(' ', tmp);
+	}
+	if (ft_strequ(s, "") || ft_strequ(s, "0"))
+		putstr_and_count("0x0", tmp);
+	else
+		putstr_and_count("0x10", tmp);
+	putstr_and_count(s, tmp);
+}
+
+void	handle_minus_p(t_frm *tmp)
+{
+	int		i;
+
+	i = 0;
+	if (tmp->minus)
+	{
+		if (tmp->w > STR_LEN + 4)
+		{
+			i = 0;
+			while (i++ < tmp->w - STR_LEN - 4)
+				putchar_and_count(' ', tmp);
+		}
+	}
+}
+
 void	handle_p(t_frm *tmp, va_list argptr)
 {
-	int		l;
 	char	*s;
 
-	l = 0;
-	l = va_arg(argptr, unsigned long long);
-	s = ft_itoa_unsigned_base(l, 16, 'x');
-	write(1, "0x10", 4);
-	ft_putstr(s);
-	tmp->ret += ft_strlen(s);
+	s = get_s_p(argptr);
+	print_string_p(tmp, s);
+	handle_minus_p(tmp);
 }
