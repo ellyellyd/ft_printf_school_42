@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/19 07:43:13 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 11:31:11 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 	else if (format[i] == 'i' || format[i] == 'd')
 		handle_id(tmp, argptr);
 	else if (format[i] == 'p')
-		handle_p(tmp, argptr);
+		handle_xx(tmp, argptr, 'x', format[i]);
 	else if (format[i] == 'c')
 		handle_c(tmp, argptr, &l);
 	else if (format[i] == 's')
@@ -74,6 +74,8 @@ int		ft_printf(const char *format, ...)
 			tmp = process_flags(format, i);
 			while (is_garbage(format[i]))
 				i++;
+			if (format[i] == 'p')
+				tmp.size = 11;
 			insert_format(format, i, argptr, &tmp);
 			ret += tmp.ret;
 			reset_struct(&tmp);
