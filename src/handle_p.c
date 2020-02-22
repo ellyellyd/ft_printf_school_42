@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:46 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 06:18:58 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 07:37:13 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	print_string_p(t_frm *tmp, char *s, int t)
 	int		i;
 	int		n;
 
-	/* printf("***s = %s***", s); */
 	if (ft_strequ(s, "") || ft_strequ(s, "0"))
 		n = (tmp->w - 3);
 	else if (t == 8)
@@ -53,16 +52,20 @@ void	print_string_p(t_frm *tmp, char *s, int t)
 	putstr_and_count(s, tmp);
 }
 
-void	handle_minus_p(t_frm *tmp, int t)
+void	handle_minus_p(t_frm *tmp, char *s, int t)
 {
 	int		i;
 
 	i = 0;
 	if (tmp->minus)
 	{
-		if (tmp->w > STR_LEN + ((t == 8) ? (6) : (4)))
+		if ((ft_strequ(s, "") || ft_strequ(s, "0")) && tmp->w > 3)
 		{
-			i = 0;
+			while (i++ < tmp->w - 3)
+				putchar_and_count(' ', tmp);
+		}
+		else if (tmp->w > STR_LEN + ((t == 8) ? (6) : (4)))
+		{
 			while (i++ < tmp->w - (STR_LEN + ((t == 8) ? (6) : (4))))
 				putchar_and_count(' ', tmp);
 		}
@@ -77,6 +80,6 @@ void	handle_p(t_frm *tmp, va_list argptr)
 	s = get_s_p(argptr);
 	t = ft_strlen(s);
 	print_string_p(tmp, s, t);
-	handle_minus_p(tmp, t);
+	handle_minus_p(tmp, s, t);
 	/* printf("\n***len = %zu***\n", ft_strlen(s)); */
 }

@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 07:22:27 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/22 07:34:00 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int		main(void)
 	printf("%llu\n", (unsigned long long)((unsigned short)0));
 	printf("===========\n");
 	printf("or_printf: ");
-	printf("%hu, %hu\n", (unsigned short)0, (unsigned short)USHRT_MAX);
+	printf("{%-15p}\n", (void *)0);
 	printf("ft_printf: ");
-	ft_printf("%hu, %hu\n", (unsigned short)0, (unsigned short)USHRT_MAX);
+	ft_printf("{%-15p}\n", (void *)0);
 	printf("===========\n");
 
 	/*
