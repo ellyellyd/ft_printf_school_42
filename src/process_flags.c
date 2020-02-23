@@ -75,7 +75,8 @@ t_frm	process_flags(const char *format, int i)
 	c_prev = format[i - 1];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
 			 c == 'u' || c == 'x' || c == 'X' || \
-			 c == 'c' || c == 's' || c == 'p' || c == '%' || format[i] == '\0'))
+			 c == 'c' || c == 's' || c == 'p' || \
+			 c == 'f' || c == '%' || format[i] == '\0'))
 	{
 		record_flag(c, c_prev, &tmp);
 		record_size_and_width(c, &tmp, format, &i);

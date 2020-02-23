@@ -20,10 +20,11 @@
 # include "libft.h"
 
 /*
-** stdio must be removed before defence!
+** these libraries must be removed before defence!
 */
 
 # include <stdio.h>
+#include <limits.h>
 
 /*
 ** nb - how many spaces or zeroes, hash - #,
@@ -44,6 +45,10 @@ typedef	struct		s_form
 	int		w;
 	int		precision;
 	int		size;
+	char	*head;
+	int		l_head;
+	char	*tail;
+	int		l_tail;
 	int		sgn_is_printed;
 	size_t	ret;
 }					t_frm;
@@ -81,7 +86,7 @@ void				print_string(t_frm *tmp, char *s, int t, char c);
 ** check
 */
 
-char				*ft_test_itoa_unsigned_base(unsigned long long value, \
+char				*ft_itoa_unsigned_base(unsigned long long value, \
 												int base, char c);
 
 #endif

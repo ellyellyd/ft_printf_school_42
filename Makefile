@@ -28,7 +28,7 @@ SRC_RAW = \
 	ft_itoa_base.c \
 	x_ft_itoa_base.c\
 	ft_itoa_unsigned_base.c \
-	ft_test_itoa_unsigned_base.c \
+	ft_itoa_unsigned_base.c \
 	handle_minus.c \
 	handle_c.c \
 	handle_s.c \
@@ -37,6 +37,7 @@ SRC_RAW = \
 	handle_u.c \
 	handle_xx.c \
 	handle_id.c \
+	handle_f.c \
 	handle_percent.c \
 	handle_precision.c \
 	putchar_and_count.c \

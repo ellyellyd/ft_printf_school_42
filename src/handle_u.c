@@ -25,7 +25,7 @@ char	*get_s_u(t_frm *tmp, va_list argptr)
 		value = va_arg(argptr, unsigned long long);
 	else
 		value = (unsigned int)va_arg(argptr, unsigned long long);
-	s = ft_test_itoa_unsigned_base(value, 10, 'X');
+	s = ft_itoa_unsigned_base(value, 10, 'X');
 	return (s);
 }
 

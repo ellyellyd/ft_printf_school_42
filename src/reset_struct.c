@@ -26,4 +26,8 @@ void	reset_struct(t_frm *tmp)
 	tmp->hash = 0;
 	tmp->format = 0;
 	tmp->precision = -1;
+	tmp->head = NULL;
+	tmp->l_head = 0;
+	tmp->tail = NULL;
+	tmp->l_tail = 0;
 }

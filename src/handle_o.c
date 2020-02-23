@@ -23,7 +23,7 @@ char	*get_s_o(t_frm *tmp, va_list argptr)
 		value = (unsigned char)va_arg(argptr, unsigned long long);
 	else
 		value = va_arg(argptr, unsigned long long);
-	s = ft_test_itoa_unsigned_base(value, 8, 'X');
+	s = ft_itoa_unsigned_base(value, 8, 'X');
 	return (s);
 }
 

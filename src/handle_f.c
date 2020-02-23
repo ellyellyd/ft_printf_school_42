@@ -1,24 +1,48 @@
 #include "libftprintf.h"
 
+char	*ft_ftoa(long double value)
+{
+	size_t		size;
+	char		*tab;
+	char		*s;
+
+	size = 0;
+	tab = "0123456789";
+	value /= 10;
+	if (value > 0)
+		ft_ftoa(value);
+	else
+	{
+		s = (char *)ft_memalloc(size + 1);
+		s[size] = '\0';
+		
+	}
+}
+
 char	*get_s_and_mod_w_f(t_frm *tmp, va_list argptr)
 {
 	char			*s;
-	int long long	l;
+	long double		value_ld;
+	double			value_d;
+	float			value_f;
 
-	l = ((tmp->size == 0) ? \
-		 (va_arg(argptr, int)) : (va_arg(argptr, long long int)));
-	if (tmp->size == 6 || tmp->size == 66)
-		l = ((tmp->size == 66) ? ((char)l) : ((short)l));
-	else if (tmp->size == 1 || tmp->size == 11 || tmp->size == 0)
-		l = ((tmp->size == 11) ? ((long long int)l) : ((long int)l));
-	if (l < 0)
-	{
-		tmp->sgn = '-';
-		l *= -1;
-		tmp->w -= 1;
-	}
-	else if (tmp->plus || tmp->space)
-		tmp->w -= 1;
-	s = ft_test_itoa_unsigned_base(l, 10, 'X');
-	return (s);
+	if (tmp->size == 10)
+		value_ld = va_arg(argptr, long double);
+	else if (tmp->size == 11)
+		value_d = va_arg(argptr, double);
+	else if (tmp->size == 0)
+		value_f = (float)va_arg(argptr, double);
+
+	return (NULL);
+}
+
+void	handle_f(t_frm *tmp, va_list argptr)
+{
+	get_s_and_mod_w_f(tmp, argptr);
+	/* t = ft_strlen(s); */
+	/* printf("***s = %s\n***", s); */
+	/* handle_zero_id(tmp, t); */
+	/* print_string_id(tmp, s, t); */
+	/* handle_minus_id(tmp, t); */
+	/* ft_strdel(&s); */
 }

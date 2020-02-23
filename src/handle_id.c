@@ -31,7 +31,7 @@ char	*get_s_and_mod_w_id(t_frm *tmp, va_list argptr)
 	}
 	else if (tmp->plus || tmp->space)
 		tmp->w -= 1;
-	s = ft_test_itoa_unsigned_base(l, 10, 'X');
+	s = ft_itoa_unsigned_base(l, 10, 'X');
 	return (s);
 }
 
