@@ -14,6 +14,8 @@
 
 int		main(void)
 {
+	
+
 	printf("or_printf: ");
 	printf("%f\n", -32.14);
 	printf("ft_printf: ");

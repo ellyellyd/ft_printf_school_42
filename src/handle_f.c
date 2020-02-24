@@ -157,27 +157,27 @@ void	handle_zero_f(t_frm *tmp, int t)
 void	print_string_f(t_frm *tmp, char *s, int t)
 {
 	int		i;
+	int		j;
 
-	i = 0;
-	if (s[0] != '0' || tmp->precision != 0)
-	{
-		{
-			handle_sgn_and_space_f(tmp);
-			while (i++ < tmp->precision - t)
-				putchar_and_count('0', tmp);
-			putstr_and_count(s, tmp);
-		}
-	}
-	else if (tmp->w > 0 && tmp->precision >= 0)
-	{
-		if (tmp->minus)
-			handle_sgn_and_space_f(tmp);
-		if (!(tmp->plus || tmp->precision == 0))
-			handle_sgn_and_space_f(tmp);
-		putchar_and_count(' ', tmp);
-		handle_sgn_and_space_f(tmp);
-	}
 	handle_sgn_and_space_f(tmp);
+	i = 0;
+	while (s[i])
+	{
+		putchar_and_count(s[i], tmp);
+		if (s[i] == '.')
+		{
+			i += 1;
+			break ;
+		}
+		i += 1;
+	}
+	j = 0;
+	while (s[i] && j < tmp->precision)
+	{
+		putchar_and_count(s[i], tmp);
+		i += 1;
+		j += 1;
+	}
 }
 
 void	handle_minus_f(t_frm *tmp, int t)
