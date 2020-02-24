@@ -15,9 +15,14 @@
 int		main(void)
 {
 	printf("or_printf: ");
-	printf("%f\n", -3.14);
+	printf("%f\n", -32.14);
 	printf("ft_printf: ");
-	ft_printf("%f\n", -3.14);
+	ft_printf("%f\n", -32.14);
+	printf("=============\n");
+	printf("or_printf: ");
+	printf("%lf\n", -32.14);
+	printf("ft_printf: ");
+	ft_printf("%lf\n", -32.14);
 	/* printf("sizeof(float) = %zu\n", sizeof(float)); */
 	/* printf("sizeof(double) = %zu\n", sizeof(double)); */
 	/* printf("sizeof(long double) = %zu\n", sizeof(long double)); */

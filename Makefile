@@ -32,7 +32,6 @@ SRC_RAW = \
 	handle_minus.c \
 	handle_c.c \
 	handle_s.c \
-	handle_p.c \
 	handle_o.c \
 	handle_u.c \
 	handle_xx.c \

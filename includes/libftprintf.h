@@ -61,13 +61,13 @@ void				a10_in_8(int l);
 void				x_10_in_16(int l);
 char				*ft_itoa_base(int value, int base);
 char				*x_ft_itoa_base(int value, int base);
-char				*ft_itoa_unsigned_base(unsigned int value, \
+char				*ft_itoa_unsigned_base(unsigned long long value, \
 												int base, char c);
 void				handle_minus(t_frm *tmp, char *c, int cmp, char *s);
 void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
-void				handle_p(t_frm *tmp, va_list argptr);
+/* void				handle_p(t_frm *tmp, va_list argptr); */
 void				handle_xx(t_frm *tmp, va_list argptr, char x, char c);
 void				handle_o(t_frm *tmp, va_list argptr, char c);
 void				handle_u(t_frm *tmp, va_list argptr, char c);

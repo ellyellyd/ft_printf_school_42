@@ -35,7 +35,7 @@ void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
 		handle_s(tmp, argptr);
 	else if (format[i] == 'f')
 	{
-		printf("I'm here!\n");
+		/* printf("I'm here!\n"); */
 		handle_f(tmp, argptr);
 	}
 	else if (format[i] == '%')
