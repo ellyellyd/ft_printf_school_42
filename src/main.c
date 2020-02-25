@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:00:09 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 09:42:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 00:27:27 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,45 @@
 
 int		main(void)
 {
-	
+	int		a;
+
+	a = 0;
+	setbuf(stdout, NULL); // remove later!
 
 	printf("or_printf: ");
-	printf("%f\n", -32.14);
+	printf("{%f}{%lf}{%Lf}\n", -3.14, -1.42, -1.42l);
 	printf("ft_printf: ");
-	ft_printf("%f\n", -32.14);
-	printf("=============\n");
+	ft_printf("{%f}{%lf}{%Lf}\n", -3.14, -1.42, -1.42l);
+
+	printf("============================\n");
+
 	printf("or_printf: ");
-	printf("%lf\n", -32.14);
+	a = printf("{%f}{%lf}{%Lf}\n", \
+		   1444565444646.6465424242242, \
+		   1444565444646.6465424242242, \
+		   1444565444646.6465424242242l);
+	printf("(%d)\n", a);
 	printf("ft_printf: ");
-	ft_printf("%lf\n", -32.14);
-	/* printf("sizeof(float) = %zu\n", sizeof(float)); */
-	/* printf("sizeof(double) = %zu\n", sizeof(double)); */
-	/* printf("sizeof(long double) = %zu\n", sizeof(long double)); */
+	a = printf("{%f}{%lf}{%Lf}\n", \
+		   1444565444646.6465424242242, \
+		   1444565444646.6465424242242, \
+		   1444565444646.6465424242242l);
+	printf("(%d)\n", a);
+
+	printf("============================\n");
+
+	printf("or_printf: ");
+	a = printf("{%f}{%lf}{%Lf}\n", \
+		   -1444565444646.6465424242242454654, \
+		   -1444565444646.6465424242242454654, \
+		   -1444565444646.6465424242242454654l);
+	printf("(%d)\n", a);
+	printf("ft_printf: ");
+	a = ft_printf("{%f}{%lf}{%Lf}\n",			   \
+		   -1444565444646.6465424242242454654, \
+		   -1444565444646.6465424242242454654, \
+		   -1444565444646.6465424242242454654l);
+	printf("(%d)\n", a);
+
 	return (0);
 }

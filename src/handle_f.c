@@ -4,27 +4,6 @@
 #define STEPS_D 52
 #define STEPS_LD 80
 
-char	*ft_ftoa(float value, t_frm *f)
-{
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	str = ft_strnew(STEPS_F + 1);
-	tmp = ft_itoa_unsigned_base((long long int)value, 10, 'X');
-	ft_strncpy(str, tmp, (i = ft_strlen(tmp)));
-	str[i++] = '.';
-	f->w -= 1;
-	while (i < STEPS_F)
-	{
-		value = 10 * (value - (float)((long long int) value));
-		str[i] = (long long int)value + '0';
-		i += 1;
-	}
-	ft_strdel(&tmp);
-	return (str);
-}
-
 char	*ft_dtoa(double value, t_frm *f)
 {
 	int		i;
@@ -38,7 +17,7 @@ char	*ft_dtoa(double value, t_frm *f)
 	f->w -= 1;
 	while (i < STEPS_D)
 	{
-		value = 10 * (value - (double)((long long int) value));
+		value = 10 * (value - (double)((long long int)value));
 		str[i] = (long long int)value + '0';
 		i += 1;
 	}
@@ -59,7 +38,7 @@ char	*ft_ldtoa(long double value, t_frm *f)
 	f->w -= 1;
 	while (i < STEPS_LD)
 	{
-		value = 10 * (value - (long double)((long long int) value));
+		value = 10 * (value - (long double)((long long int)value));
 		str[i] = (long long int)value + '0';
 		i += 1;
 	}
@@ -67,12 +46,26 @@ char	*ft_ldtoa(long double value, t_frm *f)
 	return (str);
 }
 
+double	get_delta(t_frm *tmp)
+{
+	int		i;
+	double	delta;
+
+	i = 0;
+	delta = 5;
+	while (i < tmp->precision + 1)
+	{
+		delta /= 10;
+		i += 1;
+	}
+	return (delta);
+}
+
 char	*get_s_f(t_frm *tmp, va_list argptr)
 {
 	char			*s;
 	long double		value_ld;
 	double			value_d;
-	float			value_f;
 
 	s = NULL;
 	if (tmp->size == 10)
@@ -84,9 +77,9 @@ char	*get_s_f(t_frm *tmp, va_list argptr)
 			value_ld *= -1;
 			tmp->w -= 1;
 		}
-		s = ft_ldtoa(value_ld, tmp);
+		s = ft_ldtoa(value_ld + get_delta(tmp), tmp);
 	}
-	else if (tmp->size == 1)
+	else if (tmp->size == 1 || tmp->size == 0)
 	{
 		value_d = va_arg(argptr, double);
 		if (value_d < 0)
@@ -95,18 +88,7 @@ char	*get_s_f(t_frm *tmp, va_list argptr)
 			value_d *= -1;
 			tmp->w -= 1;
 		}
-		s = ft_dtoa(value_d, tmp);
-	}
-	else if (tmp->size == 0)
-	{
-		value_f = (float)va_arg(argptr, double);
-		if (value_f < 0)
-		{
-			tmp->sgn = '-';
-			value_f *= -1;
-			tmp->w -= 1;
-		}
-		s = ft_ftoa(value_f, tmp);
+		s = ft_dtoa(value_d + get_delta(tmp), tmp);
 	}
 	return (s);
 }
