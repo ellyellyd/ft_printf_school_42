@@ -145,12 +145,14 @@ void	print_string_f(t_frm *tmp, char *s, int t)
 	i = 0;
 	while (s[i])
 	{
-		putchar_and_count(s[i], tmp);
 		if (s[i] == '.')
 		{
+			if (tmp->precision != 0 || tmp->hash)
+				putchar_and_count(s[i], tmp);
 			i += 1;
 			break ;
 		}
+		putchar_and_count(s[i], tmp);
 		i += 1;
 	}
 	j = 0;
@@ -162,18 +164,12 @@ void	print_string_f(t_frm *tmp, char *s, int t)
 	}
 }
 
-void	handle_minus_f(t_frm *tmp, int t)
+void	handle_minus_f(t_frm *tmp)
 {
-	int		i;
-
-	i = 0;
 	if (tmp->minus)
 	{
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
-		{
+		while (tmp->ret <= tmp->w)
 			putchar_and_count(' ', tmp);
-			i += 1;
-		}
 	}
 }
 
@@ -190,6 +186,6 @@ void	handle_f(t_frm *tmp, va_list argptr)
 	s = get_s_f(tmp, argptr);
 	t = ft_strlen(s);
 	print_string_f(tmp, s, t);
-	handle_minus_f(tmp, t);
+	handle_minus_f(tmp);
 	ft_strdel(&s);
 }
