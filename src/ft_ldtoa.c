@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 06:28:49 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:29:04 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:39:41 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define STEPS_LD 80
 
-char	*ft_ldtoa(long double value, t_frm *f)
+char	*ft_ldtoa(long double value)
 {
 	int		i;
 	char	*str;

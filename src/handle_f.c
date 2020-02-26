@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 06:17:37 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:31:51 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:39:07 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	handle_zero_f(t_frm *tmp, int t)
 	}
 }
 
-void	print_string_f(t_frm *tmp, char *s, int t)
+void	print_string_f(t_frm *tmp, char *s)
 {
 	int		i;
 	int		j;
@@ -114,10 +114,10 @@ void	handle_f(t_frm *tmp, va_list argptr)
 	s = get_s_f(tmp, argptr);
 	t = get_float_len(tmp, s);
 	handle_zero_f(tmp, t);
-	print_string_f(tmp, s, t);
+	print_string_f(tmp, s);
 	if (tmp->minus)
 	{
-		while (tmp->ret < tmp->w)
+		while ((int)tmp->ret < tmp->w)
 			putchar_and_count(' ', tmp);
 	}
 	ft_strdel(&s);

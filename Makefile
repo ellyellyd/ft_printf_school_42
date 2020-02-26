@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/26 07:13:44 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/26 07:32:46 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RESET = \033[0m
 
 .PHONY: all clean fclean re libft exec norm memcheck
 
-CFLAGS = #-Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = libftprintf.a
 EXEC = ft_printf
 

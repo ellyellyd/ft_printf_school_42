@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 02:59:13 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/18 21:09:00 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:28:27 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strncpy(char *dst, char const *src, size_t len)
 
 	i = 0;
 	len_src = ft_strlen(src);
-	while (i < MIN_OF_TWO(len, len_src))
+	while (i < ((len < len_src) ? (len) : (len_src)))
 	{
 		dst[i] = src[i];
 		i++;

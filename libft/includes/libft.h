@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/12 04:20:50 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:29:10 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include <fcntl.h>
 
 # include "get_next_line.h"
-
-# define MIN_OF_TWO(Value1, Value2) ((Value1 < Value2) ? (Value1) : (Value2))
-# define MAX_OF_TWO(Value1, Value2) ((Value1 > Value2) ? (Value1) : (Value2))
-# define ABS(Value) ((Value >= 0) ? (Value) : (Value * (-1)))
 
 typedef struct	s_list
 {

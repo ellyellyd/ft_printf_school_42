@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 06:31:28 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:31:51 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:43:22 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,20 @@ char	*get_s_f(t_frm *tmp, va_list argptr)
 	long double		value_ld;
 	double			value_d;
 
+	s = NULL;
 	if (tmp->size == 10)
 	{
 		value_ld = va_arg(argptr, long double);
-		if (value_ld < 0)
-		{
-			tmp->sgn = '-';
-			value_ld *= -1;
-		}
-		s = ft_ldtoa(value_ld + get_delta(tmp), tmp);
+		value_ld = ((value_ld < 0) ? (value_ld * (-1)) : (value_ld));
+		tmp->sgn = ((value_ld < 0) ? ('-') : (tmp->sgn));
+		s = ft_ldtoa(value_ld + get_delta(tmp));
 	}
 	else if (tmp->size == 1 || tmp->size == 0)
 	{
 		value_d = va_arg(argptr, double);
-		if (value_d < 0)
-		{
-			tmp->sgn = '-';
-			value_d *= -1;
-		}
-		s = ft_dtoa(value_d + get_delta(tmp), tmp);
+		value_d = ((value_d < 0) ? (value_d * (-1)) : (value_d));
+		tmp->sgn = ((value_d < 0) ? ('-') : (tmp->sgn));
+		s = ft_dtoa(value_d + get_delta(tmp));
 	}
 	return (s);
 }
