@@ -6,37 +6,39 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/26 04:57:27 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 10:55:22 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	insert_format(const char *format, int i, va_list argptr, t_frm *tmp)
+void	insert_format(const char *format, int *i, va_list argptr, t_frm *tmp)
 {
 	int			l;
 
 	l = 0;
-	if (format[i] == 'x')
-		handle_xxp(tmp, argptr, 'x', format[i]);
-	else if (format[i] == 'X')
-		handle_xxp(tmp, argptr, 'X', format[i]);
-	else if (format[i] == 'o')
-		handle_o(tmp, argptr, format[i]);
-	else if (format[i] == 'u')
-		handle_u(tmp, argptr, format[i]);
-	else if (format[i] == 'i' || format[i] == 'd')
+	if (format[(*i)] == 'x')
+		handle_xxp(tmp, argptr, 'x', format[(*i)]);
+	else if (format[(*i)] == 'X')
+		handle_xxp(tmp, argptr, 'X', format[(*i)]);
+	else if (format[(*i)] == 'o')
+		handle_o(tmp, argptr, format[(*i)]);
+	else if (format[(*i)] == 'u')
+		handle_u(tmp, argptr, format[(*i)]);
+	else if (format[(*i)] == 'i' || format[(*i)] == 'd')
 		handle_id(tmp, argptr);
-	else if (format[i] == 'p')
-		handle_xxp(tmp, argptr, 'x', format[i]);
-	else if (format[i] == 'c')
+	else if (format[(*i)] == 'p')
+		handle_xxp(tmp, argptr, 'x', format[(*i)]);
+	else if (format[(*i)] == 'c')
 		handle_c(tmp, argptr, &l);
-	else if (format[i] == 's')
+	else if (format[(*i)] == 's')
 		handle_s(tmp, argptr);
-	else if (format[i] == 'f')
+	else if (format[(*i)] == 'f')
 		handle_f(tmp, argptr);
-	else if (format[i] == '%')
+	else if (format[(*i)] == '%')
 		handle_percent(tmp);
+	else
+		(*i) += 1;
 }
 
 int		is_garbage(char c)
@@ -59,7 +61,7 @@ int		handle_spec(const char *format, va_list argptr, int *i)
 	tmp = process_flags(format, (*i));
 	while (is_garbage(format[(*i)]))
 		(*i)++;
-	insert_format(format, (*i), argptr, &tmp);
+	insert_format(format, i, argptr, &tmp);
 	ret = tmp.ret;
 	reset_struct(&tmp);
 	return (ret);
