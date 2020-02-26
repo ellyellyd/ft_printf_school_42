@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 21:28:15 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:24:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:13:22 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	handle_zero_id(t_frm *tmp, int t)
 	{
 		if (tmp->zero && tmp->precision <= 0 && t + 1 < tmp->w + 1)
 			handle_sgn_and_space_id(tmp);
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		while (i < tmp->w - ((tmp->precision > t) ? (tmp->precision) : (t)))
 		{
 			putchar_and_count(\
 				((tmp->zero && tmp->precision < 0) ? \
@@ -115,7 +115,7 @@ void	handle_id(t_frm *tmp, va_list argptr)
 	i = 0;
 	if (tmp->minus)
 	{
-		while (i++ < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		while (i++ < tmp->w - ((tmp->precision > t) ? (tmp->precision) : (t)))
 			putchar_and_count(' ', tmp);
 	}
 	ft_strdel(&s);

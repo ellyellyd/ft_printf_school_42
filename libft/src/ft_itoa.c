@@ -6,13 +6,11 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 12:10:29 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:11:56 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#define ARRAY_SIZE(Value, Length) ((Value < 0) ? (Length + 2) : (Length + 1))
 
 static int		get_len(int n)
 {

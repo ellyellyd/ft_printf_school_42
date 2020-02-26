@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 06:33:44 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:56:39 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:13:21 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	handle_zero_xx(t_frm *tmp, int t)
 	i = 0;
 	if (tmp->minus == 0)
 	{
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		while (i < tmp->w - ((tmp->precision > t) ? (tmp->precision) : (t)))
 		{
 			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
 										('0') : (' ')), tmp);
@@ -93,7 +93,7 @@ void	handle_xxp(t_frm *tmp, va_list argptr, char x, char c)
 	i = 0;
 	if (tmp->minus)
 	{
-		while (i++ < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		while (i++ < tmp->w - ((tmp->precision > t) ? (tmp->precision) : (t)))
 			putchar_and_count(' ', tmp);
 	}
 	ft_strdel(&s);
