@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   ft_dtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 22:00:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 08:21:34 by slisandr         ###   ########.fr       */
+/*   Created: 2020/02/26 06:26:57 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/26 06:27:34 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	print_string(t_frm *tmp, char *s, int t, char c)
+#define STEPS_F 23
+#define STEPS_D 52
+
+char	*ft_dtoa(double value, t_frm *f)
 {
 	int		i;
+	char	*str;
+	char	*tmp;
 
-	i = 0;
-	if (s[0] != '0' || \
-		tmp->precision != 0 || \
-		(tmp->hash && ((c == 'o' && tmp->precision >= 0) || \
-					   ((c == 'x' || c == 'X') && (tmp->precision >= 1)))))
+	str = ft_strnew(STEPS_D + 1);
+	tmp = ft_itoa_unsigned_base((long long int)value, 10, 'X');
+	ft_strncpy(str, tmp, (i = ft_strlen(tmp)));
+	str[i++] = '.';
+	while (i < STEPS_D)
 	{
-		{
-			while (i++ < tmp->precision - t)
-				putchar_and_count('0', tmp);
-			putstr_and_count(s, tmp);
-		}
+		value = 10 * (value - (double)((long long int)value));
+		str[i] = (long long int)value + '0';
+		i += 1;
 	}
-	else if (tmp->w > 0 && tmp->precision >= 0)
-		putchar_and_count(' ', tmp);
+	ft_strdel(&tmp);
+	return (str);
 }

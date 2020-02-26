@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 21:28:15 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 02:06:53 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 06:24:31 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_s_and_mod_w_id(t_frm *tmp, va_list argptr)
 	int long long	l;
 
 	l = ((tmp->size == 0) ? \
-		 (va_arg(argptr, int)) : (va_arg(argptr, long long int)));
+		(va_arg(argptr, int)) : (va_arg(argptr, long long int)));
 	if (tmp->size == 6 || tmp->size == 66)
 		l = ((tmp->size == 66) ? ((char)l) : ((short)l));
 	else if (tmp->size == 1 || tmp->size == 11 || tmp->size == 0)
@@ -70,7 +70,7 @@ void	handle_zero_id(t_frm *tmp, int t)
 		{
 			putchar_and_count(\
 				((tmp->zero && tmp->precision < 0) ? \
-							   ('0') : (' ')), tmp);
+									('0') : (' ')), tmp);
 			i += 1;
 		}
 		if (!(tmp->plus) && tmp->precision != 0)
@@ -102,30 +102,21 @@ void	print_string_id(t_frm *tmp, char *s, int t)
 	handle_sgn_and_space_id(tmp);
 }
 
-void	handle_minus_id(t_frm *tmp, int t)
-{
-	int		i;
-
-	i = 0;
-	if (tmp->minus)
-	{
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
-		{
-			putchar_and_count(' ', tmp);
-			i += 1;
-		}
-	}
-}
-
 void	handle_id(t_frm *tmp, va_list argptr)
 {
 	char	*s;
 	int		t;
+	int		i;
 
 	s = get_s_and_mod_w_id(tmp, argptr);
 	t = ft_strlen(s);
 	handle_zero_id(tmp, t);
 	print_string_id(tmp, s, t);
-	handle_minus_id(tmp, t);
+	i = 0;
+	if (tmp->minus)
+	{
+		while (i++ < tmp->w - MAX_OF_TWO(tmp->precision, t))
+			putchar_and_count(' ', tmp);
+	}
 	ft_strdel(&s);
 }

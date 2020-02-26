@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:15:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/19 08:21:34 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 06:14:36 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_s_o(t_frm *tmp, va_list argptr)
 {
-	char	*s;
+	char				*s;
 	unsigned long long	value;
 
 	if (tmp->size == 6)
@@ -27,15 +27,6 @@ char	*get_s_o(t_frm *tmp, va_list argptr)
 	return (s);
 }
 
-void	mod_width_o(t_frm *tmp, char *s, int t)
-{
-	if (tmp->w > 0)
-	{
-		if (tmp->hash == 1 && s[0] != '0' && !(t + 1 <= tmp->precision))
-			tmp->w -= 1;
-	}
-}
-
 void	handle_zero_o(t_frm *tmp, int t)
 {
 	int		i;
@@ -46,7 +37,7 @@ void	handle_zero_o(t_frm *tmp, int t)
 		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
 		{
 			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
-							   ('0') : (' ')), tmp);
+									('0') : (' ')), tmp);
 			i += 1;
 		}
 	}
@@ -58,43 +49,30 @@ void	handle_hash_o(t_frm *tmp, char *s, int t)
 		putchar_and_count('0', tmp);
 }
 
-void	handle_hash_and_zero_o(t_frm *tmp, int t, char *s)
+void	mod_w_and_handle_hash_o(t_frm *tmp, int t, char *s)
 {
+	if (tmp->w > 0)
+	{
+		if (tmp->hash == 1 && s[0] != '0' && !(t + 1 <= tmp->precision))
+			tmp->w -= 1;
+	}
 	if (tmp->hash && tmp->zero)
 	{
 		if (t + 1 < tmp->w - 1 && tmp->precision > 0)
 		{
-			mod_width_o(tmp, s, t);
 			handle_zero_o(tmp, t);
 			handle_hash_o(tmp, s, t);
 		}
 		else
 		{
-			mod_width_o(tmp, s, t);
 			handle_hash_o(tmp, s, t);
 			handle_zero_o(tmp, t);
 		}
 	}
 	else
 	{
-		mod_width_o(tmp, s, t);
 		handle_zero_o(tmp, t);
 		handle_hash_o(tmp, s, t);
-	}
-}
-
-void	handle_minus_o(t_frm *tmp, int t)
-{
-	int		i;
-
-	i = 0;
-	if (tmp->minus)
-	{
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
-		{
-			putchar_and_count(' ', tmp);
-			i += 1;
-		}
 	}
 }
 
@@ -102,11 +80,17 @@ void	handle_o(t_frm *tmp, va_list argptr, char c)
 {
 	char	*s;
 	int		t;
+	int		i;
 
 	s = get_s_o(tmp, argptr);
 	t = ft_strlen(s);
-	handle_hash_and_zero_o(tmp, t, s);
-	print_string(tmp, s, t, c);
-	handle_minus_o(tmp, t);
+	mod_w_and_handle_hash_o(tmp, t, s);
+	print_string_ouxxp(tmp, s, t, c);
+	i = 0;
+	if (tmp->minus)
+	{
+		while (i++ < tmp->w - MAX_OF_TWO(tmp->precision, t))
+			putchar_and_count(' ', tmp);
+	}
 	ft_strdel(&s);
 }

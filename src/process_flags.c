@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_flags.c                                  :+:      :+:    :+:   */
+/*   process_flags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/13 02:46:20 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 11:27:30 by slisandr         ###   ########.fr       */
+/*   Created: 2020/02/26 07:01:50 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/26 07:02:09 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	record_flag(char c, char c_prev, t_frm *tmp)
 		tmp->hash = 1;
 }
 
-void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
+void	record_size(char c, t_frm *tmp, char const *format, int *i)
 {
 	if (c == 'L')
 		tmp->size = 10;
@@ -50,7 +50,11 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 		else
 			tmp->size = 1;
 	}
-	else if (c >= '0' && c <= '9')
+}
+
+void	record_width_and_precision(char c, t_frm *tmp)
+{
+	if (c >= '0' && c <= '9')
 	{
 		if (tmp->precision >= 0)
 			tmp->precision = tmp->precision * 10 + (c - '0');
@@ -58,9 +62,7 @@ void	record_size_and_width(char c, t_frm *tmp, char const *format, int *i)
 			tmp->w = tmp->w * 10 + (c - '0');
 	}
 	else if (c == '.')
-	{
 		tmp->precision = 0;
-	}
 }
 
 t_frm	process_flags(const char *format, int i)
@@ -74,12 +76,13 @@ t_frm	process_flags(const char *format, int i)
 	c = format[i];
 	c_prev = format[i - 1];
 	while (!(c == 'd' || c == 'i' || c == 'o' || \
-			 c == 'u' || c == 'x' || c == 'X' || \
-			 c == 'c' || c == 's' || c == 'p' || \
-			 c == 'f' || c == '%' || format[i] == '\0'))
+			c == 'u' || c == 'x' || c == 'X' || \
+			c == 'c' || c == 's' || c == 'p' || \
+			c == 'f' || c == '%' || format[i] == '\0'))
 	{
 		record_flag(c, c_prev, &tmp);
-		record_size_and_width(c, &tmp, format, &i);
+		record_size(c, &tmp, format, &i);
+		record_width_and_precision(c, &tmp);
 		(i)++;
 		c_prev = c;
 		c = format[i];

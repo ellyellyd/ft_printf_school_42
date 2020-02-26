@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_minus.c                                     :+:      :+:    :+:   */
+/*   ft_ldtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 22:15:28 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 04:22:18 by slisandr         ###   ########.fr       */
+/*   Created: 2020/02/26 06:28:49 by slisandr          #+#    #+#             */
+/*   Updated: 2020/02/26 06:29:04 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	handle_minus(t_frm *tmp, char *c, int is_minus, char *s)
+#define STEPS_LD 80
+
+char	*ft_ldtoa(long double value, t_frm *f)
 {
 	int		i;
+	char	*str;
+	char	*tmp;
 
-	if (tmp->minus == is_minus && \
-		(tmp->plus || \
-		s[0] != '0' || \
-		(s[0] == '0' && tmp->w > 0 && tmp->precision > 0)))
+	str = ft_strnew(STEPS_LD + 1);
+	tmp = ft_itoa_unsigned_base((long long int)value, 10, 'X');
+	ft_strncpy(str, tmp, (i = ft_strlen(tmp)));
+	str[i++] = '.';
+	while (i < STEPS_LD)
 	{
-		i = 0;
-		while (i < tmp->w && tmp->w - i > \
-				((*c == '0') ? (tmp->precision) : (0)))
-		{
-			putchar_and_count(*c, tmp);
-			i += 1;
-		}
+		value = 10 * (value - (long double)((long long int)value));
+		str[i] = (long long int)value + '0';
+		i += 1;
 	}
+	ft_strdel(&tmp);
+	return (str);
 }

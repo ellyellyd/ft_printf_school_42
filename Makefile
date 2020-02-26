@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/26 04:23:33 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/26 06:42:27 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ SRC_RAW = \
 	x_ft_itoa_base.c\
 	ft_itoa_unsigned_base.c \
 	ft_itoa_unsigned_base.c \
-	handle_minus.c \
 	handle_c.c \
 	handle_s.c \
 	handle_o.c \
@@ -40,9 +39,13 @@ SRC_RAW = \
 	handle_precision.c \
 	putchar_and_count.c \
 	putstr_and_count.c \
-	print_string.c \
+	print_string_ouxxp.c \
 	process_flags.c \
 	reset_struct.c \
+	ft_dtoa.c \
+	ft_ldtoa.c \
+	get_s_f.c \
+	get_s_xx.c \
 	fix_s.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_RAW))
 

@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:37 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 07:30:23 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 06:14:36 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	handle_zero_u(t_frm *tmp, int t)
 		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
 		{
 			putchar_and_count(((tmp->zero && tmp->precision < 0) ? \
-							   ('0') : (' ')), tmp);
+										('0') : (' ')), tmp);
 			i += 1;
 		}
 	}
@@ -68,7 +68,7 @@ void	handle_u(t_frm *tmp, va_list argptr, char c)
 	s = get_s_u(tmp, argptr);
 	t = ft_strlen(s);
 	handle_zero_u(tmp, t);
-	print_string(tmp, s, t, c);
+	print_string_ouxxp(tmp, s, t, c);
 	handle_minus_u(tmp, t);
 	ft_strdel(&s);
 }

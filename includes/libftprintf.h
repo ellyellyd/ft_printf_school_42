@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 04:23:33 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 06:43:12 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ char				*ft_itoa_base(int value, int base);
 char				*x_ft_itoa_base(int value, int base);
 char				*ft_itoa_unsigned_base(unsigned long long value, \
 												int base, char c);
-void				handle_minus(t_frm *tmp, char *c, int cmp, char *s);
+char				*ft_dtoa(double value, t_frm *f);
+char				*ft_ldtoa(long double value, t_frm *f);
 void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);
@@ -76,8 +77,8 @@ t_frm				process_flags(const char *format, int i);
 void				handle_percent(t_frm *tmp);
 void				reset_struct(t_frm *tmp);
 void				handle_precision(t_frm *tmp, char *s);
-void				print_string(t_frm *tmp, char *s, int t, char c);
-char				*ft_itoa_unsigned_base(unsigned long long value, \
-												int base, char c);
+void				print_string_ouxxp(t_frm *tmp, char *s, int t, char c);
+char				*get_s_f(t_frm *tmp, va_list argptr);
+char				*get_s_xx(t_frm *tmp, char x, va_list argptr);
 
 #endif
