@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/26 10:55:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:36:52 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	insert_format(const char *format, int *i, va_list argptr, t_frm *tmp)
 		handle_f(tmp, argptr);
 	else if (format[(*i)] == '%')
 		handle_percent(tmp);
+	else if (format[(*i)] == '\0')
+			 return ;
 	else
 		(*i) += 1;
 }
@@ -86,6 +88,8 @@ int		ft_printf(const char *format, ...)
 		}
 		else if (format[i + 1])
 			ret += handle_spec(format, argptr, &i);
+		if (!format[i])
+			break ;
 		i++;
 	}
 	va_end(argptr);

@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:00 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 11:11:29 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:41:50 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	handle_s(t_frm *tmp, va_list argptr)
 	s = get_s_s(tmp, argptr);
 	t = ft_strlen(s);
 	print_string_s(tmp, s, t);
-	/* if (tmp->is_null) */
-	/* 	ft_strdel(&s); */
 	i = 0;
 	j = 0;
 	if (tmp->minus)
@@ -102,4 +100,6 @@ void	handle_s(t_frm *tmp, va_list argptr)
 				putchar_and_count(' ', tmp);
 		}
 	}
+	if (tmp->is_null)
+		ft_strdel(&s);
 }
