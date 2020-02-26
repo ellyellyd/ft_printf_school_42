@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/22 09:42:46 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/26 04:23:33 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ EXEC = ft_printf
 
 SRC_DIR = src
 SRC_RAW = \
-	10_in_8.c \
 	ft_printf.c \
 	ft_itoa_base.c \
 	x_ft_itoa_base.c\
@@ -34,7 +33,7 @@ SRC_RAW = \
 	handle_s.c \
 	handle_o.c \
 	handle_u.c \
-	handle_xx.c \
+	handle_xxp.c \
 	handle_id.c \
 	handle_f.c \
 	handle_percent.c \

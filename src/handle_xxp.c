@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 21:49:35 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/22 11:53:01 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 04:23:19 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	handle_hash_and_zero_xx(t_frm *tmp, int t, char *s, char x, char c)
 	}
 }
 
-void	handle_xx(t_frm *tmp, va_list argptr, char x, char c)
+void	handle_xxp(t_frm *tmp, va_list argptr, char x, char c)
 {
 	int		t;
 	char	*s;
