@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 11:03:38 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:22:13 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ char				*ft_itoa_base(int value, int base);
 char				*x_ft_itoa_base(int value, int base);
 char				*ft_itoa_unsigned_base(unsigned long long value, \
 												int base, char c);
-char				*ft_dtoa(double value, t_frm *f);
-char				*ft_ldtoa(long double value, t_frm *f);
+char				*ft_dtoa(double value);
+char				*ft_ldtoa(long double value);
 void				fix_s(char *s, char c, int is_minus, int n);
 void				handle_c(t_frm *tmp, va_list argptr, int *l);
 void				handle_s(t_frm *tmp, va_list argptr);

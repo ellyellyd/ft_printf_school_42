@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 06:26:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:27:34 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:21:52 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define STEPS_F 23
 #define STEPS_D 52
 
-char	*ft_dtoa(double value, t_frm *f)
+char	*ft_dtoa(double value)
 {
 	int		i;
 	char	*str;
