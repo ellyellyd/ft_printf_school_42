@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:43:12 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 07:14:02 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 # include <stdarg.h>
 
 # include "libft.h"
-
-/*
-** these libraries must be removed before defence!
-*/
-
-# include <stdio.h>
-#include <limits.h>
 
 /*
 ** nb - how many spaces or zeroes, hash - #,
@@ -80,5 +73,6 @@ void				handle_precision(t_frm *tmp, char *s);
 void				print_string_ouxxp(t_frm *tmp, char *s, int t, char c);
 char				*get_s_f(t_frm *tmp, va_list argptr);
 char				*get_s_xx(t_frm *tmp, char x, va_list argptr);
+char				*get_s_o(t_frm *tmp, va_list argptr);
 
 #endif

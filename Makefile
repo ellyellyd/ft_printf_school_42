@@ -6,7 +6,7 @@
 #    By: fcatina <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 15:25:21 by fcatina           #+#    #+#              #
-#    Updated: 2020/02/26 06:42:27 by slisandr         ###   ########.fr        #
+#    Updated: 2020/02/26 07:13:44 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC_RAW = \
 	ft_dtoa.c \
 	ft_ldtoa.c \
 	get_s_f.c \
+	get_s_o.c \
 	get_s_xx.c \
 	fix_s.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_RAW))
