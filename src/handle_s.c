@@ -6,19 +6,22 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 22:03:00 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 06:24:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:11:29 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*get_s_s(va_list argptr)
+char	*get_s_s(t_frm *tmp, va_list argptr)
 {
 	char	*s;
 
 	s = va_arg(argptr, char *);
 	if (s == NULL)
+	{
 		s = ft_strdup("(null)");
+		tmp->is_null = 1;
+	}
 	return (s);
 }
 
@@ -82,9 +85,11 @@ void	handle_s(t_frm *tmp, va_list argptr)
 	int		i;
 	int		j;
 
-	s = get_s_s(argptr);
+	s = get_s_s(tmp, argptr);
 	t = ft_strlen(s);
 	print_string_s(tmp, s, t);
+	/* if (tmp->is_null) */
+	/* 	ft_strdel(&s); */
 	i = 0;
 	j = 0;
 	if (tmp->minus)
