@@ -6,7 +6,7 @@
 /*   By: fcatina <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 23:25:50 by fcatina           #+#    #+#             */
-/*   Updated: 2020/02/26 11:36:52 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:46:02 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	insert_format(const char *format, int *i, va_list argptr, t_frm *tmp)
 	int			l;
 
 	l = 0;
-	if (format[(*i)] == 'x')
-		handle_xxp(tmp, argptr, 'x', format[(*i)]);
-	else if (format[(*i)] == 'X')
-		handle_xxp(tmp, argptr, 'X', format[(*i)]);
+	if (format[(*i)] == 'x' || format[(*i)] == 'X')
+		handle_xxp(tmp, argptr, format[(*i)], format[(*i)]);
 	else if (format[(*i)] == 'o')
 		handle_o(tmp, argptr, format[(*i)]);
 	else if (format[(*i)] == 'u')
@@ -38,7 +36,7 @@ void	insert_format(const char *format, int *i, va_list argptr, t_frm *tmp)
 	else if (format[(*i)] == '%')
 		handle_percent(tmp);
 	else if (format[(*i)] == '\0')
-			 return ;
+		return ;
 	else
 		(*i) += 1;
 }
