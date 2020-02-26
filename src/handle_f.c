@@ -14,7 +14,7 @@ char	*ft_dtoa(double value, t_frm *f)
 	tmp = ft_itoa_unsigned_base((long long int)value, 10, 'X');
 	ft_strncpy(str, tmp, (i = ft_strlen(tmp)));
 	str[i++] = '.';
-	f->w -= 1;
+	/* f->w -= 1; */
 	while (i < STEPS_D)
 	{
 		value = 10 * (value - (double)((long long int)value));
@@ -35,7 +35,7 @@ char	*ft_ldtoa(long double value, t_frm *f)
 	tmp = ft_itoa_unsigned_base((long long int)value, 10, 'X');
 	ft_strncpy(str, tmp, (i = ft_strlen(tmp)));
 	str[i++] = '.';
-	f->w -= 1;
+	/* f->w -= 1; */
 	while (i < STEPS_LD)
 	{
 		value = 10 * (value - (long double)((long long int)value));
@@ -75,7 +75,7 @@ char	*get_s_f(t_frm *tmp, va_list argptr)
 		{
 			tmp->sgn = '-';
 			value_ld *= -1;
-			tmp->w -= 1;
+			/* tmp->w -= 1; */
 		}
 		s = ft_ldtoa(value_ld + get_delta(tmp), tmp);
 	}
@@ -86,7 +86,7 @@ char	*get_s_f(t_frm *tmp, va_list argptr)
 		{
 			tmp->sgn = '-';
 			value_d *= -1;
-			tmp->w -= 1;
+			/* tmp->w -= 1; */
 		}
 		s = ft_dtoa(value_d + get_delta(tmp), tmp);
 	}
@@ -124,11 +124,9 @@ void	handle_zero_f(t_frm *tmp, int t)
 	{
 		if (tmp->zero && tmp->precision <= 0 && t + 1 < tmp->w + 1)
 			handle_sgn_and_space_f(tmp);
-		while (i < tmp->w - MAX_OF_TWO(tmp->precision, t))
+		while (i < tmp->w - t)
 		{
-			putchar_and_count(\
-				((tmp->zero && tmp->precision < 0) ? \
-				 ('0') : (' ')), tmp);
+			putchar_and_count(((tmp->zero) ? ('0') : (' ')), tmp);
 			i += 1;
 		}
 		if (!(tmp->plus) && tmp->precision != 0)
@@ -141,6 +139,12 @@ void	print_string_f(t_frm *tmp, char *s, int t)
 	int		i;
 	int		j;
 
+	/* if (!(tmp->minus)) */
+	/* { */
+	/* 	i = 0; */
+	/* 	while (i++ < tmp->w - t) */
+	/* 		putchar_and_count(' ', tmp); */
+	/* } */
 	handle_sgn_and_space_f(tmp);
 	i = 0;
 	while (s[i])
@@ -168,9 +172,33 @@ void	handle_minus_f(t_frm *tmp)
 {
 	if (tmp->minus)
 	{
-		while (tmp->ret <= tmp->w)
+		while (tmp->ret < tmp->w)
 			putchar_and_count(' ', tmp);
 	}
+}
+
+int		get_float_len(t_frm *tmp, char *s)
+{
+	int		t;
+
+	t = 0;
+	while (1)
+	{
+		t += 1;
+		if (s[t] == '.')
+		{
+			t += 1;
+			break ;
+		}
+	}
+	if (tmp->precision == 0)
+		t -= 1;
+	else
+		t += tmp->precision;
+	if (tmp->plus || tmp->space || tmp->sgn == '-')
+		t += 1;
+	/* printf("***t = %d***", t); */
+	return (t);
 }
 
 void	handle_f(t_frm *tmp, va_list argptr)
@@ -184,7 +212,8 @@ void	handle_f(t_frm *tmp, va_list argptr)
 		tmp->precision = 6;
 	}
 	s = get_s_f(tmp, argptr);
-	t = ft_strlen(s);
+	t = get_float_len(tmp, s);
+	handle_zero_f(tmp, t);
 	print_string_f(tmp, s, t);
 	handle_minus_f(tmp);
 	ft_strdel(&s);
