@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 22:02:30 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 07:40:21 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 09:19:11 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef	struct		s_form
 	int		l_tail;
 	int		sgn_is_printed;
 	size_t	ret;
+	int		is_null;
 }					t_frm;
 
 int					ft_printf(const char *format, ...);

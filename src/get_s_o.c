@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 07:13:13 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/26 07:13:33 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/02/26 09:24:41 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_s_o(t_frm *tmp, va_list argptr)
 	else if (tmp->size == 66)
 		value = (unsigned char)va_arg(argptr, unsigned long long);
 	else
-		value = va_arg(argptr, unsigned long long);
+		value = (unsigned int)va_arg(argptr, unsigned long long);
 	s = ft_itoa_unsigned_base(value, 8, 'X');
 	return (s);
 }
